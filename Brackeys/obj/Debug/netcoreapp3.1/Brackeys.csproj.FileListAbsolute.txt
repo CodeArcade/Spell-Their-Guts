@@ -26,3 +26,4 @@ C:\Users\Nils\source\repos\Brackeys\Brackeys\obj\Debug\netcoreapp3.1\Brackeys.ge
 C:\Users\Nils\source\repos\Brackeys\Brackeys\bin\Debug\netcoreapp3.1\Content\Sprites\Towers\TEST\Tower.xnb
 C:\Users\Nils\source\repos\Brackeys\Brackeys\bin\Debug\netcoreapp3.1\Content\Sprites\Enemy\Enemy.xnb
 C:\Users\Nils\source\repos\Brackeys\Brackeys\bin\Debug\netcoreapp3.1\Content\Sprites\Transparent.xnb
+C:\Users\Nils\source\repos\Brackeys\Brackeys\bin\Debug\netcoreapp3.1\Content\Font\TestFont.xnb

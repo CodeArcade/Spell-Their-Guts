@@ -13,7 +13,7 @@ namespace Brackeys.Component.Sprites.Tower
 
             Damage = 2;
             Range = 5;
-            Cost = 10;
+            GlobalCost = 1;
         }
     }
 }

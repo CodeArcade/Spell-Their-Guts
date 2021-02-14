@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/Sprites/Enemy/Enemy.png","C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/bin/DesktopGL/Sprites/Enemy/Enemy.xnb","TextureProcessor","Texture2DContent",353,40085,0,1909991
-"C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/Sprites/Towers/TEST/Tower.png","C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/bin/DesktopGL/Sprites/Towers/TEST/Tower.xnb","TextureProcessor","Texture2DContent",330,40085,0,0209991
-"C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/Sprites/Transparent.png","C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/bin/DesktopGL/Sprites/Transparent.xnb","TextureProcessor","Texture2DContent",81,89,0,0140009
+"C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/Font/TestFont.spritefont","C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/bin/DesktopGL/Font/TestFont.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21521,0,4609925
+"C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/Sprites/Enemy/Enemy.png","C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/bin/DesktopGL/Sprites/Enemy/Enemy.xnb","TextureProcessor","Texture2DContent",353,40085,0,0400002
+"C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/Sprites/Towers/TEST/Tower.png","C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/bin/DesktopGL/Sprites/Towers/TEST/Tower.xnb","TextureProcessor","Texture2DContent",330,40085,0,0240021
+"C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/Sprites/Transparent.png","C:/Users/Nils/source/repos/Brackeys/Brackeys/Content/bin/DesktopGL/Sprites/Transparent.xnb","TextureProcessor","Texture2DContent",81,89,0,0349979

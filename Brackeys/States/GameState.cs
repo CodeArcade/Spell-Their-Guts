@@ -1,5 +1,6 @@
 ﻿
 using Brackeys.Models;
+using Brackeys.Models.Levels;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,14 +9,12 @@ namespace Brackeys.States
     public partial class GameState : State
     {
         public static string Name = "Game";
-        public Player Player { get; set; }
-
+        private Level Level { get; set; }
 
         public GameState()
         {
-            Player = new Player();
+            Level = new Level1();
         }
-
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -28,6 +27,7 @@ namespace Brackeys.States
 
         public override void Update(GameTime gameTime)
         {
+            Level.Update(gameTime, this);
             base.Update(gameTime);
             Player.Update(gameTime);
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Brackeys.States;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -16,7 +17,7 @@ namespace Brackeys.Component.Sprites
         private MouseState PreviousMouse { get; set; }
         public bool IsMouseOver { get; private set; }
 
-        public Color Color => Color.White;
+        public Color Color => Color.Transparent;
         public Color HoverColor { get; set; } = Color.Gray;
         public string Text { get; set; }
         public bool Clicked { get; private set; }
@@ -66,7 +67,9 @@ namespace Brackeys.Component.Sprites
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Color color = Color;
-            if (IsMouseOver && (Tower != null)) color = HoverColor;
+            if (IsMouseOver && (Tower != null || ((GameState)CurrentState).Player.CurrentTowerInHand != null)) color = HoverColor;
+
+            if (IsPath) color = Color.Yellow;
 
             spriteBatch.Draw(Texture, Rectangle, color);
 

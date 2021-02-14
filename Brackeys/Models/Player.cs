@@ -32,10 +32,19 @@ namespace Brackeys.Models
 
         public override void Update(GameTime gameTime)
         {
+            CancelPlace();
             if (CurrentTowerInHand != null)
             {
                 Point p = Mouse.GetState().Position;
                 CurrentTowerInHand.Position = new Vector2(p.X - CurrentTowerInHand.Size.Width / 2, p.Y - CurrentTowerInHand.Size.Height / 2);
+            }
+        }
+
+        public void CancelPlace()
+        {
+            if (Mouse.GetState().RightButton == ButtonState.Pressed)
+            {
+                CurrentTowerInHand = null;
             }
         }
     }

@@ -12,18 +12,13 @@ namespace Brackeys.Component.Sprites.Tower
         public int Damage { get; set; }
         public int Range { get; set; }
         public float FireSpeed { get; set; }
-        public static int Cost { get; set; }
+        public static int GlobalCost { get; set; }
+        public int Cost => GlobalCost;
 
         public bool IsRoot { get; protected set; }
 
         public void Shoot()
         {
-
-        }
-
-        public Tower Copy()
-        {
-            return (Tower)this.MemberwiseClone();
 
         }
 

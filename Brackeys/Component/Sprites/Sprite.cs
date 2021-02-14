@@ -12,7 +12,6 @@ namespace Brackeys.Component.Sprites
         private Size InternalSize { get; set; }
 
         public float Speed { get; set; }
-        public float MaxSpeed { get; set; }
         public Vector2 Direction { get; set; }
         public Texture2D Texture { get; set; }
         public Color Color { get; set; } = Color.White;
@@ -154,6 +153,12 @@ namespace Brackeys.Component.Sprites
             ParticleManager.Update(gameTime);
 
             if (AnimationManager.IsPlaying) AnimationManager.Update(gameTime);
+        }
+
+        public Sprite Copy()
+        {
+            return (Sprite)this.MemberwiseClone();
+
         }
 
     }
