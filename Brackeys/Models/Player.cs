@@ -17,12 +17,7 @@ namespace Brackeys.Models
         public Player()
         {
             Money = 5;
-            Health = 100;
-            CurrentTowerInHand = new FireTower()
-            {
-                Color = Color.White * 0.7f
-            };
-            
+            Health = 100;           
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

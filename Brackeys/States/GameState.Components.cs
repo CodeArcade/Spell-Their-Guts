@@ -79,7 +79,7 @@ namespace Brackeys.States
 
         private void AddUi()
         {
-            #region "Labels"
+            #region Ui
             AddComponent(
                 new Label(ContentManager.TestFont)
                 {
@@ -90,17 +90,54 @@ namespace Brackeys.States
                 },
                 (int)Layers.UI);
 
-           AddComponent(
-           new Label(ContentManager.TestFont)
-           {
-               Name = "MoneyLabel",
-               Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize),
-               FontColor = Color.Black,
-               Text = "test"
-           },
-           (int)Layers.UI);
+            AddComponent(
+            new Label(ContentManager.TestFont)
+            {
+                Name = "MoneyLabel",
+                Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize),
+                FontColor = Color.Black,
+                Text = "test"
+            },
+            (int)Layers.UI);
             #endregion
 
+            #region Shop
+
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 2);
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 2);
+
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 4);
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 4);
+
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 6);
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 6);
+            #endregion
         }
+
+        private void AddShopEntry(Tower tower, int x, int y)
+        {
+            Button button = new Button(tower.Texture, ContentManager.TestFont)
+            {
+                Position = new Vector2(x, y),
+                Size = new Size(CellSize, CellSize)
+            };
+
+            button.OnClick += (sender, e) =>
+            {
+                Player.CurrentTowerInHand = (Tower)tower.Copy();
+                Player.CurrentTowerInHand.Color = Color.White * 0.7f;
+            };
+
+            Label label = new Label(ContentManager.TestFont)
+            {
+                Position = new Vector2(x, y + CellSize),
+                Text = tower.Cost.ToString()
+            };
+
+            AddComponent(button, (int)Layers.UI);
+            AddComponent(label, (int)Layers.UI);
+        }
+
     }
+
 }
