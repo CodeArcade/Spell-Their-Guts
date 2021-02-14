@@ -46,8 +46,7 @@ namespace Brackeys.States
         public void Load()
         {
             Layer = new List<Component.Component>[Enum.GetNames(typeof(Layers)).Length];
-            for (int i = 0; i < Layer.Length; i++) 
-                Layer[i] = new List<Component.Component>();
+            for (int i = 0; i < Layer.Length; i++) Layer[i] = new List<Component.Component>();
             LoadComponents(); OnLoad(); 
             HasLoaded = true; 
         }
@@ -68,16 +67,13 @@ namespace Brackeys.States
                 return;
             }
             // draw components from top to bottom
-            List<Component.Component> DrawOrder = Layer[0].OrderByDescending(c => c.Position.Y).ToList();
-            for (int i = DrawOrder.Count - 1; i >= 0; i--)
+            foreach (List<Component.Component> components in Layer)
             {
-                DrawOrder[i].Draw(gameTime, spriteBatch);
-            }
-
-            DrawOrder = Layer[1].OrderByDescending(c => c.Position.Y).ToList();
-            for (int i = DrawOrder.Count - 1; i >= 0; i--)
-            {
-                DrawOrder[i].Draw(gameTime, spriteBatch);
+                List<Component.Component> DrawOrder = components.OrderByDescending(c => c.Position.Y).ToList();
+                for (int i = DrawOrder.Count - 1; i >= 0; i--)
+                {
+                    DrawOrder[i].Draw(gameTime, spriteBatch);
+                }
             }
         }
 

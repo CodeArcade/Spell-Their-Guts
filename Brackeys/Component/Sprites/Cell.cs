@@ -66,7 +66,7 @@ namespace Brackeys.Component.Sprites
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Color color = Color;
-            if (IsMouseOver) color = HoverColor;
+            if (IsMouseOver && (Tower != null)) color = HoverColor;
 
             spriteBatch.Draw(Texture, Rectangle, color);
 

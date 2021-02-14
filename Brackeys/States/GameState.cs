@@ -1,5 +1,7 @@
 ﻿
 using Brackeys.Models;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Brackeys.States
 {
@@ -11,12 +13,24 @@ namespace Brackeys.States
 
         public GameState()
         {
-            //Player = new Player()
-            //{
-            //    CurrentlyHolding
-            //}
+            Player = new Player();
         }
 
-  
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            base.Draw(gameTime, spriteBatch);
+            if (Player.CurrentTowerInHand != null)
+            {
+                Player.CurrentTowerInHand.Draw(gameTime, spriteBatch);
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            Player.Update(gameTime);
+        }
+
     }
 }

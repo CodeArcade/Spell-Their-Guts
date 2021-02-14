@@ -15,6 +15,7 @@ namespace Brackeys.Component.Sprites
         public float MaxSpeed { get; set; }
         public Vector2 Direction { get; set; }
         public Texture2D Texture { get; set; }
+        public Color Color { get; set; } = Color.White;
         public bool Collide { get; set; } = true;
 
         public Size Size
@@ -142,7 +143,7 @@ namespace Brackeys.Component.Sprites
             if (AnimationManager.IsPlaying)
                 AnimationManager.Draw(spriteBatch);
             else
-                spriteBatch.Draw(Texture, Rectangle, Color.White);
+                spriteBatch.Draw(Texture, Rectangle, Color);
 
             ParticleManager.Draw(gameTime, spriteBatch);
         }
