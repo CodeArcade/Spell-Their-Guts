@@ -11,7 +11,7 @@ namespace Brackeys.Models.Levels.Stages
         {
             SpawnInterval = 2;
 
-            AddEnemy(new Enemy(), 1);
+            AddEnemy(new Enemy(), 10);
         }
     }
 }

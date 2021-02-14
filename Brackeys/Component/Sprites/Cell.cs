@@ -72,8 +72,6 @@ namespace Brackeys.Component.Sprites
            // if (IsPath) color = Color.Yellow;
 
             spriteBatch.Draw(Texture, Rectangle, color);
-
-            if (Tower != null) Tower.Draw(gameTime, spriteBatch);
         }
 
         public override void Update(GameTime gameTime)
@@ -95,8 +93,6 @@ namespace Brackeys.Component.Sprites
                     OnClick?.Invoke(this, new EventArgs());
                 }
             }
-
-            if (Tower != null) Tower.Update(gameTime);
         }
     }
 }

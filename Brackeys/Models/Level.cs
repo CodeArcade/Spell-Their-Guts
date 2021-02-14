@@ -20,22 +20,35 @@ namespace Brackeys.Models
         public Queue<Stage> Stages { get; private set; }
 
         public float TimeSinceLastSpawn { get; set; }
-        public bool IsRunning { get; set; }
+        private bool IsRunning { get; set; }
         
         public Level()
         {
             Stages = new Queue<Stage>();
             Stages.Enqueue(new Stage1());
+            Stages.Enqueue(new Stage2());
         }
 
-        public void StartNextStage()
+        public void Start()
         {
             IsRunning = true;
+        }
+
+        public void Pause()
+        {
+            IsRunning = false;
+        }
+
+        private void StartNextStage()
+        {
             TimeSinceLastSpawn = 0;
+            Stages.Dequeue();
         }
 
         public void Update(GameTime gameTime, GameState gameState)
         {
+            if (!IsRunning) return;
+
             if (Stages.Count == 0)
             {
                 IsRunning = false;

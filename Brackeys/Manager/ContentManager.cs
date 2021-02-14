@@ -11,7 +11,7 @@ namespace Brackeys.Manager
         public JamGame JamGame { get; set; }
 
         #region Fonts
-        public SpriteFont TestFont => JamGame.Content.Load<SpriteFont>("Fonts/TestFont");
+        public SpriteFont TestFont => JamGame.Content.Load<SpriteFont>("Font/TestFont");
         #endregion
 
 

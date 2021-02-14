@@ -5,6 +5,8 @@ using Brackeys.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Brackeys.Component.Sprites.Tower;
+using Brackeys.Component.Controls;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace Brackeys.States
 {
@@ -24,7 +26,7 @@ namespace Brackeys.States
             Player = new Player();
 
             AddGrid(Columns, Rows);
-            AddShop();
+            AddUi();
         }
 
         private void AddGrid(int columns, int rows)
@@ -66,16 +68,39 @@ namespace Brackeys.States
                     Cells[x, y].Tower.Size = Cells[x, y].Size;
                     Cells[x, y].Tower.OnPlace(Cells[x, y], Cells);
 
+                    AddComponent(Cells[x, y].Tower, (int)Layers.PlayingArea);
+
                     Player.CurrentTowerInHand = null;
                 }
             };
 
             AddComponent(Cells[x, y], (int)Layers.Cells);
         }
-    
-        private void AddShop()
+
+        private void AddUi()
         {
-            
+            #region "Labels"
+            AddComponent(
+                new Label(ContentManager.TestFont)
+                {
+                    Name = "HealthLabel",
+                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize / 2),
+                    FontColor = Color.Black,
+                    Text = "test"
+                },
+                (int)Layers.UI);
+
+           AddComponent(
+           new Label(ContentManager.TestFont)
+           {
+               Name = "MoneyLabel",
+               Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize),
+               FontColor = Color.Black,
+               Text = "test"
+           },
+           (int)Layers.UI);
+            #endregion
+
         }
     }
 }
