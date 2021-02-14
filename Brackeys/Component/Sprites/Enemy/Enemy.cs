@@ -15,7 +15,10 @@ namespace Brackeys.Component.Sprites.Enemy
     {
         public Point LastCoordinate { get; set; }
         public Point Coordinate { get; set; }
+        public Point TargetCoordinate { get; set; }
+
         public int Reward { get; set; }
+        public int Damage { get; set; }
 
         private Cell TargetCell { get; set; }
 
@@ -23,6 +26,7 @@ namespace Brackeys.Component.Sprites.Enemy
         {
             Texture = ContentManager.EnemyTexture;
             Speed = 100;
+            Damage = 1;
         }
 
         public override void Update(GameTime gameTime)
@@ -36,6 +40,13 @@ namespace Brackeys.Component.Sprites.Enemy
         {
             GameState state = (GameState)CurrentState;
             Cell targetCell = null;
+
+            if (Coordinate == TargetCoordinate)
+            {
+                state.Player.Health -= Damage;
+                IsRemoved = true;
+                return;
+            }
 
             if (Coordinate.X > 0)
             {

@@ -7,7 +7,7 @@ namespace Brackeys.Models.Levels
         public Level1()
         {
             SpawnPoint = new Point(0, 0);
-            Target = new Point(5, 8);
+            Target = new Point(1, 11);
 
             Paths.Add(new Path(0, 8, 0, 0));
             Paths.Add(new Path(0, 8, 5, 8));

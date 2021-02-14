@@ -76,6 +76,7 @@ namespace Brackeys.Models
             enemy.Position = SpawnPoint.ToVector2() * gameState.CellSize;
             enemy.Coordinate = SpawnPoint;
             enemy.Size = new Size(gameState.CellSize, gameState.CellSize);
+            enemy.TargetCoordinate = Target;
             gameState.AddComponent(enemy, (int)Layers.PlayingArea);
         }
     }
