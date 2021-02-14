@@ -23,7 +23,7 @@ namespace Brackeys.States
     {
         #region Fields
 
-        public List<Component.Component>[] Layer { get; set; }
+        public List<Component.Component>[] Layers { get; set; }
 
         [Dependency]
         public ContentManager ContentManager { get; set; }
@@ -37,7 +37,7 @@ namespace Brackeys.States
         [Dependency]
         public AudioManager AudioManager { get; set; }
 
-        public bool HasLoaded { get;  set; }
+        public bool HasLoaded { get; set; }
 
         #endregion
 
@@ -45,10 +45,10 @@ namespace Brackeys.States
 
         public void Load()
         {
-            Layer = new List<Component.Component>[Enum.GetNames(typeof(Layers)).Length];
-            for (int i = 0; i < Layer.Length; i++) Layer[i] = new List<Component.Component>();
-            LoadComponents(); OnLoad(); 
-            HasLoaded = true; 
+            Layers = new List<Component.Component>[Enum.GetNames(typeof(Layers)).Length];
+            for (int i = 0; i < Layers.Length; i++) Layers[i] = new List<Component.Component>();
+            LoadComponents(); OnLoad();
+            HasLoaded = true;
         }
 
         protected virtual void LoadComponents() { }
@@ -57,37 +57,39 @@ namespace Brackeys.States
         public virtual void AddComponent(Component.Component component, int layer)
         {
             component.CurrentState = this;
-            Layer[layer].Add(component);
+            Layers[layer].Add(component);
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (Layer.All(l => l.Count == 0))
+            if (Layers.All(l => l.Count == 0)) return;
+
+            for (int layer = 0; layer < Layers.Length; layer++)
             {
-                return;
-            }
-            // draw components from top to bottom
-            foreach (List<Component.Component> components in Layer)
-            {
-                List<Component.Component> DrawOrder = components.OrderByDescending(c => c.Position.Y).ToList();
+                List<Component.Component> DrawOrder = Layers[layer].OrderByDescending(c => c.Position.Y).ToList();
                 for (int i = DrawOrder.Count - 1; i >= 0; i--)
                 {
                     DrawOrder[i].Draw(gameTime, spriteBatch);
                 }
             }
+
         }
 
         public virtual void PostUpdate(GameTime gameTime)
         {
-            if (Layer.All(l => l.Count == 0))
+            if (Layers.All(l => l.Count == 0))
             {
                 return;
             }
-            foreach (List<Component.Component> components in Layer)
+            foreach (List<Component.Component> components in Layers)
             {
                 for (int i = components.Count - 1; i >= 0; i--)
                 {
-                    if (components[i].IsRemoved) components.RemoveAt(i);
+                    if (components[i].IsRemoved)
+                    {
+                        components[i].OnRemove();
+                        components.RemoveAt(i);
+                    }
                 }
             }
         }
@@ -95,12 +97,12 @@ namespace Brackeys.States
         public virtual void Update(GameTime gameTime)
         {
             AudioManager.Update();
-            if (Layer.All(l => l.Count == 0))
+            if (Layers.All(l => l.Count == 0))
             {
                 return;
             }
 
-            foreach (List<Component.Component> components in Layer)
+            foreach (List<Component.Component> components in Layers)
             {
                 for (int i = components.Count - 1; i >= 0; i--)
                 {
@@ -113,7 +115,7 @@ namespace Brackeys.States
 
         private void CollisionCheck(GameTime gameTime)
         {
-            IEnumerable<Sprite> sprites = Layer[(int)Layers.PlayingArea].Where(x => x is Sprite).Select(x => x as Sprite).ToList();
+            IEnumerable<Sprite> sprites = Layers[(int)States.Layers.PlayingArea].Where(x => x is Sprite).Select(x => x as Sprite).ToList();
             foreach (Sprite sprite in sprites)
             {
                 foreach (Sprite sprite2 in sprites)

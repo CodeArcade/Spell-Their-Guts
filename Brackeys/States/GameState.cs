@@ -43,7 +43,7 @@ namespace Brackeys.States
         {
             if (LevelStarted) return;
 
-            if (Layer[(int)Layers.PlayingArea].Any(x => x is Tower))
+            if (Layers[(int)States.Layers.PlayingArea].Any(x => x is Tower))
             {
                 LevelStarted = true;
                 Level.Start();
@@ -56,7 +56,7 @@ namespace Brackeys.States
             GetLabel("MoneyLabel").Text = $"Money: {Player.Money}";
         }
 
-        private Label GetLabel(string name) => (Label)Layer[(int)Layers.UI].First(x => x is Label && ((Label)x).Name == name);
+        private Label GetLabel(string name) => (Label)Layers[(int)States.Layers.UI].First(x => x is Label && ((Label)x).Name == name);
 
     }
 }

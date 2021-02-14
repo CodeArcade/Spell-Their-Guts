@@ -42,5 +42,7 @@ namespace Brackeys.Component
 
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
         public abstract void Update(GameTime gameTime);
+
+        public virtual void OnRemove() { }
     }
 }

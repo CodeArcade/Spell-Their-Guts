@@ -14,7 +14,7 @@ namespace Brackeys.Manager
         public SpriteFont TestFont => JamGame.Content.Load<SpriteFont>("Font/TestFont");
         #endregion
 
-
+        public Texture2D RangeTexture => JamGame.Content.Load<Texture2D>("Ui/Range");
         public Texture2D TowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/TEST/Tower");
         public Texture2D Tower2Texture => JamGame.Content.Load<Texture2D>("Sprites/Towers/TEST/Tower2");
         public Texture2D EnemyTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Enemy");

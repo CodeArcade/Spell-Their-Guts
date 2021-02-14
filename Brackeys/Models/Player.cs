@@ -39,6 +39,7 @@ namespace Brackeys.Models
         {
             if (Mouse.GetState().RightButton == ButtonState.Pressed)
             {
+                CurrentTowerInHand?.OnRemove();
                 CurrentTowerInHand = null;
             }
         }

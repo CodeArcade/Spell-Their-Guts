@@ -50,11 +50,14 @@ namespace Brackeys.States
 
             Cells[x, y].OnClick += (sender, e) =>
             {
+                foreach (Tower tower in Layers[(int)States.Layers.PlayingArea].Where(x => x is Tower))
+                    tower.DrawRange = false;
+
                 if (Cells[x, y].IsPath) return;
 
                 if (Cells[x, y].Tower != null)
                 {
-                    // TODO: Show info to tower
+                    Cells[x, y].Tower.DrawRange = true;
                 }
                 else
                 {
@@ -68,19 +71,19 @@ namespace Brackeys.States
                     Cells[x, y].Tower.Size = Cells[x, y].Size;
                     Cells[x, y].Tower.OnPlace(Cells[x, y], Cells);
 
-                    AddComponent(Cells[x, y].Tower, (int)Layers.PlayingArea);
+                    base.AddComponent(Cells[x, y].Tower, (int)States.Layers.PlayingArea);
 
                     Player.CurrentTowerInHand = null;
                 }
             };
 
-            AddComponent(Cells[x, y], (int)Layers.Cells);
+            base.AddComponent(Cells[x, y], (int)States.Layers.Cells);
         }
 
         private void AddUi()
         {
             #region Ui
-            AddComponent(
+            base.AddComponent(
                 new Label(ContentManager.TestFont)
                 {
                     Name = "HealthLabel",
@@ -88,9 +91,9 @@ namespace Brackeys.States
                     FontColor = Color.Black,
                     Text = "test"
                 },
-                (int)Layers.UI);
+                (int)States.Layers.UI);
 
-            AddComponent(
+            base.AddComponent(
             new Label(ContentManager.TestFont)
             {
                 Name = "MoneyLabel",
@@ -98,7 +101,7 @@ namespace Brackeys.States
                 FontColor = Color.Black,
                 Text = "test"
             },
-            (int)Layers.UI);
+            (int)States.Layers.UI);
             #endregion
 
             #region Shop
@@ -125,7 +128,10 @@ namespace Brackeys.States
             button.OnClick += (sender, e) =>
             {
                 Player.CurrentTowerInHand = (Tower)tower.Copy();
+                Player.CurrentTowerInHand.Size = new Size(CellSize, CellSize);
                 Player.CurrentTowerInHand.Color = Color.White * 0.7f;
+                Player.CurrentTowerInHand.DrawRange = true;
+                Player.CurrentTowerInHand.CurrentState = this;
             };
 
             Label label = new Label(ContentManager.TestFont)
@@ -134,8 +140,8 @@ namespace Brackeys.States
                 Text = tower.Cost.ToString()
             };
 
-            AddComponent(button, (int)Layers.UI);
-            AddComponent(label, (int)Layers.UI);
+            base.AddComponent(button, (int)States.Layers.UI);
+            base.AddComponent(label, (int)States.Layers.UI);
         }
 
     }

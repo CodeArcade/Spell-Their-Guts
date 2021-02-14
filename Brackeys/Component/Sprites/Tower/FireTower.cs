@@ -12,7 +12,7 @@ namespace Brackeys.Component.Sprites.Tower
             Texture = ContentManager.TowerTexture;
 
             Damage = 2;
-            Range = 5;
+            Range = 2;
             GlobalCost = 1;
         }
     }
