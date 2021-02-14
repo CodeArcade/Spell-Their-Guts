@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Brackeys.Models
 {
@@ -18,8 +19,10 @@ namespace Brackeys.Models
 
         public Path(int xA, int yA, int xB, int yB)
         {
-            A = new Point(xA, yA);
-            B = new Point(xB, yB);
+            List<Point> points = new List<Point>() { new Point(xA, yA), new Point(xB, yB) }.OrderBy(p => p.X).ThenBy(p => p.Y).ToList();
+
+            A = points.First();
+            B = points.Last();
             Points = Bresenham(A, B);
         }
 

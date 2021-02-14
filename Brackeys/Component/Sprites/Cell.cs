@@ -69,7 +69,7 @@ namespace Brackeys.Component.Sprites
             Color color = Color;
             if (IsMouseOver && (Tower != null || ((GameState)CurrentState).Player.CurrentTowerInHand != null)) color = HoverColor;
 
-            if (IsPath) color = Color.Yellow;
+           // if (IsPath) color = Color.Yellow;
 
             spriteBatch.Draw(Texture, Rectangle, color);
 

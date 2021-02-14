@@ -9,11 +9,13 @@ namespace Brackeys.Models.Levels
             SpawnPoint = new Point(0, 0);
             Target = new Point(5, 8);
 
-            Paths.Add(new Path(0, 0, 0, 8));
-            Paths.Add(new Path(1, 8, 5, 8));
-            Paths.Add(new Path(5, 5, 5, 7));
-            //Paths.Add(new Path(3, 5, 4, 5));
-            //Paths.Add(new Path(3, 6, 3, 12));
+            Paths.Add(new Path(0, 8, 0, 0));
+            Paths.Add(new Path(0, 8, 5, 8));
+            Paths.Add(new Path(5, 5, 5, 8));
+            Paths.Add(new Path(5, 5, 15, 5));
+            Paths.Add(new Path(15, 5, 15, 15));
+            Paths.Add(new Path(1, 15, 15, 15));
+            Paths.Add(new Path(1, 11, 1, 15));
         }
     }
 }

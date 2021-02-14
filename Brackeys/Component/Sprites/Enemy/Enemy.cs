@@ -1,9 +1,11 @@
-﻿using Brackeys.States;
+﻿using Brackeys.Models;
+using Brackeys.States;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using Point = Microsoft.Xna.Framework.Point;
 
@@ -27,7 +29,6 @@ namespace Brackeys.Component.Sprites.Enemy
         {
             Move();
             Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             base.Update(gameTime);
         }
 
@@ -78,12 +79,11 @@ namespace Brackeys.Component.Sprites.Enemy
 
             TargetCell = targetCell;
 
-            if (new Point((int)Position.X + Size.Width / 2, (int)Position.Y + Size.Height / 2) ==
-                new Point(targetCell.Coordinate.X * state.CellSize + targetCell.Size.Width / 2, targetCell.Coordinate.Y * state.CellSize + targetCell.Size.Height / 2))
+            if (GetTargePoints().Any(x => x == new Point((int)Position.X + Size.Width / 2, (int)Position.Y + Size.Height / 2)))
             {
                 LastCoordinate = Coordinate;
                 Coordinate = TargetCell.Coordinate;
-                TargetCell = null;
+                Position = TargetCell.Position;
                 Direction = Vector2.Zero;
             }
 
@@ -92,6 +92,24 @@ namespace Brackeys.Component.Sprites.Enemy
         private bool IsLastCell(Cell cell)
         {
             return cell.Coordinate.X == LastCoordinate.X && cell.Coordinate.Y == LastCoordinate.Y;
+        }
+
+        private List<Point> GetTargePoints()
+        {
+            GameState state = (GameState)CurrentState;
+            List<Point> points = new List<Point>();
+
+            int tolerance = Math.Max(1, (int)(Speed / 100));
+
+            for (int x = -tolerance; x < tolerance + 1; x++)
+            {
+                for (int y = -tolerance; y < tolerance + 1; y++)
+                {
+                    points.Add(new Point(x + TargetCell.Coordinate.X * state.CellSize + TargetCell.Size.Width / 2, y + TargetCell.Coordinate.Y * state.CellSize + TargetCell.Size.Height / 2));
+                }
+            }
+
+            return points;
         }
 
     }
