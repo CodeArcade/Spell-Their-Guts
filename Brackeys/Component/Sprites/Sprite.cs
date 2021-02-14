@@ -1,0 +1,159 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Drawing;
+using Color = Microsoft.Xna.Framework.Color;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
+
+namespace Brackeys.Component.Sprites
+{
+    public class Sprite : Component
+    {
+        private Size InternalSize { get; set; }
+
+        public float Speed { get; set; }
+        public float MaxSpeed { get; set; }
+        public Vector2 Direction { get; set; }
+        public Texture2D Texture { get; set; }
+        public bool Collide { get; set; } = true;
+
+        public Size Size
+        {
+            get
+            {
+                if (InternalSize == Size.Empty)
+                {
+                    if (AnimationManager.IsPlaying)
+                        InternalSize = new Size((int)(AnimationManager.AnimationRectangle.Width * JamGame.Scale), (int)(AnimationManager.AnimationRectangle.Height * JamGame.Scale));
+                    else
+                        InternalSize = new Size((int)(Texture.Width * JamGame.Scale), (int)(Texture.Height * JamGame.Scale));
+                }
+                return InternalSize;
+            }
+            set
+            {
+                InternalSize = value;
+            }
+        }
+
+        public Rectangle Rectangle
+        {
+            get
+            {
+                Rectangle rectangle;
+
+                if (AnimationManager.IsPlaying)
+                {
+                    rectangle = AnimationManager.AnimationRectangle;
+                    rectangle.Width = Size.Width;
+                    rectangle.Height = Size.Height;
+                }
+                else
+                    rectangle = new Rectangle((int)Position.X, (int)Position.Y, Size.Width, Size.Height);
+
+                return rectangle;
+            }
+        }
+
+        public int HitBoxXOffSet { get; set; }
+        public int HitBoxYOffSet { get; set; }
+        public Size HitboxSize { get; set; }
+
+        public Rectangle Hitbox
+        {
+            get
+            {
+                if (HitboxSize == Size.Empty)
+                    return new Rectangle((int)Position.X + HitBoxXOffSet, (int)Position.Y + HitBoxYOffSet, Size.Width, Size.Height);
+                else
+                    return new Rectangle((int)Position.X + HitBoxXOffSet, (int)Position.Y + HitBoxYOffSet, HitboxSize.Width, HitboxSize.Height);
+            }
+        }
+
+        public virtual void OnCollision(Sprite sprite, GameTime gameTime)
+        {
+        }
+
+        #region Collision
+
+        protected bool IsTouchingRight(Sprite sprite)
+        {
+            if (!Collides(sprite)) return false;
+
+            int distanceRight = Math.Abs(Hitbox.Left - sprite.Hitbox.Right);
+            int distanceLeft = Math.Abs(Hitbox.Right - sprite.Hitbox.Left);
+
+            int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
+            int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
+
+            return distanceRight < distanceLeft && distanceRight < distanceTop && distanceRight < distanceBottom;
+        }
+
+        protected bool IsTouchingLeft(Sprite sprite)
+        {
+            if (!Collides(sprite)) return false;
+
+            int distanceRight = Math.Abs(Hitbox.Left - sprite.Hitbox.Right);
+            int distanceLeft = Math.Abs(Hitbox.Right - sprite.Hitbox.Left);
+
+            int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
+            int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
+
+            return distanceLeft < distanceRight && distanceLeft < distanceTop && distanceLeft < distanceBottom;
+        }
+
+        protected bool IsTouchingBottom(Sprite sprite)
+        {
+            if (!Collides(sprite)) return false;
+
+            int distanceRight = Math.Abs(Hitbox.Right - sprite.Hitbox.Left);
+            int distanceLeft = Math.Abs(Hitbox.Left - sprite.Hitbox.Right);
+
+            int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
+            int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
+
+            return distanceTop < distanceLeft && distanceTop < distanceBottom && distanceTop < distanceRight;
+        }
+
+        protected bool IsTouchingTop(Sprite sprite)
+        {
+            if (!Collides(sprite)) return false;
+
+            int distanceRight = Math.Abs(Hitbox.Right - sprite.Hitbox.Left);
+            int distanceLeft = Math.Abs(Hitbox.Left - sprite.Hitbox.Right);
+
+            int distanceTop = Math.Abs(Hitbox.Top - sprite.Hitbox.Bottom);
+            int distanceBottom = Math.Abs(Hitbox.Bottom - sprite.Hitbox.Top);
+
+            return distanceBottom < distanceLeft && distanceBottom < distanceTop && distanceBottom < distanceRight;
+        }
+
+        private bool Collides(Sprite sprite)
+        {
+            return Hitbox.Intersects(sprite.Hitbox);
+        }
+
+
+        #endregion
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+
+            if (AnimationManager.IsPlaying)
+                AnimationManager.Draw(spriteBatch);
+            else
+                spriteBatch.Draw(Texture, Rectangle, Color.White);
+
+            ParticleManager.Draw(gameTime, spriteBatch);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            AudioManager.Update();
+            ParticleManager.Update(gameTime);
+
+            if (AnimationManager.IsPlaying) AnimationManager.Update(gameTime);
+        }
+
+    }
+}
