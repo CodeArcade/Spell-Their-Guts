@@ -25,9 +25,9 @@ namespace Brackeys.Component.Sprites
             Direction = direction;
 
             //if (texture is null)
-            //    Texture = ContentManager.PlayerBulletTexture;
+               //Texture = ContentManager.PlayerBulletTexture;
             //else
-            //    Texture = texture;
+               Texture = texture;
 
             if (size is null)
                 Size = new Size(10, 10);

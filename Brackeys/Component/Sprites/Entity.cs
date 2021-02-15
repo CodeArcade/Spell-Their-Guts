@@ -34,7 +34,7 @@ namespace Brackeys.Component.Sprites
         {
             if (Health > 0) return;
 
-            ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.EntityDeathParticle, 5, 10);
+            //ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.EntityDeathParticle, 5, 10);
             //AudioManager.PlayEffect(ContentManager.EntityDeathSoundEffect, 0.25f);
             IsRemoved = true;
         }

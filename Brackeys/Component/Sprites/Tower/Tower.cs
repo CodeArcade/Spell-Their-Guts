@@ -17,14 +17,17 @@ namespace Brackeys.Component.Sprites.Tower
         protected float BaseAttackSpeed { get; set; }
 
         public int Damage { get; set; }
+        
         /// <summary>
         /// In cells
         /// </summary>
         public int Range { get; set; }
+
         /// <summary>
         /// In seconds
         /// </summary>
         public float AttackSpeed { get; set; }
+        public float TimeSinceLastShot { get; set; }
 
         public static int GlobalCost { get; set; }
         public int Cost => GlobalCost;
@@ -35,6 +38,29 @@ namespace Brackeys.Component.Sprites.Tower
 
         protected Cell[,] Cells => ((GameState)CurrentState).Cells;
         public Enemy.Enemy TargetedEnemy { get; set; }
+
+        protected float DistanceToTargetedEnemy => TargetedEnemy != null ? Vector2.Distance(Position, TargetedEnemy.Position) : float.NaN;
+        protected Vector2 DirectionToTargetedEnemy
+        {
+            get
+            {
+                if (TargetedEnemy == null) return Vector2.Zero;
+                Vector2 direction = TargetedEnemy.Position - Position;
+                direction.Normalize();
+
+                return direction;
+            }
+
+        }
+
+        protected float AngleToTargetedEnemy
+        {
+            get
+            {
+                if (TargetedEnemy == null) return float.NaN;
+                return (float)Math.Atan2(TargetedEnemy.Position.Y - Position.Y, TargetedEnemy.Position.X - Position.X);
+            }
+        }
 
         public Rectangle RangeRectangle
         {
@@ -63,6 +89,8 @@ namespace Brackeys.Component.Sprites.Tower
         {
             base.Update(gameTime);
             TargetEnemy();
+
+            TimeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
             Shoot();
         }
 
@@ -111,7 +139,10 @@ namespace Brackeys.Component.Sprites.Tower
         public void Shoot()
         {
             if (TargetedEnemy == null) return;
-            Debug.WriteLine("Shooting at enemy");
+            if (TimeSinceLastShot < AttackSpeed) return;
+            TimeSinceLastShot = 0;
+            Projectile p = new Projectile(DirectionToTargetedEnemy, this, Enemy.Elements.Wind, ContentManager.EnemyTexture, new System.Drawing.Size(15, 15));
+            CurrentState.AddComponent(p, (int)Layers.PlayingArea);
         }
 
         public virtual void OnPlace(Cell cell)
@@ -154,6 +185,7 @@ namespace Brackeys.Component.Sprites.Tower
 
         private void TargetEnemy()
         {
+            if (!IsMain) return;
             if (CurrentState is GameState gs)
             {
                 List<Enemy.Enemy> enemies = gs.Layers[(int)Layers.PlayingArea]
@@ -170,6 +202,7 @@ namespace Brackeys.Component.Sprites.Tower
                 Enemy.Enemy enemy = enemies.First();
                 foreach (Enemy.Enemy e in enemies)
                 {
+                    e.Color = Color.White;
                     if (enemy == e) continue;
                     if (e.Progress > enemy.Progress) enemy = e;
                 }
