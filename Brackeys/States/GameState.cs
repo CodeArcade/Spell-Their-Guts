@@ -57,7 +57,7 @@ namespace Brackeys.States
             GetLabel("MoneyLabel").Text = $"Money: {Player.Money}";
         }
 
-        private Label GetLabel(string name) => (Label)Layers[(int)States.Layers.UI].First(x => x is Label && ((Label)x).Name == name);
+        private Label GetLabel(string name) => (Label)Layers[(int)States.Layers.UI].First(x => x is Label label && label.Name == name);
 
     }
 }
