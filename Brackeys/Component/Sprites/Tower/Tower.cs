@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Brackeys.States;
 using Microsoft.Xna.Framework;
@@ -18,9 +19,12 @@ namespace Brackeys.Component.Sprites.Tower
         public float FireSpeed { get; set; }
         public static int GlobalCost { get; set; }
         public int Cost => GlobalCost;
+        protected Cell Cell { get; set; }
 
         public bool DrawRange { get; set; }
-        public bool IsRoot { get; protected set; }
+        public bool IsMain { get; protected set; }
+
+        protected Cell[,] Cells => ((GameState)CurrentState).Cells;
 
         public Rectangle RangeRectangle
         {
@@ -42,6 +46,7 @@ namespace Brackeys.Component.Sprites.Tower
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            if (IsMain) Color = Color.Brown;// TODO: entfernen
             base.Draw(gameTime, spriteBatch);
 
             if (DrawRange)
@@ -78,10 +83,35 @@ namespace Brackeys.Component.Sprites.Tower
 
         }
 
-        public virtual void OnPlace(Cell cell, Cell[,] cells)
+        public virtual void OnPlace(Cell cell)
         {
+            Cell = cell;
             Color = Color.White;
             DrawRange = false;
+
+            IsMain = !GetTowersInRange().Any(x => x.IsMain);
+        }
+
+        protected List<Tower> GetTowersInRange()
+        {
+            List<Tower> towers = new List<Tower>();
+
+            for (int x = 0; x < Cells.GetLength(0); x++)
+            {
+                for (int y = 0; y < Cells.GetLength(1); y++)
+                {
+                    Tower tower = Cells[x, y].Tower;
+
+                    if (tower is null) continue;
+                    if (tower == this) continue;
+                    if (tower.GetType() != GetType()) continue;
+
+                    if (RangeRectangle.Contains(tower.Position))
+                        towers.Add(tower);
+                }
+            }
+
+            return towers;
         }
 
     }

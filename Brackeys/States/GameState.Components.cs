@@ -69,7 +69,7 @@ namespace Brackeys.States
                     Cells[x, y].Tower = (Tower)Player.CurrentTowerInHand.Copy();
                     Cells[x, y].Tower.Position = Cells[x, y].Position;
                     Cells[x, y].Tower.Size = Cells[x, y].Size;
-                    Cells[x, y].Tower.OnPlace(Cells[x, y], Cells);
+                    Cells[x, y].Tower.OnPlace(Cells[x, y]);
 
                     base.AddComponent(Cells[x, y].Tower, (int)States.Layers.PlayingArea);
 
