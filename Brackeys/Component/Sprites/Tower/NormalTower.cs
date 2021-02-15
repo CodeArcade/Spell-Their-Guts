@@ -4,32 +4,27 @@ using System.Text;
 
 namespace Brackeys.Component.Sprites.Tower
 {
-    public class EarthTower : Tower
+    class NormalTower : Tower
     {
 
-        const int BASEDAMAGE = 2;
-        const int BASERANGE = 3;
+        const int BASEDAMAGE = 1;
+        const int BASERANGE = 2;
         const int BASEATTACKSPEED = 1;
-        const int GLOBALCOST = 5;
-
-        public EarthTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED)
+        const int GLOBALCOST = 1;
+        public NormalTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED)
         {
-            Name = "Earth Mage";
-            Texture = ContentManager.TowerTexture;
-
+            Name = "Mage";
             GlobalCost = GLOBALCOST;
         }
 
         protected override void ApplyBuff(Tower tower)
         {
             tower.Damage += 1;
-            tower.Range += 1;
         }
 
         protected override void RevokeBuff(Tower tower)
         {
             tower.Damage -= 1;
-            tower.Range -= 1;
         }
     }
 }

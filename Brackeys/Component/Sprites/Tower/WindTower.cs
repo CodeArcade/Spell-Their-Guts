@@ -6,15 +6,26 @@ namespace Brackeys.Component.Sprites.Tower
 {
     public class WindTower : Tower
     {
-        public WindTower()
+        const int BASEDAMAGE = 2;
+        const int BASERANGE = 2;
+        const int BASEATTACKSPEED = 1;
+        const int GLOBALCOST = 5;
+
+        public WindTower() : base (BASEDAMAGE, BASERANGE, BASEATTACKSPEED)
         {
             Name = "Wind Mage";
             Texture = ContentManager.TowerTexture;
+            GlobalCost = GLOBALCOST;
+        }
 
-            BaseDamage = 2;
-            BaseRange = 2;
-            BaseAttackSpeed = 1;
-            GlobalCost = 1;
+        protected override void ApplyBuff(Tower tower)
+        {
+            tower.AttackSpeed += 2;
+        }
+
+        protected override void RevokeBuff(Tower tower)
+        {
+            tower.AttackSpeed -= 2;
         }
     }
 }

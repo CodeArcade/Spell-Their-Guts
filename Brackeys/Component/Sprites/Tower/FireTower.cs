@@ -6,15 +6,26 @@ namespace Brackeys.Component.Sprites.Tower
 {
     public class FireTower : Tower
     {
-        public FireTower()
+        const int BASEDAMAGE = 3;
+        const int BASERANGE = 2;
+        const int BASEATTACKSPEED = 1;
+        const int GLOBALCOST = 5;
+
+        public FireTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED)
         {
             Name = "Fire Mage";
+            GlobalCost = GLOBALCOST;
             Texture = ContentManager.TowerTexture;
+        }
 
-            BaseDamage = 2;
-            BaseRange = 2;
-            BaseAttackSpeed = 1;
-            GlobalCost = 1;
+        protected override void ApplyBuff(Tower tower)
+        {
+            tower.Damage += 2;
+        }
+
+        protected override void RevokeBuff(Tower tower)
+        {
+            tower.Damage -= 2;
         }
     }
 }

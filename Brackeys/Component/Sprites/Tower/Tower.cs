@@ -15,42 +15,15 @@ namespace Brackeys.Component.Sprites.Tower
         protected int BaseRange { get; set; }
         protected float BaseAttackSpeed { get; set; }
 
-        public int Damage
-        {
-            get
-            {
-                if (IsMain)
-                    return BaseDamage + GetTowersInRange().Sum(x => x.Damage);
-
-                return BaseDamage;
-            }
-        }
+        public int Damage { get; set; }
         /// <summary>
         /// In cells
         /// </summary>
-        public int Range
-        {
-            get
-            {
-                if (IsMain)
-                    return BaseRange + GetTowersInRange().Sum(x => x.Range);
-
-                return BaseRange;
-            }
-        }
+        public int Range { get; set; }
         /// <summary>
         /// In seconds
         /// </summary>
-        public float AttackSpeed
-        {
-            get
-            {
-                if (IsMain)
-                    return BaseAttackSpeed + GetTowersInRange().Sum(x => x.AttackSpeed);
-
-                return BaseAttackSpeed;
-            }
-        }
+        public float AttackSpeed { get; set; }
 
         public static int GlobalCost { get; set; }
         public int Cost => GlobalCost;
@@ -60,6 +33,7 @@ namespace Brackeys.Component.Sprites.Tower
         public bool IsMain { get; protected set; }
 
         protected Cell[,] Cells => ((GameState)CurrentState).Cells;
+        public List<Tower> BuffedTowers = new List<Tower>();
 
         public Rectangle RangeRectangle
         {
@@ -73,6 +47,16 @@ namespace Brackeys.Component.Sprites.Tower
         public Sprite RangeSprite { get; private set; }
 
         private bool AddedRangeSprite { get; set; }
+
+        public Tower(int baseDamage, int baseRange, int baseAttackSpeed)
+        {
+            BaseDamage = baseDamage;
+            BaseRange = baseRange;
+            BaseAttackSpeed = baseAttackSpeed;
+            Damage = baseDamage;
+            Range = baseRange;
+            AttackSpeed = baseAttackSpeed;
+        }
 
         public override void Update(GameTime gameTime)
         {
@@ -109,6 +93,15 @@ namespace Brackeys.Component.Sprites.Tower
 
         public override void OnRemove()
         {
+
+            if (!IsMain)
+            {
+                foreach (Tower t in GetTowersInRange())
+                { 
+                    RevokeBuff(t);
+                }
+            }
+
             RangeSprite.IsRemoved = true;
         }
 
@@ -123,8 +116,18 @@ namespace Brackeys.Component.Sprites.Tower
             Color = Color.White;
             DrawRange = false;
 
-            IsMain = !GetTowersInRange().Any(x => x.IsMain);
+            List<Tower> towersInRange = GetTowersInRange();
+
+            IsMain = !towersInRange.Any(x => x.IsMain);
+            foreach (Tower t in towersInRange)
+            {
+                ApplyBuff(t);
+            }
         }
+
+        protected abstract void ApplyBuff(Tower tower);
+
+        protected abstract void RevokeBuff(Tower tower);
 
         protected List<Tower> GetTowersInRange()
         {
