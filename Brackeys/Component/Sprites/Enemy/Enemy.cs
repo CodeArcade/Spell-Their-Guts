@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using Point = Microsoft.Xna.Framework.Point;
 
 namespace Brackeys.Component.Sprites.Enemy
@@ -18,15 +17,13 @@ namespace Brackeys.Component.Sprites.Enemy
         Fire,
         Wind
     }
-    public abstract class Enemy : Sprite
+    public abstract class Enemy : Entity
     {
         public Point LastCoordinate { get; set; }
         public Point Coordinate { get; set; }
         public Point TargetCoordinate { get; set; }
 
         public int Reward { get; set; }
-        public int Damage { get; set; }
-        public int Health { get; set; }
 
         public Elements Element { get; set; }
 
@@ -55,7 +52,6 @@ namespace Brackeys.Component.Sprites.Enemy
         public override void Update(GameTime gameTime)
         {
             Move();
-            Position += Direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
         }
 
@@ -146,5 +142,41 @@ namespace Brackeys.Component.Sprites.Enemy
             return points;
         }
 
+        public void TakeDamage(int damage, Elements element)
+        {
+            if (element == Element)
+                TakeDamage(damage);
+
+            if (Element == Elements.Earth && element == Elements.Fire)
+            {
+                TakeDamage(damage / 2f);
+            }
+
+            if (Element == Elements.Earth && element == Elements.Wind)
+            {
+                TakeDamage(damage * 1.5f);
+            }
+
+            if (Element == Elements.Fire && element == Elements.Earth)
+            {
+                TakeDamage(damage * 1.5f);
+            }
+
+            if (Element == Elements.Fire && element == Elements.Wind)
+            {
+                TakeDamage(damage / 2f);
+            }
+
+            if (Element == Elements.Wind && element == Elements.Fire)
+            {
+                TakeDamage(damage * 1.5f);
+            }
+
+            if (Element == Elements.Wind && element == Elements.Earth)
+            {
+                TakeDamage(damage / 2f);
+            }
+
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿//using Brackeys.Component.Sprites.Enemies;
 //using Brackeys.Component.Sprites.Environment;
+using Brackeys.Component.Sprites.Enemy;
+using Brackeys.Component.Sprites.Tower;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,12 +15,13 @@ namespace Brackeys.Component.Sprites
     {
         private double TTL { get; set; }
         private double TimeLived { get; set; }
+        private Elements Element { get; set; }
 
-        public Projectile(Vector2 direction, Entity parent, Texture2D texture = null, Size? size = null)
+        public Projectile(Vector2 direction, Tower.Tower parent, Elements element, Texture2D texture = null, Size? size = null)
         {
             Parent = parent;
-            Position = parent.MuzzlePoint;
-            Speed = parent.ProjectileSpeed;
+            Position = parent.Position;
+            Speed = 500;
             Direction = direction;
 
             //if (texture is null)
@@ -31,11 +34,10 @@ namespace Brackeys.Component.Sprites
             else
                 Size = (Size)size;
 
-            TTL = parent.RangeInSeconds;
+            TTL = parent.Range * 1000;
+            Element = element;
 
-            Random random = new Random();
-
-            Direction = new Vector2(Direction.X + (random.Next(-parent.Spread, parent.Spread) / 100f), Direction.Y + (random.Next(-parent.Spread, parent.Spread) / 100f));
+            Direction = new Vector2(Direction.X, Direction.Y);
         }
 
         public override void Update(GameTime gameTime)
@@ -58,20 +60,12 @@ namespace Brackeys.Component.Sprites
             if (sprite is Projectile) return;
             if (IsRemoved) return;
 
-            //if (sprite is Obstacle)
-            //{
-            //    ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.ObstacleHitParticle, 5, 10);
-            //    AudioManager.PlayEffect(ContentManager.ObstacleHitSoundEffect, 0.25f);
-            //    IsRemoved = true;
-            //    return;
-            //}
+            if (!(sprite is Enemy.Enemy)) return;
 
-            if (!(sprite is Entity)) return;
-
-            ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.EntityHitParticle, 5, 10);
+            // ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.EntityHitParticle, 5, 10);
             //AudioManager.PlayEffect(ContentManager.EntityHitSoundEffect, 0.25f);
 
-            ((Entity)sprite).TakeDamage(((Entity)Parent).Damage);
+            ((Enemy.Enemy)sprite).TakeDamage(((Tower.Tower)Parent).Damage, Element);
             IsRemoved = true;
         }
 
