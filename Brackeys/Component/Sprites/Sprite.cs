@@ -70,6 +70,8 @@ namespace Brackeys.Component.Sprites
             }
         }
 
+        public Vector2 Center => new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height / 2);
+
         public virtual void OnCollision(Sprite sprite, GameTime gameTime)
         {
         }

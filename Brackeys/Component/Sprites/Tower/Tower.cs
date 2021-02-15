@@ -39,13 +39,13 @@ namespace Brackeys.Component.Sprites.Tower
         protected Cell[,] Cells => ((GameState)CurrentState).Cells;
         public Enemy.Enemy TargetedEnemy { get; set; }
 
-        protected float DistanceToTargetedEnemy => TargetedEnemy != null ? Vector2.Distance(Position, TargetedEnemy.Position) : float.NaN;
+        protected float DistanceToTargetedEnemy => TargetedEnemy != null ? Vector2.Distance(Center, TargetedEnemy.Center) : float.NaN;
         protected Vector2 DirectionToTargetedEnemy
         {
             get
             {
                 if (TargetedEnemy == null) return Vector2.Zero;
-                Vector2 direction = TargetedEnemy.Position - Position;
+                Vector2 direction = TargetedEnemy.Center - Center;
                 direction.Normalize();
 
                 return direction;
@@ -58,7 +58,7 @@ namespace Brackeys.Component.Sprites.Tower
             get
             {
                 if (TargetedEnemy == null) return float.NaN;
-                return (float)Math.Atan2(TargetedEnemy.Position.Y - Position.Y, TargetedEnemy.Position.X - Position.X);
+                return (float)Math.Atan2(TargetedEnemy.Center.Y - Center.Y, TargetedEnemy.Center.X - Center.X);
             }
         }
 
@@ -190,7 +190,7 @@ namespace Brackeys.Component.Sprites.Tower
             {
                 List<Enemy.Enemy> enemies = gs.Layers[(int)Layers.PlayingArea]
                     .Where(c => c is Enemy.Enemy).ToList()
-                    .Where(enemy => RangeRectangle.Contains(enemy.Position)).ToList()
+                    .Where(enemy => RangeRectangle.Contains(((Enemy.Enemy)enemy).Center)).ToList()
                     .ConvertAll(new Converter<Component, Enemy.Enemy>(x => (Enemy.Enemy)x));
 
                 if (enemies.Count == 0)

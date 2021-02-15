@@ -20,7 +20,7 @@ namespace Brackeys.Component.Sprites
         public Projectile(Vector2 direction, Tower.Tower parent, Elements element, Texture2D texture = null, Size? size = null)
         {
             Parent = parent;
-            Position = parent.Position;
+            Position = parent.Center;
             Speed = 500;
             Direction = direction;
 
