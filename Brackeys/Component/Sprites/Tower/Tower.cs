@@ -59,10 +59,6 @@ namespace Brackeys.Component.Sprites.Tower
 
         public override void Update(GameTime gameTime)
         {
-            if (IsMain)
-            {
-                Debug.WriteLine($"{Damage} | {AttackSpeed} | {Range}");
-            }
             base.Update(gameTime);
         }
 
@@ -101,7 +97,8 @@ namespace Brackeys.Component.Sprites.Tower
             {
                 Tower mainTower = GetTowersInRange().FirstOrDefault(x => x.IsMain);
 
-                RevokeBuff(mainTower);
+                if (mainTower != null)
+                    RevokeBuff(mainTower);
             }
 
             RangeSprite.IsRemoved = true;

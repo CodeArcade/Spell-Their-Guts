@@ -1,6 +1,7 @@
 ﻿using Brackeys.Models;
 using Brackeys.States;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,7 +12,13 @@ using Point = Microsoft.Xna.Framework.Point;
 
 namespace Brackeys.Component.Sprites.Enemy
 {
-    public class Enemy : Sprite
+    public enum Elements
+    {
+        Earth,
+        Fire,
+        Wind
+    }
+    public abstract class Enemy : Sprite
     {
         public Point LastCoordinate { get; set; }
         public Point Coordinate { get; set; }
@@ -19,14 +26,30 @@ namespace Brackeys.Component.Sprites.Enemy
 
         public int Reward { get; set; }
         public int Damage { get; set; }
+        public int Health { get; set; }
+
+        public Elements Element { get; set; }
 
         private Cell TargetCell { get; set; }
 
-        public Enemy()
+        public Enemy(Elements element) { Element = element; }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            Texture = ContentManager.EnemyTexture;
-            Speed = 100;
-            Damage = 1;
+            switch (Element)
+            {
+                case Elements.Earth:
+                    Color = Microsoft.Xna.Framework.Color.Brown;
+                    break;
+                case Elements.Fire:
+                    Color = Microsoft.Xna.Framework.Color.Red;
+                    break;
+                case Elements.Wind:
+                    Color = Microsoft.Xna.Framework.Color.LightBlue;
+                    break;
+            }
+
+            base.Draw(gameTime, spriteBatch);
         }
 
         public override void Update(GameTime gameTime)

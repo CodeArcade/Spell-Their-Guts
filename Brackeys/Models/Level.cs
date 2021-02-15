@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Brackeys.Models.Levels.Stages;
 using Brackeys.States;
 using Brackeys.Component.Sprites.Enemy;
 using System.Drawing;
 using Point = Microsoft.Xna.Framework.Point;
+using Brackeys.Models.Levels;
 
 namespace Brackeys.Models
 {
@@ -26,8 +26,9 @@ namespace Brackeys.Models
         public Level()
         {
             Stages = new Queue<Stage>();
-            Stages.Enqueue(new Stage1());
-            Stages.Enqueue(new Stage2());
+
+            foreach (Stage stage in new Stages().StageList)
+                Stages.Enqueue(stage);
         }
 
         public void Start()
@@ -67,7 +68,7 @@ namespace Brackeys.Models
                 SpawnEnemey(gameState);
             }
 
-            if (Stages.First().IsOver)
+            if (Stages.First().IsOver && !gameState.Layers[(int)Layers.PlayingArea].Any(x => x is Enemy))
             {
                 StartNextStage();
             }
@@ -76,12 +77,17 @@ namespace Brackeys.Models
         private void SpawnEnemey(GameState gameState)
         {
             if (Stages.First().Enemies.Count == 0) return;
-            Enemy enemy = (Enemy)Stages.First().Enemies.Dequeue().Copy();
-            enemy.Position = SpawnPoint.ToVector2() * gameState.CellSize;
-            enemy.Coordinate = SpawnPoint;
-            enemy.Size = new Size(gameState.CellSize, gameState.CellSize);
-            enemy.TargetCoordinate = Target;
-            gameState.AddComponent(enemy, (int)Layers.PlayingArea);
+
+            foreach(Enemy e in Stages.First().Enemies.Dequeue())
+            {
+                Enemy enemy = (Enemy)e.Copy();
+                enemy.Position = SpawnPoint.ToVector2() * gameState.CellSize;
+                enemy.Coordinate = SpawnPoint;
+                enemy.Size = new Size(gameState.CellSize, gameState.CellSize);
+                enemy.TargetCoordinate = Target;
+                gameState.AddComponent(enemy, (int)Layers.PlayingArea);
+            }
+        
         }
     }
 }
