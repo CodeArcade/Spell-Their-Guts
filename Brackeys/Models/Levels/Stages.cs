@@ -5,11 +5,11 @@ namespace Brackeys.Models.Levels
 {
     public class Stages
     {
-        public  List<Stage> StageList { get; set; }
+        public List<Stage> StageList { get; set; }
 
         public Stages()
         {
-            StageList = new List<Stage>() 
+            StageList = new List<Stage>()
             {
                 Stage1(),
                 Stage2(),
@@ -19,7 +19,8 @@ namespace Brackeys.Models.Levels
                 Stage6(),
                 Stage7(),
                 Stage8(),
-                Stage9()
+                Stage9(),
+                Stage10()
             };
         }
 
@@ -130,5 +131,28 @@ namespace Brackeys.Models.Levels
 
             return stage;
         }
+
+        private Stage Stage10()
+        {
+            Stage stage = new Stage
+            {
+                SpawnInterval = 1
+            };
+
+            bool spawnOne = false;
+
+            for (int i = 0; i < 30; i++)
+            {
+                if (spawnOne)
+                    stage.AddEnemy(new Walker(Elements.Earth), 1);
+                else
+                    stage.AddEnemy(new Walker(Elements.Fire), 1);
+
+                spawnOne = !spawnOne;
+            }
+
+            return stage;
+        }
+
     }
 }
