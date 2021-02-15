@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Brackeys.States;
@@ -33,6 +34,7 @@ namespace Brackeys.Component.Sprites.Tower
         public bool IsMain { get; protected set; }
 
         protected Cell[,] Cells => ((GameState)CurrentState).Cells;
+        public Enemy.Enemy TargetedEnemy { get; set; }
 
         public Rectangle RangeRectangle
         {
@@ -60,6 +62,8 @@ namespace Brackeys.Component.Sprites.Tower
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            TargetEnemy();
+            Shoot();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -106,7 +110,8 @@ namespace Brackeys.Component.Sprites.Tower
 
         public void Shoot()
         {
-
+            if (TargetedEnemy == null) return;
+            Debug.WriteLine("Shooting at enemy");
         }
 
         public virtual void OnPlace(Cell cell)
@@ -145,6 +150,32 @@ namespace Brackeys.Component.Sprites.Tower
             }
 
             return towers;
+        }
+
+        private void TargetEnemy()
+        {
+            if (CurrentState is GameState gs)
+            {
+                List<Enemy.Enemy> enemies = gs.Layers[(int)Layers.PlayingArea]
+                    .Where(c => c is Enemy.Enemy).ToList()
+                    .Where(enemy => RangeRectangle.Contains(enemy.Position)).ToList()
+                    .ConvertAll(new Converter<Component, Enemy.Enemy>(x => (Enemy.Enemy)x));
+
+                if (enemies.Count == 0)
+                {
+                    TargetedEnemy = null;
+                    return;
+                }
+
+                Enemy.Enemy enemy = enemies.First();
+                foreach (Enemy.Enemy e in enemies)
+                {
+                    if (enemy == e) continue;
+                    if (e.Progress > enemy.Progress) enemy = e;
+                }
+
+                TargetedEnemy = enemy;
+            }
         }
     }
 }

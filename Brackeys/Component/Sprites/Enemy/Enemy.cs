@@ -28,6 +28,7 @@ namespace Brackeys.Component.Sprites.Enemy
         public Elements Element { get; set; }
 
         private Cell TargetCell { get; set; }
+        public float Progress { get; set; } = 0;
 
         public Enemy(Elements element) { Element = element; }
 
@@ -51,7 +52,9 @@ namespace Brackeys.Component.Sprites.Enemy
 
         public override void Update(GameTime gameTime)
         {
+
             Move();
+            Progress += Speed;
             base.Update(gameTime);
         }
 
