@@ -16,7 +16,7 @@ namespace Brackeys.Models
 
         public Player()
         {
-            Money = 5;
+            Money = 500;
             Health = 100;           
         }
 

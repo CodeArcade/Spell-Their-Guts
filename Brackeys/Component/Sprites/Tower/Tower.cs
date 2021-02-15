@@ -33,7 +33,6 @@ namespace Brackeys.Component.Sprites.Tower
         public bool IsMain { get; protected set; }
 
         protected Cell[,] Cells => ((GameState)CurrentState).Cells;
-        public List<Tower> BuffedTowers = new List<Tower>();
 
         public Rectangle RangeRectangle
         {
@@ -60,6 +59,10 @@ namespace Brackeys.Component.Sprites.Tower
 
         public override void Update(GameTime gameTime)
         {
+            if (IsMain)
+            {
+                Debug.WriteLine($"{Damage} | {AttackSpeed} | {Range}");
+            }
             base.Update(gameTime);
         }
 
@@ -96,10 +99,9 @@ namespace Brackeys.Component.Sprites.Tower
 
             if (!IsMain)
             {
-                foreach (Tower t in GetTowersInRange())
-                { 
-                    RevokeBuff(t);
-                }
+                Tower mainTower = GetTowersInRange().FirstOrDefault(x => x.IsMain);
+
+                RevokeBuff(mainTower);
             }
 
             RangeSprite.IsRemoved = true;
@@ -116,13 +118,11 @@ namespace Brackeys.Component.Sprites.Tower
             Color = Color.White;
             DrawRange = false;
 
-            List<Tower> towersInRange = GetTowersInRange();
+            Tower mainTower = GetTowersInRange().FirstOrDefault(x => x.IsMain);
 
-            IsMain = !towersInRange.Any(x => x.IsMain);
-            foreach (Tower t in towersInRange)
-            {
-                ApplyBuff(t);
-            }
+            IsMain = mainTower is null;
+            if (mainTower != null)
+                ApplyBuff(mainTower);
         }
 
         protected abstract void ApplyBuff(Tower tower);
@@ -141,7 +141,6 @@ namespace Brackeys.Component.Sprites.Tower
 
                     if (tower is null) continue;
                     if (tower == this) continue;
-                    if (tower.GetType() != GetType()) continue;
 
                     if (RangeRectangle.Contains(tower.Position))
                         towers.Add(tower);

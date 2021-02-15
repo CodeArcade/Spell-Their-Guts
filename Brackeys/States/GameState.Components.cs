@@ -117,7 +117,7 @@ namespace Brackeys.States
             #region Shop
 
             AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 3);
-            AddShopEntry(new WaterTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 3);
+           // AddShopEntry(new WaterTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 3);
 
             AddShopEntry(new EarthTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 5);
             AddShopEntry(new WindTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 5);
