@@ -1,22 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using Brackeys.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Brackeys.Component.Sprites.Tower
 {
-    public class Tower : Sprite
+    public abstract class Tower : Sprite
     {
         public string Name { get; protected set; }
-        public int Damage { get; set; }
+
+        protected int BaseDamage { get; set; }
+        protected int BaseRange { get; set; }
+        protected float BaseAttackSpeed { get; set; }
+
+        public int Damage
+        {
+            get
+            {
+                if (IsMain)
+                    return BaseDamage + GetTowersInRange().Sum(x => x.Damage);
+
+                return BaseDamage;
+            }
+        }
         /// <summary>
         /// In cells
         /// </summary>
-        public int Range { get; set; }
-        public float FireSpeed { get; set; }
+        public int Range
+        {
+            get
+            {
+                if (IsMain)
+                    return BaseRange + GetTowersInRange().Sum(x => x.Range);
+
+                return BaseRange;
+            }
+        }
+        /// <summary>
+        /// In seconds
+        /// </summary>
+        public float AttackSpeed
+        {
+            get
+            {
+                if (IsMain)
+                    return BaseAttackSpeed + GetTowersInRange().Sum(x => x.AttackSpeed);
+
+                return BaseAttackSpeed;
+            }
+        }
+
         public static int GlobalCost { get; set; }
         public int Cost => GlobalCost;
         protected Cell Cell { get; set; }
@@ -31,7 +66,7 @@ namespace Brackeys.Component.Sprites.Tower
             get
             {
                 GameState state = (GameState)CurrentState;
-                return new Rectangle((int)Position.X - (Range * state.CellSize), (int)Position.Y - (Range * state.CellSize), Size.Height + (Range * state.CellSize * 2), Size.Width + (Range * state.CellSize * 2));
+                return new Rectangle((int)Position.X - (BaseRange * state.CellSize), (int)Position.Y - (BaseRange * state.CellSize), Size.Height + (BaseRange * state.CellSize * 2), Size.Width + (BaseRange * state.CellSize * 2));
             }
         }
 
@@ -46,7 +81,6 @@ namespace Brackeys.Component.Sprites.Tower
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (IsMain) Color = Color.Brown;// TODO: entfernen
             base.Draw(gameTime, spriteBatch);
 
             if (DrawRange)
@@ -113,6 +147,5 @@ namespace Brackeys.Component.Sprites.Tower
 
             return towers;
         }
-
     }
 }

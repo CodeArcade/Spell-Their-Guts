@@ -52,6 +52,7 @@ namespace Brackeys.States
 
         private void UpdateUI()
         {
+            GetLabel("StageLabel").Text = $"Level: {Level.CurrentStage}";
             GetLabel("HealthLabel").Text = $"Health: {Player.Health}";
             GetLabel("MoneyLabel").Text = $"Money: {Player.Money}";
         }

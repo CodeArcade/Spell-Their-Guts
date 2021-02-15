@@ -84,10 +84,20 @@ namespace Brackeys.States
         {
             #region Ui
             base.AddComponent(
+             new Label(ContentManager.TestFont)
+             {
+                 Name = "StageLabel",
+                 Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize / 2),
+                 FontColor = Color.Black,
+                 Text = "test"
+             },
+             (int)States.Layers.UI);
+
+            base.AddComponent(
                 new Label(ContentManager.TestFont)
                 {
                     Name = "HealthLabel",
-                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize / 2),
+                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize),
                     FontColor = Color.Black,
                     Text = "test"
                 },
@@ -97,7 +107,7 @@ namespace Brackeys.States
             new Label(ContentManager.TestFont)
             {
                 Name = "MoneyLabel",
-                Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize),
+                Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize * 1.5f),
                 FontColor = Color.Black,
                 Text = "test"
             },
@@ -106,14 +116,14 @@ namespace Brackeys.States
 
             #region Shop
 
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 2);
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 2);
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 3);
+            AddShopEntry(new WaterTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 3);
 
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 4);
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 4);
+            AddShopEntry(new EarthTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 5);
+            AddShopEntry(new WindTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 5);
 
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 6);
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 6);
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 7);
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 7);
             #endregion
         }
 

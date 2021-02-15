@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Brackeys.Component.Sprites.Tower
 {
-    public class FireTower : Tower
+    public class WaterTower : Tower
     {
-        public FireTower()
+        public WaterTower()
         {
-            Name = "Fire Mage";
+            Name = "Water Mage";
             Texture = ContentManager.TowerTexture;
 
             BaseDamage = 2;

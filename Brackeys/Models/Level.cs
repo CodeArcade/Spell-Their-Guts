@@ -18,6 +18,7 @@ namespace Brackeys.Models
         public Point Target { get; protected set; }
 
         public Queue<Stage> Stages { get; private set; }
+        public int CurrentStage { get; private set; } 
 
         public float TimeSinceLastSpawn { get; set; }
         private bool IsRunning { get; set; }
@@ -31,6 +32,8 @@ namespace Brackeys.Models
 
         public void Start()
         {
+            if (CurrentStage == 0) CurrentStage++;
+
             IsRunning = true;
         }
 
@@ -42,6 +45,7 @@ namespace Brackeys.Models
         private void StartNextStage()
         {
             TimeSinceLastSpawn = 0;
+            CurrentStage ++;
             Stages.Dequeue();
         }
 
