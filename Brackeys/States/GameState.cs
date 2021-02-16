@@ -61,7 +61,7 @@ namespace Brackeys.States
             GetLabel("TowerDamageLabel").Visible = Player.SelectedTower != null;
             GetLabel("TowerRangeLabel").Visible = Player.SelectedTower != null;
             GetLabel("TowerSpeedLabel").Visible = Player.SelectedTower != null;
-            GetButton("SellTowerButton").Visible = Player.SelectedTower != null && Player.CurrentTowerInHand is null;
+            GetButton("SellTowerButton").Visible = Player.SelectedTower != null && Player.CurrentTowerInHand is null && (!Player.SelectedTower.IsMain || Player.SelectedTower.GetTowersInRange().Count == 1);
 
             GetLabel("TowerNameLabel").Text = $"{Player.SelectedTower?.Name}";
             GetLabel("TowerElementLabel").Text = $"{Player.SelectedTower?.Element.ToString()}";

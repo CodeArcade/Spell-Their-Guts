@@ -14,6 +14,12 @@ namespace Brackeys.Manager
         public SpriteFont TestFont => JamGame.Content.Load<SpriteFont>("Font/TestFont");
         #endregion
 
+        public SoundEffect FireShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/FireShoot");
+        public SoundEffect WindShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/WindShoot");
+        public SoundEffect EarthShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/EarthShoot");
+        public SoundEffect SelectSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/Select");
+        public SoundEffect HpLostSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/HpLost");
+
         public Texture2D RangeTexture => JamGame.Content.Load<Texture2D>("Ui/Range");
         public Texture2D TowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/TEST/Tower");
         public Texture2D Tower2Texture => JamGame.Content.Load<Texture2D>("Sprites/Towers/TEST/Tower2");

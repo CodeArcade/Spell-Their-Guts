@@ -15,7 +15,7 @@ namespace Brackeys.Component.Sprites.Tower
         public Elements Element { get; set; }
 
         public int Damage { get; set; }
-        
+
         /// <summary>
         /// In cells
         /// </summary>
@@ -142,6 +142,22 @@ namespace Brackeys.Component.Sprites.Tower
             if (TimeSinceLastShot < AttackSpeed) return;
             TimeSinceLastShot = 0;
             Projectile p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(15, 15));
+
+            switch (Element)
+            {
+                case Elements.Earth:
+                    AudioManager.PlayEffect(ContentManager.EarthShootSoundEffect);
+                    break;
+                case Elements.Fire:
+                    AudioManager.PlayEffect(ContentManager.FireShootSoundEffect);
+                    break;
+                case Elements.Wind:
+                    AudioManager.PlayEffect(ContentManager.WindShootSoundEffect);
+                    break;
+                default:
+                    break;
+            }
+
             CurrentState.AddComponent(p, (int)Layers.PlayingArea);
         }
 
@@ -164,7 +180,7 @@ namespace Brackeys.Component.Sprites.Tower
 
         protected abstract void RevokeBuff(Tower tower);
 
-        protected List<Tower> GetTowersInRange()
+        public List<Tower> GetTowersInRange()
         {
             List<Tower> towers = new List<Tower>();
 

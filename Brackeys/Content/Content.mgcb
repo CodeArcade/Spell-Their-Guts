@@ -20,6 +20,36 @@
 /processorParam:TextureFormat=Compressed
 /build:Font/TestFont.spritefont
 
+#begin Sounds/EarthShoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/EarthShoot.wav
+
+#begin Sounds/FireShoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/FireShoot.wav
+
+#begin Sounds/HpLost.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/HpLost.wav
+
+#begin Sounds/Select.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Select.wav
+
+#begin Sounds/WindShoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/WindShoot.wav
+
 #begin Sprites/Enemy/Enemy.png
 /importer:TextureImporter
 /processor:TextureProcessor

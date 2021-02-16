@@ -96,7 +96,7 @@ namespace Brackeys.Component.Controls
 
                 if (CurrentMouse.LeftButton == ButtonState.Released && PreviousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    //AudioManager.PlayEffect(ContentManager.ButtonClickSoundEffect, 0.25f);
+                    AudioManager.PlayEffect(ContentManager.SelectSoundEffect, 0.25f);
                     OnClick?.Invoke(this, new EventArgs());
                 }
             }

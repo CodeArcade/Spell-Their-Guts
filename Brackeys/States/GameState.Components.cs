@@ -53,6 +53,7 @@ namespace Brackeys.States
                 foreach (Tower tower in Layers[(int)States.Layers.PlayingArea].Where(x => x is Tower))
                 {
                     tower.DrawRange = false;
+                    Player.SelectedTower = null;
                 }
 
                 if (Cells[x, y].IsPath) return;
@@ -73,6 +74,8 @@ namespace Brackeys.States
                     Cells[x, y].Tower.Position = Cells[x, y].Position;
                     Cells[x, y].Tower.Size = Cells[x, y].Size;
                     Cells[x, y].Tower.OnPlace(Cells[x, y]);
+
+                    AudioManager.PlayEffect(ContentManager.SelectSoundEffect);
 
                     base.AddComponent(Cells[x, y].Tower, (int)States.Layers.PlayingArea);
 
@@ -189,9 +192,9 @@ new Label(ContentManager.TestFont)
             {
                 if (Player.SelectedTower != null && !Player.SelectedTower.IsRemoved)
                 {
-                    Player.SelectedTower.OnRemove();
                     Player.Money += (int)(Player.SelectedTower.Cost * 0.5);
 
+                    Cells[Player.SelectedTower.Cell.Coordinate.X, Player.SelectedTower.Cell.Coordinate.Y].Tower.OnRemove();
                     Layers[(int)States.Layers.PlayingArea].Remove(Cells[Player.SelectedTower.Cell.Coordinate.X, Player.SelectedTower.Cell.Coordinate.Y].Tower);
                     Cells[Player.SelectedTower.Cell.Coordinate.X, Player.SelectedTower.Cell.Coordinate.Y].Tower = null;
                     Player.SelectedTower = null;

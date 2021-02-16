@@ -67,6 +67,7 @@ namespace Brackeys.Component.Sprites.Enemy
             {
                 state.Player.Health -= Damage;
                 IsRemoved = true;
+                AudioManager.PlayEffect(ContentManager.HpLostSoundEffect);
                 return;
             }
 

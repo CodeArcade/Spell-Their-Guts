@@ -10,7 +10,6 @@ using Color = Microsoft.Xna.Framework.Color;
 
 namespace Brackeys.Component.Sprites
 {
-
     public class Projectile : Sprite
     {
         private double TTL { get; set; }
