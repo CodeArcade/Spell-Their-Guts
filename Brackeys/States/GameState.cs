@@ -33,10 +33,21 @@ namespace Brackeys.States
         {
             StartGame();
 
+            if (Player.Health <= 0)
+            {
+                OnPlayerDeath();
+                return;
+            }
+
             Level.Update(gameTime, this);
             base.Update(gameTime);
             Player.Update(gameTime);
             UpdateUI();
+        }
+
+        private void OnPlayerDeath()
+        {
+            StateManager.ChangeTo<GameOverState>(GameOverState.Name, false, Level.CurrentStage);
         }
 
         private void StartGame()

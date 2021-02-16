@@ -9,6 +9,7 @@ namespace Brackeys.Manager
         public static State CurrentState { get; private set; }
         private static State NextState { get; set; }
         private static string StateName { get; set; } 
+        private object[] Parameter { get; set; }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch) => CurrentState.Draw(gameTime, spriteBatch);
 
@@ -26,7 +27,7 @@ namespace Brackeys.Manager
         {
             if (NextState is null) return;
             if (NextState == CurrentState) return;
-            if (!NextState.HasLoaded) NextState.Load();
+            if (!NextState.HasLoaded) NextState.Load(Parameter);
 
             CurrentState = NextState;
             NextState = null;
@@ -37,10 +38,11 @@ namespace Brackeys.Manager
             NextState = (State)Program.UnityContainer.Resolve(CurrentState.GetType(), StateName);
         }
 
-        public void ChangeTo<T>(string name) where T : State
+        public void ChangeTo<T>(string name, params object[] parameter) where T : State
         {
             NextState = (T)Program.UnityContainer.Resolve(typeof(T), name);
             StateName = name;
+            Parameter = parameter;
         }
 
     }
