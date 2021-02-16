@@ -160,8 +160,10 @@ namespace Brackeys.Component.Sprites
         public Sprite Copy()
         {
             return (Sprite)this.MemberwiseClone();
-
         }
-
+        public T Copy<T>()
+        {
+            return (T)this.MemberwiseClone();
+        }
     }
 }

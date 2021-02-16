@@ -20,12 +20,12 @@ namespace Brackeys.Component.Sprites.Tower
 
         protected override void ApplyBuff(Tower tower)
         {
-            tower.Damage += 2;
+            tower.Damage += 1;
         }
 
         protected override void RevokeBuff(Tower tower)
         {
-            tower.Damage -= 2;
+            tower.Damage -= 1;
         }
     }
 }

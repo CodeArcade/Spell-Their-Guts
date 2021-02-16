@@ -33,6 +33,7 @@ namespace Brackeys.Component.Sprites.Tower
 
         public bool DrawRange { get; set; }
         public bool IsMain { get; protected set; }
+        protected bool HasBeenPlaced { get; set; }
 
         protected Cell[,] Cells => ((GameState)CurrentState).Cells;
         public Enemy.Enemy TargetedEnemy { get; set; }
@@ -128,7 +129,7 @@ namespace Brackeys.Component.Sprites.Tower
             {
                 Tower mainTower = GetTowersInRange().FirstOrDefault(x => x.IsMain);
 
-                if (mainTower != null)
+                if (mainTower != null && HasBeenPlaced)
                     RevokeBuff(mainTower);
             }
 
@@ -155,6 +156,8 @@ namespace Brackeys.Component.Sprites.Tower
             IsMain = mainTower is null;
             if (mainTower != null)
                 ApplyBuff(mainTower);
+
+            HasBeenPlaced = true;
         }
 
         protected abstract void ApplyBuff(Tower tower);

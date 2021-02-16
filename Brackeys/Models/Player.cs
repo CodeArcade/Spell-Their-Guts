@@ -49,9 +49,14 @@ namespace Brackeys.Models
         {
             CurrentTowerInHand?.OnRemove();
             CurrentTowerInHand = null;
+            UnselectCurrentTower();
+        }
 
+        public void UnselectCurrentTower()
+        {
             if (SelectedTower != null)
             {
+                SelectedTower?.OnRemove();
                 SelectedTower.DrawRange = false;
                 SelectedTower = null;
             }

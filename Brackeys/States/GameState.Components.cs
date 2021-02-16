@@ -53,14 +53,13 @@ namespace Brackeys.States
                 foreach (Tower tower in Layers[(int)States.Layers.PlayingArea].Where(x => x is Tower))
                 {
                     tower.DrawRange = false;
-                    Player.SelectedTower = null;
                 }
 
                 if (Cells[x, y].IsPath) return;
 
                 if (Cells[x, y].Tower != null)
                 {
-                    Player.SelectedTower = Cells[x, y].Tower;
+                    Player.SelectedTower = Cells[x, y].Tower.Copy<Tower>();
                     Cells[x, y].Tower.DrawRange = true;
                 }
                 else
@@ -218,8 +217,7 @@ new Label(ContentManager.TestFont)
             {
                 if (Player.CurrentTowerInHand != null)
                 {
-                    Player.CurrentTowerInHand.OnRemove();
-                    Player.CurrentTowerInHand = null;
+                    Player.Unselect();
                 }
                 foreach (Tower tower in Layers[(int)States.Layers.PlayingArea].Where(x => x is Tower))
                 {
