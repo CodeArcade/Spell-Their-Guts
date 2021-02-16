@@ -19,6 +19,7 @@ namespace Brackeys.Manager
         public SoundEffect EarthShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/EarthShoot");
         public SoundEffect SelectSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/Select");
         public SoundEffect HpLostSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/HpLost");
+        public SoundEffect SpawnSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/Spawn");
 
         public Texture2D RangeTexture => JamGame.Content.Load<Texture2D>("Ui/Range");
         public Texture2D TowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/TEST/Tower");

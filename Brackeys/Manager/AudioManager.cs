@@ -10,9 +10,11 @@ namespace Brackeys.Manager
         private bool Loop;
         private float Volume;
 
-        public void PlayEffect(SoundEffect effect, float volume = 1, float pitch = 0)
+        public static float GlobalVolume { get; set; } = 1;
+
+        public void PlayEffect(SoundEffect effect, float volume = 0, float pitch = 0)
         {
-            effect.Play(volume, pitch, 0);
+            effect.Play(GlobalVolume + volume, pitch, 0);
         }
 
         public void Update()
@@ -28,11 +30,11 @@ namespace Brackeys.Manager
 
             MediaPlayer.IsRepeating = Loop;
             MediaPlayer.Stop();
-            MediaPlayer.Volume = Volume;
+            MediaPlayer.Volume = GlobalVolume + Volume;
             MediaPlayer.Play(CurrentSong);
         }
 
-        public void ChangeSong(Song song, bool loop = false, float volume = 1) { NextSong = song; Loop = loop; Volume = volume; }
+        public void ChangeSong(Song song, bool loop = false, float volume = 0) { NextSong = song; Loop = loop; Volume = volume; }
 
         public void StopMusic() => MediaPlayer.Stop();
     }

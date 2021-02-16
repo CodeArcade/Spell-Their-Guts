@@ -44,6 +44,12 @@
 /processorParam:Quality=Best
 /build:Sounds/Select.wav
 
+#begin Sounds/Spawn.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Spawn.wav
+
 #begin Sounds/WindShoot.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

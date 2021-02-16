@@ -6,6 +6,7 @@ using Brackeys.Component.Sprites.Enemy;
 using System.Drawing;
 using Point = Microsoft.Xna.Framework.Point;
 using Brackeys.Models.Levels;
+using Brackeys.Manager;
 
 namespace Brackeys.Models
 {
@@ -85,7 +86,8 @@ namespace Brackeys.Models
                 enemy.TargetCoordinate = Target;
                 gameState.AddComponent(enemy, (int)Layers.PlayingArea);
             }
-        
+
+            new AudioManager().PlayEffect(gameState.ContentManager.SpawnSoundEffect, -0.25f);
         }
     }
 }
