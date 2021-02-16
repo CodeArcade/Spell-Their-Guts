@@ -65,6 +65,7 @@ namespace Brackeys.Component.Sprites
             //AudioManager.PlayEffect(ContentManager.EntityHitSoundEffect, 0.25f);
 
             ((Enemy.Enemy)sprite).TakeDamage(((Tower.Tower)Parent).Damage, Element);
+            if (((Enemy.Enemy)sprite).Health <= 0) sprite.IsRemoved = true;
             IsRemoved = true;
         }
 

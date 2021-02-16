@@ -74,6 +74,11 @@ namespace Brackeys.States
             for (int layer = 0; layer < Layers.Length; layer++)
             {
                 List<Component.Component> DrawOrder = Layers[layer].OrderByDescending(c => c.Position.Y).ToList();
+                // draw projectiles over everything
+                List<Component.Component> projectiles = DrawOrder.FindAll(x => x is Projectile);
+                DrawOrder.RemoveAll(x => x is Projectile);
+                DrawOrder.AddRange(projectiles);
+                DrawOrder.Reverse();
                 for (int i = DrawOrder.Count - 1; i >= 0; i--)
                 {
                     if (DrawOrder[i].Visible)
