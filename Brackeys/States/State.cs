@@ -60,6 +60,12 @@ namespace Brackeys.States
             component.CurrentState = this;
             Layers[layer].Add(component);
         }
+        
+        public virtual void AddComponent(Component.Component component, Layers layer)
+        {
+            component.CurrentState = this;
+            Layers[(int)layer].Add(component);
+        }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

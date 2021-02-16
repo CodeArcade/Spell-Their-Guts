@@ -45,7 +45,7 @@ namespace Brackeys
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            StateManager.ChangeTo<GameState>(GameState.Name);
+            StateManager.ChangeTo<MenuState>(MenuState.Name);
 
             AudioManager.GlobalVolume = 0.5f;
         }
