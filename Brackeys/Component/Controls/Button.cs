@@ -22,6 +22,7 @@ namespace Brackeys.Component.Controls
         public SpriteFont Font { get; set; }
         public string Text { get; set; }
         public bool Clicked { get; private set; }
+        public string Name { get; set; }
 
         public Size Size
         {

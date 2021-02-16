@@ -11,7 +11,7 @@ namespace Brackeys.Component.Sprites.Tower
         const int BASERANGE = 2;
         const int BASEATTACKSPEED = 1;
         const int GLOBALCOST = 1;
-        public NormalTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED)
+        public NormalTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED, Enemy.Elements.None)
         {
             Name = "Mage";
             GlobalCost = GLOBALCOST;

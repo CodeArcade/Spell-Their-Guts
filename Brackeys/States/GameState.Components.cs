@@ -51,12 +51,16 @@ namespace Brackeys.States
             Cells[x, y].OnClick += (sender, e) =>
             {
                 foreach (Tower tower in Layers[(int)States.Layers.PlayingArea].Where(x => x is Tower))
+                {
                     tower.DrawRange = false;
+                    Player.SelectedTower = null;
+                }
 
                 if (Cells[x, y].IsPath) return;
 
                 if (Cells[x, y].Tower != null)
                 {
+                    Player.SelectedTower = Cells[x, y].Tower;
                     Cells[x, y].Tower.DrawRange = true;
                 }
                 else
@@ -73,7 +77,7 @@ namespace Brackeys.States
 
                     base.AddComponent(Cells[x, y].Tower, (int)States.Layers.PlayingArea);
 
-                    Player.CurrentTowerInHand = null;
+                    Player.Unselect();
                 }
             };
 
@@ -116,14 +120,89 @@ namespace Brackeys.States
 
             #region Shop
 
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 3);
-           // AddShopEntry(new WaterTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 3);
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 2) * CellSize, CellSize * 3);
+            AddShopEntry(new EarthTower(), (Columns - UiWidthInCells + 2) * CellSize, CellSize * 5);
+            AddShopEntry(new WindTower(), (Columns - UiWidthInCells + 2) * CellSize, CellSize * 7);
 
-            AddShopEntry(new EarthTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 5);
-            AddShopEntry(new WindTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 5);
+            #endregion
 
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 1) * CellSize, CellSize * 7);
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 3) * CellSize, CellSize * 7);
+            #region TowerInfo
+
+            base.AddComponent(
+        new Label(ContentManager.TestFont)
+        {
+            Name = "TowerNameLabel",
+            Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (5 * CellSize)),
+            FontColor = Color.Black,
+            Text = ""
+        },
+        (int)States.Layers.UI);
+
+            base.AddComponent(
+        new Label(ContentManager.TestFont)
+        {
+            Name = "TowerElementLabel",
+            Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (4.5f * CellSize)),
+            FontColor = Color.Black,
+            Text = ""
+        },
+        (int)States.Layers.UI);
+
+            base.AddComponent(
+new Label(ContentManager.TestFont)
+{
+    Name = "TowerDamageLabel",
+    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3.5f * CellSize)),
+    FontColor = Color.Black,
+    Text = ""
+},
+(int)States.Layers.UI);
+
+            base.AddComponent(
+new Label(ContentManager.TestFont)
+{
+    Name = "TowerRangeLabel",
+    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3f * CellSize)),
+    FontColor = Color.Black,
+    Text = ""
+},
+(int)States.Layers.UI);
+
+            base.AddComponent(
+new Label(ContentManager.TestFont)
+{
+    Name = "TowerSpeedLabel",
+    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (2.5f * CellSize)),
+    FontColor = Color.Black,
+    Text = ""
+},
+(int)States.Layers.UI);
+
+            Button button = new Button(ContentManager.RangeTexture, ContentManager.TestFont)
+            {
+                Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (1.5f * CellSize)),
+                FontColor = Color.Black,
+                Text = "Sell",
+                Size = new Size(CellSize * 3, CellSize),
+                Name = "SellTowerButton"
+            };
+            button.OnClick += (sender, e) =>
+            {
+                if (Player.SelectedTower != null && !Player.SelectedTower.IsRemoved)
+                {
+                    Player.SelectedTower.OnRemove();
+                    Player.Money += (int)(Player.SelectedTower.Cost * 0.5);
+
+                    Layers[(int)States.Layers.PlayingArea].Remove(Cells[Player.SelectedTower.Cell.Coordinate.X, Player.SelectedTower.Cell.Coordinate.Y].Tower);
+                    Cells[Player.SelectedTower.Cell.Coordinate.X, Player.SelectedTower.Cell.Coordinate.Y].Tower = null;
+                    Player.SelectedTower = null;
+
+                    Player.Unselect();
+                }
+            };
+
+            base.AddComponent(button, (int)States.Layers.UI);
+
             #endregion
         }
 
@@ -137,11 +216,23 @@ namespace Brackeys.States
 
             button.OnClick += (sender, e) =>
             {
+                if (Player.CurrentTowerInHand != null)
+                {
+                    Player.CurrentTowerInHand.OnRemove();
+                    Player.CurrentTowerInHand = null;
+                }
+                foreach (Tower tower in Layers[(int)States.Layers.PlayingArea].Where(x => x is Tower))
+                {
+                    tower.DrawRange = false;
+                    Player.SelectedTower = null;
+                }
+
                 Player.CurrentTowerInHand = (Tower)tower.Copy();
                 Player.CurrentTowerInHand.Size = new Size(CellSize, CellSize);
                 Player.CurrentTowerInHand.Color = Color.White * 0.7f;
                 Player.CurrentTowerInHand.DrawRange = true;
                 Player.CurrentTowerInHand.CurrentState = this;
+                Player.SelectedTower = Player.CurrentTowerInHand;
             };
 
             Label label = new Label(ContentManager.TestFont)
@@ -153,7 +244,6 @@ namespace Brackeys.States
             base.AddComponent(button, (int)States.Layers.UI);
             base.AddComponent(label, (int)States.Layers.UI);
         }
-
     }
 
 }

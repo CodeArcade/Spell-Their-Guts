@@ -11,7 +11,7 @@ namespace Brackeys.Component.Sprites.Tower
         const int BASEATTACKSPEED = 1;
         const int GLOBALCOST = 5;
 
-        public FireTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED)
+        public FireTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED, Enemy.Elements.Fire)
         {
             Name = "Fire Mage";
             GlobalCost = GLOBALCOST;

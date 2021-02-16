@@ -23,7 +23,8 @@ namespace Brackeys.Component
         #endregion
 
         #region Public Properties
-        
+        public bool Visible { get; set; } = true;
+
         public States.State CurrentState { get; set; }
 
         public Vector2 Position

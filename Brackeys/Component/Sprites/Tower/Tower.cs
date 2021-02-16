@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Brackeys.Component.Sprites.Enemy;
 using Brackeys.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,17 +12,14 @@ namespace Brackeys.Component.Sprites.Tower
     public abstract class Tower : Sprite
     {
         public string Name { get; protected set; }
-
-        protected int BaseDamage { get; set; }
-        protected int BaseRange { get; set; }
-        protected float BaseAttackSpeed { get; set; }
+        public Elements Element { get; set; }
 
         public int Damage { get; set; }
         
         /// <summary>
         /// In cells
         /// </summary>
-        public int Range { get; set; }
+        public float Range { get; set; }
 
         /// <summary>
         /// In seconds
@@ -31,7 +29,7 @@ namespace Brackeys.Component.Sprites.Tower
 
         public static int GlobalCost { get; set; }
         public int Cost => GlobalCost;
-        protected Cell Cell { get; set; }
+        public Cell Cell { get; set; }
 
         public bool DrawRange { get; set; }
         public bool IsMain { get; protected set; }
@@ -67,7 +65,7 @@ namespace Brackeys.Component.Sprites.Tower
             get
             {
                 GameState state = (GameState)CurrentState;
-                return new Rectangle((int)Position.X - (BaseRange * state.CellSize), (int)Position.Y - (BaseRange * state.CellSize), Size.Height + (BaseRange * state.CellSize * 2), Size.Width + (BaseRange * state.CellSize * 2));
+                return new Rectangle((int)Position.X - (int)(Range * state.CellSize), (int)Position.Y - (int)(Range * state.CellSize), Size.Height + (int)(Range * state.CellSize * 2), Size.Width + (int)(Range * state.CellSize * 2));
             }
         }
 
@@ -75,14 +73,15 @@ namespace Brackeys.Component.Sprites.Tower
 
         private bool AddedRangeSprite { get; set; }
 
-        public Tower(int baseDamage, int baseRange, int baseAttackSpeed)
+        public Tower(int baseDamage, int baseRange, int baseAttackSpeed, Elements element)
         {
-            BaseDamage = baseDamage;
-            BaseRange = baseRange;
-            BaseAttackSpeed = baseAttackSpeed;
             Damage = baseDamage;
             Range = baseRange;
             AttackSpeed = baseAttackSpeed;
+            Damage = baseDamage;
+            Range = baseRange;
+            AttackSpeed = baseAttackSpeed;
+            Element = element;
         }
 
         public override void Update(GameTime gameTime)
@@ -141,7 +140,7 @@ namespace Brackeys.Component.Sprites.Tower
             if (TargetedEnemy == null) return;
             if (TimeSinceLastShot < AttackSpeed) return;
             TimeSinceLastShot = 0;
-            Projectile p = new Projectile(DirectionToTargetedEnemy, this, Enemy.Elements.Wind, ContentManager.EnemyTexture, new System.Drawing.Size(15, 15));
+            Projectile p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(15, 15));
             CurrentState.AddComponent(p, (int)Layers.PlayingArea);
         }
 

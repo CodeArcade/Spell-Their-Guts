@@ -69,7 +69,8 @@ namespace Brackeys.States
                 List<Component.Component> DrawOrder = Layers[layer].OrderByDescending(c => c.Position.Y).ToList();
                 for (int i = DrawOrder.Count - 1; i >= 0; i--)
                 {
-                    DrawOrder[i].Draw(gameTime, spriteBatch);
+                    if (DrawOrder[i].Visible)
+                        DrawOrder[i].Draw(gameTime, spriteBatch);
                 }
             }
 

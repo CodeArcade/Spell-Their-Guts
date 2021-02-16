@@ -8,11 +8,11 @@ namespace Brackeys.Component.Sprites.Tower
     {
 
         const int BASEDAMAGE = 2;
-        const int BASERANGE = 3;
+        const int BASERANGE = 2;
         const int BASEATTACKSPEED = 1;
         const int GLOBALCOST = 5;
 
-        public EarthTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED)
+        public EarthTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED, Enemy.Elements.Earth)
         {
             Name = "Earth Mage";
             Texture = ContentManager.TowerTexture;
@@ -22,14 +22,12 @@ namespace Brackeys.Component.Sprites.Tower
 
         protected override void ApplyBuff(Tower tower)
         {
-            tower.Damage += 1;
-            tower.Range += 1;
+            tower.Range += 0.5f;
         }
 
         protected override void RevokeBuff(Tower tower)
         {
-            tower.Damage -= 1;
-            tower.Range -= 1;
+            tower.Range -= 0.5f;
         }
     }
 }

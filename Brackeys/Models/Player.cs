@@ -11,13 +11,15 @@ namespace Brackeys.Models
     public class Player : Component.Component
     {
         public Tower CurrentTowerInHand { get; set; }
+        public Tower SelectedTower { get; set; }
+
         public int Money { get; set; }
         public int Health { get; set; }
 
         public Player()
         {
             Money = 500;
-            Health = 100;           
+            Health = 100;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -27,7 +29,7 @@ namespace Brackeys.Models
 
         public override void Update(GameTime gameTime)
         {
-            CancelPlace();
+            Cancel();
             if (CurrentTowerInHand != null)
             {
                 Point p = Mouse.GetState().Position;
@@ -35,12 +37,23 @@ namespace Brackeys.Models
             }
         }
 
-        public void CancelPlace()
+        private void Cancel()
         {
             if (Mouse.GetState().RightButton == ButtonState.Pressed)
             {
-                CurrentTowerInHand?.OnRemove();
-                CurrentTowerInHand = null;
+                Unselect();
+            }
+        }
+
+        public void Unselect()
+        {
+            CurrentTowerInHand?.OnRemove();
+            CurrentTowerInHand = null;
+
+            if (SelectedTower != null)
+            {
+                SelectedTower.DrawRange = false;
+                SelectedTower = null;
             }
         }
     }

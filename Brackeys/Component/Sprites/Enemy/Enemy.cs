@@ -15,7 +15,8 @@ namespace Brackeys.Component.Sprites.Enemy
     {
         Earth,
         Fire,
-        Wind
+        Wind,
+        None
     }
     public abstract class Enemy : Entity
     {
@@ -52,7 +53,6 @@ namespace Brackeys.Component.Sprites.Enemy
 
         public override void Update(GameTime gameTime)
         {
-
             Move();
             Progress += Speed;
             base.Update(gameTime);
@@ -180,6 +180,12 @@ namespace Brackeys.Component.Sprites.Enemy
                 TakeDamage(damage / 2f);
             }
 
+        }
+
+        public override void OnRemove()
+        {
+            ((GameState)CurrentState).Player.Money += Reward;
+            base.OnRemove();
         }
     }
 }

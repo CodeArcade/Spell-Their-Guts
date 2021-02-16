@@ -55,9 +55,22 @@ namespace Brackeys.States
             GetLabel("StageLabel").Text = $"Level: {Level.CurrentStage}";
             GetLabel("HealthLabel").Text = $"Health: {Player.Health}";
             GetLabel("MoneyLabel").Text = $"Money: {Player.Money}";
+
+            GetLabel("TowerNameLabel").Visible = Player.SelectedTower != null;
+            GetLabel("TowerElementLabel").Visible = Player.SelectedTower != null;
+            GetLabel("TowerDamageLabel").Visible = Player.SelectedTower != null;
+            GetLabel("TowerRangeLabel").Visible = Player.SelectedTower != null;
+            GetLabel("TowerSpeedLabel").Visible = Player.SelectedTower != null;
+            GetButton("SellTowerButton").Visible = Player.SelectedTower != null && Player.CurrentTowerInHand is null;
+
+            GetLabel("TowerNameLabel").Text = $"{Player.SelectedTower?.Name}";
+            GetLabel("TowerElementLabel").Text = $"{Player.SelectedTower?.Element.ToString()}";
+            GetLabel("TowerDamageLabel").Text = $"Damage: {Player.SelectedTower?.Damage}";
+            GetLabel("TowerRangeLabel").Text = $"Range: {Player.SelectedTower?.Range}";
+            GetLabel("TowerSpeedLabel").Text = $"Speed: {Player.SelectedTower?.AttackSpeed}";
         }
 
         private Label GetLabel(string name) => (Label)Layers[(int)States.Layers.UI].First(x => x is Label label && label.Name == name);
-
+        private Button GetButton(string name) => (Button)Layers[(int)States.Layers.UI].First(x => x is Button button && button.Name == name);
     }
 }
