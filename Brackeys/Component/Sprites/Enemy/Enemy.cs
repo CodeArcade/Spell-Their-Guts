@@ -30,6 +30,7 @@ namespace Brackeys.Component.Sprites.Enemy
 
         private Cell TargetCell { get; set; }
         public float Progress { get; set; } = 0;
+        public float VirtualHealth { get; set; }
 
         public Enemy(Elements element) { Element = element; }
 
@@ -148,39 +149,50 @@ namespace Brackeys.Component.Sprites.Enemy
 
         public void TakeDamage(int damage, Elements element)
         {
+            TakeDamage(CalculateDamage(damage, element));
+        }
+
+        public void TakeVirtualDamage(int damage, Elements element)
+        {
+            VirtualHealth -= CalculateDamage(damage, element);
+        }
+
+        public float CalculateDamage(int damage, Elements element)
+        {
             if (element == Element)
-                TakeDamage(damage);
+                return damage;
 
             if (Element == Elements.Earth && element == Elements.Fire)
             {
-                TakeDamage(damage / 2f);
+                return damage / 2f;
             }
 
             if (Element == Elements.Earth && element == Elements.Wind)
             {
-                TakeDamage(damage * 1.5f);
+                return damage * 1.5f;
             }
 
             if (Element == Elements.Fire && element == Elements.Earth)
             {
-                TakeDamage(damage * 1.5f);
+                return damage * 1.5f;
             }
 
             if (Element == Elements.Fire && element == Elements.Wind)
             {
-                TakeDamage(damage / 2f);
+                return damage / 2f;
             }
 
             if (Element == Elements.Wind && element == Elements.Fire)
             {
-                TakeDamage(damage * 1.5f);
+                return damage * 1.5f;
             }
 
             if (Element == Elements.Wind && element == Elements.Earth)
             {
-                TakeDamage(damage / 2f);
+                return damage / 2f;
             }
 
+            return damage;
         }
 
         public override void OnRemove()

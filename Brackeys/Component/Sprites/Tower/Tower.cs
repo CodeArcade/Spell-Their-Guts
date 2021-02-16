@@ -140,6 +140,7 @@ namespace Brackeys.Component.Sprites.Tower
         {
             if (TargetedEnemy == null) return;
             if (TimeSinceLastShot < AttackSpeed) return;
+            if (TargetedEnemy.VirtualHealth <= 0) return;
             TimeSinceLastShot = 0;
             Projectile p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(15, 15));
 
@@ -158,6 +159,7 @@ namespace Brackeys.Component.Sprites.Tower
                     break;
             }
 
+            TargetedEnemy.TakeVirtualDamage(Damage, Element);
             CurrentState.AddComponent(p, (int)Layers.PlayingArea);
         }
 

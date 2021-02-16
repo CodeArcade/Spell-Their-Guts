@@ -12,6 +12,7 @@ namespace Brackeys.Component.Sprites.Enemy
             Speed = 70;
             Damage = 1;
             Health = 6;
+            VirtualHealth = 6;
             Reward = 1;
         }
     }

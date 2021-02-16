@@ -59,7 +59,7 @@ namespace Brackeys
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.White);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
 
             SpriteBatch.Begin();
             StateManager.Draw(gameTime, SpriteBatch);

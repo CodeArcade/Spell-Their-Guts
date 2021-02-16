@@ -28,6 +28,15 @@ namespace Brackeys.States
             };
 
             AddComponent(startGameButton, States.Layers.UI);
+
+            Label title = new Label(ContentManager.TestFont)
+            {
+                Text = "OwO strong mage OwO",
+                FontColor = Color.White,
+                DropShadow = Color.Black * 0.7f,
+                Position = new Vector2(300, 300)
+            };
+            AddComponent(title, States.Layers.UI);
         }
     }
 }
