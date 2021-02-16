@@ -29,12 +29,14 @@ namespace Brackeys.States
 
             AddComponent(startGameButton, States.Layers.UI);
 
-            Label title = new Label(ContentManager.TestFont)
+            Label title = new Label(ContentManager.KenneyMini(20))
             {
                 Text = "OwO strong mage OwO",
                 FontColor = Color.White,
                 DropShadow = Color.Black * 0.7f,
-                Position = new Vector2(300, 300)
+                Position = new Vector2(300, 300),
+                FontScale = 1.5f,
+                DropShadowOffset = 2
             };
             AddComponent(title, States.Layers.UI);
         }

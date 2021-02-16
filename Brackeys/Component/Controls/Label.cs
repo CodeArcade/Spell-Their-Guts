@@ -11,6 +11,7 @@ namespace Brackeys.Component.Controls
         public string Name { get; set; }
         public float FontScale { get; set; } = 1;
         public Color DropShadow { get; set; }
+        public int DropShadowOffset { get; set; } = 1;
 
         public Label(SpriteFont font)
         {
@@ -20,7 +21,7 @@ namespace Brackeys.Component.Controls
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (DropShadow != null) spriteBatch.DrawString(Font, Text, new Vector2(Position.X + 1, Position.Y + 1), DropShadow, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0);
+            if (DropShadow != null) spriteBatch.DrawString(Font, Text, new Vector2(Position.X + DropShadowOffset, Position.Y + DropShadowOffset), DropShadow, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0);
             if (!string.IsNullOrEmpty(Text)) spriteBatch.DrawString(Font, Text, new Vector2(Position.X, Position.Y), FontColor, 0, Vector2.Zero, FontScale, SpriteEffects.None, 0);
         }
 

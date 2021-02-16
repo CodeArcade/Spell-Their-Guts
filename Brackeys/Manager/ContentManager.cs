@@ -12,6 +12,21 @@ namespace Brackeys.Manager
 
         #region Fonts
         public SpriteFont TestFont => JamGame.Content.Load<SpriteFont>("Font/TestFont");
+        public SpriteFont KenneyMini(int fontSize = 12)
+        {
+            switch (fontSize)
+            {
+                case 14:
+                    return JamGame.Content.Load<SpriteFont>("Font/KenneyMini14");
+                case 16:
+                    return JamGame.Content.Load<SpriteFont>("Font/KenneyMini16");
+                case 18:
+                    return JamGame.Content.Load<SpriteFont>("Font/KenneyMini18");
+                case 12:
+                default:
+                    return JamGame.Content.Load<SpriteFont>("Font/KenneyMini12");
+            }
+        }
         #endregion
 
         public SoundEffect FireShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/FireShoot");

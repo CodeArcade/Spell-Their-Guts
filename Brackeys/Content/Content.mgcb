@@ -13,6 +13,41 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Font/KenneyMini12.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/KenneyMini12.spritefont
+
+#begin Font/KenneyMini14.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/KenneyMini14.spritefont
+
+#begin Font/KenneyMini16.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/KenneyMini16.spritefont
+
+#begin Font/KenneyMini18.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/KenneyMini18.spritefont
+
+#begin Font/KenneyMini20.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/KenneyMini20.spritefont
+
 #begin Font/TestFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
