@@ -43,16 +43,17 @@ namespace Brackeys.States
 
         #region Methods
 
-        public void Load()
+        public void Load(params object[] parameter)
         {
             Layers = new List<Component.Component>[Enum.GetNames(typeof(Layers)).Length];
             for (int i = 0; i < Layers.Length; i++) Layers[i] = new List<Component.Component>();
-            LoadComponents(); OnLoad();
+            LoadComponents(); 
+            OnLoad(parameter);
             HasLoaded = true;
         }
 
         protected virtual void LoadComponents() { }
-        protected virtual void OnLoad() { }
+        protected virtual void OnLoad(params object[] parameter) { }
 
         public virtual void AddComponent(Component.Component component, int layer)
         {

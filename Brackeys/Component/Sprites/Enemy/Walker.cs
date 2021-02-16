@@ -10,7 +10,7 @@ namespace Brackeys.Component.Sprites.Enemy
         {
             Texture = ContentManager.EnemyTexture;
             Speed = 70;
-            Damage = 1;
+            Damage = 10;
             Health = 6;
             Reward = 1;
         }
