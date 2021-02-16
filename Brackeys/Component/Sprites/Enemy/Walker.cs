@@ -9,7 +9,7 @@ namespace Brackeys.Component.Sprites.Enemy
         public Walker(Elements element) : base(element)
         {
             Texture = ContentManager.EnemyTexture;
-            Speed = 70;
+            Speed = 700;
             Damage = 10;
             Health = 6;
             Reward = 1;
