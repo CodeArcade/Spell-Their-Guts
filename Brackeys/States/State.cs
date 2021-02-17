@@ -16,7 +16,9 @@ namespace Brackeys.States
         Background,
         Cells,
         PlayingArea,
-        UI
+        Dim,
+        UI,
+        SceneTransition
     }
 
     public class State
