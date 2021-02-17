@@ -201,5 +201,7 @@ namespace Brackeys.Component.Sprites.Enemy
             ((GameState)CurrentState).Player.Money += Reward;
             base.OnRemove();
         }
+
+        public abstract void LevelUp();
     }
 }

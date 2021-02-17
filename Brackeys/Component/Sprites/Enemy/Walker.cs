@@ -15,5 +15,11 @@ namespace Brackeys.Component.Sprites.Enemy
             VirtualHealth = 6;
             Reward = 1;
         }
+
+        public override void LevelUp()
+        {
+            Health += 2;
+            VirtualHealth += 2;
+        }
     }
 }

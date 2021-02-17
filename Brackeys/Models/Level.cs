@@ -17,11 +17,11 @@ namespace Brackeys.Models
         public Point Target { get; protected set; }
 
         public Queue<Stage> Stages { get; private set; }
-        public int CurrentStage { get; private set; } 
+        public int CurrentStage { get; private set; }
 
         public float TimeSinceLastSpawn { get; set; }
         private bool IsRunning { get; set; }
-        
+
         public Level()
         {
             Stages = new Queue<Stage>();
@@ -45,8 +45,9 @@ namespace Brackeys.Models
         private void StartNextStage()
         {
             TimeSinceLastSpawn = 0;
-            CurrentStage ++;
+            CurrentStage++;
             Stages.Dequeue();
+
         }
 
         public void Update(GameTime gameTime, GameState gameState)
@@ -77,9 +78,12 @@ namespace Brackeys.Models
         {
             if (Stages.First().Enemies.Count == 0) return;
 
-            foreach(Enemy e in Stages.First().Enemies.Dequeue())
+            foreach (Enemy e in Stages.First().Enemies.Dequeue())
             {
                 Enemy enemy = (Enemy)e.Copy();
+                for (int i = 0; i < CurrentStage; i++)
+                    enemy.LevelUp();
+
                 enemy.Position = SpawnPoint.ToVector2() * gameState.CellSize;
                 enemy.Coordinate = SpawnPoint;
                 enemy.Size = new Size(gameState.CellSize, gameState.CellSize);
