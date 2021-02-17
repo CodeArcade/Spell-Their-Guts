@@ -47,8 +47,6 @@ namespace Brackeys.Manager
         public Texture2D RockTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Rock");
         public Texture2D FireEnemyTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/FireThing");
 
-
-
         public List<Texture2D> MainFireTowerParticle
         {
             get => new List<Texture2D>()
@@ -96,40 +94,6 @@ namespace Brackeys.Manager
                 JamGame.Content.Load<Texture2D>("Particles/SupportTower/Wind/Particle1"),
             };
         }
-
-        public List<Texture2D> ObstacleHitParticle
-        {
-            get => new List<Texture2D>()
-            {
-                JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle1"),
-                JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle2"),
-                JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle3")
-            };
-        }
-
-        public List<Texture2D> EntityHitParticle
-        {
-            get => new List<Texture2D>()
-            {
-                JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle1"),
-                JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle2"),
-                JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle3")
-            };
-        }
-
-        public List<Texture2D> EntityDeathParticle
-        {
-            get => new List<Texture2D>()
-            {
-               JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle1"),
-               JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle2"),
-               JamGame.Content.Load<Texture2D>("Sprites/Particle/ObstacleHitParticle3"),
-               JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle1"),
-               JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle2"),
-               JamGame.Content.Load<Texture2D>("Sprites/Particle/EntityHitParticle3")
-            };
-        }
-
 
     }
 }

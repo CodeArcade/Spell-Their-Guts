@@ -161,6 +161,7 @@ namespace Brackeys.Component.Sprites
         {
             return (Sprite)this.MemberwiseClone();
         }
+
         public T Copy<T>()
         {
             return (T)this.MemberwiseClone();

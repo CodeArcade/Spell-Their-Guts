@@ -1,4 +1,5 @@
 ﻿using Brackeys.Models;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,10 +13,11 @@ namespace Brackeys.Component.Sprites.Enemy
             Texture = ContentManager.EnemyTexture;
             Animations = new Dictionary<string, Animation>
             {
-                {"walk", new Animation(ContentManager.KnightTexture, 4) }
+                {"walk", new Animation(ContentManager.KnightTexture, 4) { FrameSpeed = 0.1f} }
             };
-            AnimationManager.Play(Animations["walk"]);
             AnimationManager.Parent = this;
+            AnimationManager.Scale = 2;
+            AnimationManager.Play(Animations["walk"]);
 
             Speed = 50;
             Damage = 1;
@@ -29,5 +31,6 @@ namespace Brackeys.Component.Sprites.Enemy
             Health += 3;
             VirtualHealth += 3;
         }
+
     }
 }

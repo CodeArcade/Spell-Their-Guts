@@ -47,7 +47,6 @@ namespace Brackeys.Models
             TimeSinceLastSpawn = 0;
             CurrentStage++;
             Stages.Dequeue();
-
         }
 
         public void Update(GameTime gameTime, GameState gameState)
@@ -80,7 +79,15 @@ namespace Brackeys.Models
 
             foreach (Enemy e in Stages.First().Enemies.Dequeue())
             {
-                Enemy enemy = (Enemy)e.Copy();
+                Enemy enemy;
+
+                if (e is Tank)
+                    enemy = new Tank(e.Element);
+                else if (e is Runner)
+                    enemy = new Runner(e.Element);
+                else
+                    enemy = new Walker(e.Element);
+
                 for (int i = 0; i < CurrentStage; i++)
                     enemy.LevelUp();
 
