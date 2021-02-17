@@ -23,6 +23,7 @@ namespace Brackeys.Component.Sprites.Enemy
         public Point LastCoordinate { get; set; }
         public Point Coordinate { get; set; }
         public Point TargetCoordinate { get; set; }
+        protected Dictionary<string, Animation> Animations { get; set; }
 
         public int Reward { get; set; }
 
