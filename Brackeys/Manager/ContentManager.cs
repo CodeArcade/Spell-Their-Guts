@@ -42,6 +42,54 @@ namespace Brackeys.Manager
         public Texture2D EnemyTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Enemy");
         public Texture2D TransparentTexture => JamGame.Content.Load<Texture2D>("Sprites/Transparent");
 
+        public List<Texture2D> MainFireTowerParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Particles/MainTower/Fire/Particle1"),
+            };
+        }
+
+        public List<Texture2D> MainEarthTowerParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Particles/MainTower/Earth/Particle1"),
+            };
+        }
+
+        public List<Texture2D> MainWindTowerParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Particles/MainTower/Wind/Particle1"),
+            };
+        }
+
+        public List<Texture2D> SupportFireTowerParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Particles/SupportTower/Fire/Particle1"),
+            };
+        }
+
+        public List<Texture2D> SupportEarthTowerParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Particles/SupportTower/Earth/Particle1"),
+            };
+        }
+
+        public List<Texture2D> SupportWindTowerParticle
+        {
+            get => new List<Texture2D>()
+            {
+                JamGame.Content.Load<Texture2D>("Particles/SupportTower/Wind/Particle1"),
+            };
+        }
+
         public List<Texture2D> ObstacleHitParticle
         {
             get => new List<Texture2D>()

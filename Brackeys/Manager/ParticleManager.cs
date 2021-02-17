@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Brackeys.Component;
 using System.Linq;
+using System.Drawing;
 
 namespace Brackeys.Manager
 {
@@ -18,24 +19,30 @@ namespace Brackeys.Manager
             Random = new Random();
         }
 
-        public void GenerateNewParticle(Color color, Vector2 emitterLocation, List<Texture2D> textures, int count = 1, int baseTtl = 20)
+        public void GenerateNewParticle(Microsoft.Xna.Framework.Color color, Vector2 emitterLocation, List<Texture2D> textures, int count = 1, int baseTtl = 20, Size? maxSize = null, Vector2? velocity = null, float angularVelocity = float.NaN)
         {
             if (count <= 0) count = 1;
 
             for (int i = 0; i < count; i++)
             {
                 Texture2D texture = textures[Random.Next(textures.Count())];
-                Vector2 velocity = new Vector2(
-                    1f * (float)(Random.NextDouble() * 2 - 1),
-                    1f * (float)(Random.NextDouble() * 2 - 1)
-                );
+                
+                if (velocity is null)
+                {
+                    velocity = new Vector2(
+                        1f * (float)(Random.NextDouble() * 2 - 1),
+                        1f * (float)(Random.NextDouble() * 2 - 1)
+                    );
+                }
 
                 float angle = 0;
-                float angularVelocity = 0.1f * (float)(Random.NextDouble() * 2 - 1);
+                if(float.IsNaN(angularVelocity)) angularVelocity = 0.1f * (float)(Random.NextDouble() * 2 - 1);
+
                 float size = (float)Random.NextDouble();
                 int ttl = baseTtl + Random.Next(baseTtl * 2);
 
-                Particle p = new Particle(velocity, emitterLocation, angle, angularVelocity, size, ttl, color, texture);
+                Particle p = new Particle((Vector2)velocity, emitterLocation, angle, angularVelocity, size, ttl, color, texture);
+                if (maxSize != null) p.MaxSize = (Size)maxSize;
                 Particles.Add(p);
             }
         }

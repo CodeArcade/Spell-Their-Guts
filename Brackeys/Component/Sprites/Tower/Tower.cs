@@ -51,7 +51,6 @@ namespace Brackeys.Component.Sprites.Tower
             }
 
         }
-
         protected float AngleToTargetedEnemy
         {
             get
@@ -59,6 +58,19 @@ namespace Brackeys.Component.Sprites.Tower
                 if (TargetedEnemy == null) return float.NaN;
                 return (float)Math.Atan2(TargetedEnemy.Center.Y - Center.Y, TargetedEnemy.Center.X - Center.X);
             }
+        }
+
+        protected Vector2 DirectionToMainTower
+        {
+            get
+            {
+                if (IsMain) return Vector2.Zero;
+                Vector2 direction = GetTowersInRange().FirstOrDefault(x => x.IsMain).Center - Center;
+                direction.Normalize();
+
+                return direction;
+            }
+
         }
 
         public Rectangle RangeRectangle
@@ -87,6 +99,8 @@ namespace Brackeys.Component.Sprites.Tower
 
         public override void Update(GameTime gameTime)
         {
+            PlayParticles();
+
             base.Update(gameTime);
             TargetEnemy();
 
@@ -119,6 +133,31 @@ namespace Brackeys.Component.Sprites.Tower
             {
                 AddedRangeSprite = false;
                 RangeSprite.IsRemoved = true;
+            }
+        }
+
+        private void PlayParticles()
+        {
+            switch (Element)
+            {
+                case Elements.Earth:
+                    if (IsMain)
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainEarthTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0,0));
+                    else
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportEarthTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
+                    break;
+                case Elements.Fire:
+                    if (IsMain)
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainFireTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0));
+                    else
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportFireTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
+                    break;
+                case Elements.Wind:
+                    if (IsMain)
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainWindTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0));
+                    else
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportWindTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
+                    break;
             }
         }
 
