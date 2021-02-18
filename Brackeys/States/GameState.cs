@@ -1,5 +1,4 @@
-﻿
-using Brackeys.Component.Controls;
+﻿using Brackeys.Component.Controls;
 using Brackeys.Component.Sprites.Tower;
 using Brackeys.Models;
 using Brackeys.Models.Levels;

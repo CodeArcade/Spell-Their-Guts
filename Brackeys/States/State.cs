@@ -7,10 +7,8 @@ using System.Linq;
 using Brackeys.Component.Sprites;
 using System;
 
-
 namespace Brackeys.States
 {
-
     public enum Layers
     {
         Background,
@@ -87,7 +85,6 @@ namespace Brackeys.States
                         DrawOrder[i].Draw(gameTime, spriteBatch);
                 }
             }
-
         }
 
         public virtual void PostUpdate(GameTime gameTime)

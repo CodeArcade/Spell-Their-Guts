@@ -44,6 +44,5 @@ namespace Brackeys.Manager
             StateName = name;
             Parameter = parameter;
         }
-
     }
 }

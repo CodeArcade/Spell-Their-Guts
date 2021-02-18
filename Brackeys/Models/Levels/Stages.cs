@@ -153,6 +153,5 @@ namespace Brackeys.Models.Levels
 
             return stage;
         }
-
     }
 }

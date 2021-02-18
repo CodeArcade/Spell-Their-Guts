@@ -6,7 +6,6 @@ namespace Brackeys.Component.Sprites.Tower
 {
     public class EarthTower : Tower
     {
-
         const int BASEDAMAGE = 2;
         const int BASERANGE = 2;
         const int BASEATTACKSPEED = 1;

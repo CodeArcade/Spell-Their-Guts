@@ -68,6 +68,5 @@ namespace Brackeys.Component.Sprites
             if (((Enemy.Enemy)sprite).Health <= 0) sprite.IsRemoved = true;
             IsRemoved = true;
         }
-
     }
 }

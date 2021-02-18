@@ -8,7 +8,6 @@ namespace Brackeys.Component
 {
     public abstract class Component
     {
-
         #region Dependencies
 
         public AnimationManager AnimationManager { get; set; } = new AnimationManager();

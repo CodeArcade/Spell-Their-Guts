@@ -9,7 +9,6 @@ using Color = Microsoft.Xna.Framework.Color;
 
 namespace Brackeys.Component.Sprites
 {
-
     public class Entity : Sprite
     {
         public float Health { get; set; }

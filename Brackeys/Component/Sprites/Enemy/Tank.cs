@@ -31,6 +31,5 @@ namespace Brackeys.Component.Sprites.Enemy
             Health += 3;
             VirtualHealth += 3;
         }
-
     }
 }

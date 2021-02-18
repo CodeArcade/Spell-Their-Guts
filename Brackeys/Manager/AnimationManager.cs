@@ -42,7 +42,6 @@ namespace Brackeys.Manager
                                                0,
                                                Animation.FrameWidth,
                                                Animation.FrameHeight), (Color)color, Rotation, Vector2.Zero, Scale, SpriteEffects.FlipHorizontally, 0);
-
             }
             else
             {
@@ -57,7 +56,6 @@ namespace Brackeys.Manager
                                                Animation.FrameWidth,
                                                Animation.FrameHeight), (Color)color, Rotation, Vector2.Zero, Scale, SpriteEffects.None, 0);
             }
-
         }
 
         public void Update(GameTime gameTime)
@@ -120,6 +118,5 @@ namespace Brackeys.Manager
         {
             IsPlaying = true;
         }
-
     }
 }

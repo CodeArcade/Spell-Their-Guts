@@ -26,7 +26,6 @@ namespace Brackeys.Models
             Points = Bresenham(A, B);
         }
 
-
         private List<Point> Bresenham(Point p1, Point p2)
         {
             List<Point> track = new List<Point>();
@@ -43,7 +42,7 @@ namespace Brackeys.Models
             int a = Math.Abs(dy);
             int b = -Math.Abs(dx);
 
-            double d = 2 * a + b;
+            double d = (2 * a) + b;
             int x = p1.X;
             int y = p1.Y;
             track.Clear();
@@ -58,7 +57,7 @@ namespace Brackeys.Models
             {
                 if (d >= 0)
                 {
-                    d = 2 * (a + b) + d;
+                    d = (2 * (a + b)) + d;
                     y += s;
                     x += q;
                 }
@@ -66,7 +65,7 @@ namespace Brackeys.Models
                 {
                     if (swaps == 1) y += s;
                     else x += q;
-                    d = 2 * a + d;
+                    d = (2 * a) + d;
                 }
                 track.Add(new Point(x, y));
             }
@@ -80,6 +79,5 @@ namespace Brackeys.Models
             x = y;
             y = temp;
         }
-
     }
 }

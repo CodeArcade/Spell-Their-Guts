@@ -18,7 +18,7 @@ namespace Brackeys.States
             Button startGameButton = new Button(ContentManager.RangeTexture, ContentManager.TestFont)
             {
                 Text = "Start Game",
-                Position = new Vector2(JamGame.ScaleOriginal.Width / 2 - 50, JamGame.ScaleOriginal.Height / 2 - 20),
+                Position = new Vector2((JamGame.ScaleOriginal.Width / 2) - 50, (JamGame.ScaleOriginal.Height / 2) - 20),
                 Size = new System.Drawing.Size(100, 40)
             };
 

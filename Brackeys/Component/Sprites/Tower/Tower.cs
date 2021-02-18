@@ -49,8 +49,8 @@ namespace Brackeys.Component.Sprites.Tower
 
                 return direction;
             }
-
         }
+
         protected float AngleToTargetedEnemy
         {
             get
@@ -70,7 +70,6 @@ namespace Brackeys.Component.Sprites.Tower
 
                 return direction;
             }
-
         }
 
         public Rectangle RangeRectangle
@@ -163,7 +162,6 @@ namespace Brackeys.Component.Sprites.Tower
 
         public override void OnRemove()
         {
-
             if (!IsMain)
             {
                 Tower mainTower = GetTowersInRange().FirstOrDefault(x => x.IsMain);
