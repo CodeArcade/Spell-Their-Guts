@@ -8,7 +8,7 @@ namespace Brackeys.Component.Sprites.Tower
     public class FireTower : Tower
     {
         const int BASEDAMAGE = 3;
-        const int BASERANGE = 2;
+        const int BASERANGE = 1;
         const int BASEATTACKSPEED = 1;
         const int GLOBALCOST = 5;
 

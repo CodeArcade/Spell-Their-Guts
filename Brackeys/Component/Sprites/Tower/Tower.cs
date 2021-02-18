@@ -142,22 +142,22 @@ namespace Brackeys.Component.Sprites.Tower
             switch (Element)
             {
                 case Elements.Earth:
-                    if (IsMain)
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainEarthTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
+                    if (IsMain) { }
+                       // ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainEarthTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
                     else
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportEarthTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportEarthTowerParticle, 3, 15, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
                 case Elements.Fire:
-                    if (IsMain)
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainFireTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
+                    if (IsMain) { }
+                    //ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainFireTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
                     else
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportFireTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportFireTowerParticle, 3, 15, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
                 case Elements.Wind:
-                    if (IsMain)
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainWindTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
+                    if (IsMain) { }
+                    //ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainWindTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
                     else
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportWindTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportWindTowerParticle, 3, 15, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
             }
         }
@@ -180,7 +180,7 @@ namespace Brackeys.Component.Sprites.Tower
         {
             if (TargetedEnemy == null) return;
             if (TimeSinceLastShot < AttackSpeed) return;
-          //  if (TargetedEnemy.VirtualHealth <= 0) return;
+            if (TargetedEnemy.VirtualHealth <= 0) return;
             TimeSinceLastShot = 0;
             Projectile p;
 
@@ -204,7 +204,7 @@ namespace Brackeys.Component.Sprites.Tower
             }
 
             TargetedEnemy.TakeVirtualDamage(Damage, Element);
-            CurrentState.AddComponent(p, (int)Layers.PlayingArea);
+            CurrentState.AddComponent(p, (int)Layers.Dim);
         }
 
         public virtual void OnPlace(Cell cell)

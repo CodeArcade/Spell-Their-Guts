@@ -47,7 +47,7 @@ namespace Brackeys.States
         {
             Layers = new List<Component.Component>[Enum.GetNames(typeof(Layers)).Length];
             for (int i = 0; i < Layers.Length; i++) Layers[i] = new List<Component.Component>();
-            LoadComponents(); 
+            LoadComponents();
             OnLoad(parameter);
             HasLoaded = true;
         }
@@ -60,7 +60,7 @@ namespace Brackeys.States
             component.CurrentState = this;
             Layers[layer].Add(component);
         }
-        
+
         public virtual void AddComponent(Component.Component component, Layers layer)
         {
             component.CurrentState = this;
@@ -114,12 +114,11 @@ namespace Brackeys.States
                 return;
             }
 
-            foreach (List<Component.Component> components in Layers)
+            List<Component.Component> allComponents = Layers.SelectMany(x => x).ToList();
+
+            for (int i = allComponents.Count - 1; i >= 0; i--)
             {
-                for (int i = components.Count - 1; i >= 0; i--)
-                {
-                    components[i].Update(gameTime);
-                }
+                allComponents[i].Update(gameTime);
             }
 
             CollisionCheck(gameTime);
@@ -127,7 +126,9 @@ namespace Brackeys.States
 
         private void CollisionCheck(GameTime gameTime)
         {
-            IEnumerable<Sprite> sprites = Layers[(int)States.Layers.PlayingArea].Where(x => x is Sprite).Select(x => x as Sprite).ToList();
+            List<Sprite> sprites = Layers[(int)States.Layers.PlayingArea].Where(x => x is Sprite).Select(x => x as Sprite).ToList();
+            sprites.AddRange(Layers[(int)States.Layers.Dim].Where(x => x is Sprite).Select(x => x as Sprite));
+
             foreach (Sprite sprite in sprites)
             {
                 foreach (Sprite sprite2 in sprites)

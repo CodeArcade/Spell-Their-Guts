@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace Brackeys.Component.Sprites.Enemy
@@ -18,6 +19,10 @@ namespace Brackeys.Component.Sprites.Enemy
             AnimationManager.Parent = this;
             AnimationManager.Scale = 3;
             AnimationManager.Play(Animations["walk"]);
+
+            HitboxSize = new Size((int)(Size.Width * 0.9), (int)(Size.Height * 0.9));
+            HitBoxXOffSet = (int)((Size.Width * 0.9) / 2);
+            HitBoxYOffSet = (int)((Size.Height * 0.9 / 2));
 
             Speed = 50;
             Damage = 1;

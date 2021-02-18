@@ -29,7 +29,7 @@ namespace Brackeys.Component.Sprites
             else
                 Texture = texture;
 
-            if(animation != null)
+            if (animation != null)
             {
                 AnimationManager.Parent = this;
                 AnimationManager.Play(animation);
@@ -69,6 +69,8 @@ namespace Brackeys.Component.Sprites
             if (!(sprite is Enemy.Enemy)) return;
 
             ((Enemy.Enemy)sprite).TakeDamage(((Tower.Tower)Parent).Damage, Element);
+            ((Enemy.Enemy)sprite).VirtualHealth = ((Enemy.Enemy)sprite).Health;
+
             if (((Enemy.Enemy)sprite).Health <= 0) sprite.IsRemoved = true;
             IsRemoved = true;
         }

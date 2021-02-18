@@ -8,7 +8,7 @@ namespace Brackeys.Component.Sprites.Tower
     public class WindTower : Tower
     {
         const int BASEDAMAGE = 2;
-        const int BASERANGE = 2;
+        const int BASERANGE = 1;
         const int BASEATTACKSPEED = 1;
         const int GLOBALCOST = 5;
 

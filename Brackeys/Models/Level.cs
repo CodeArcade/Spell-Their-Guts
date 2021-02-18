@@ -95,6 +95,9 @@ namespace Brackeys.Models
                 enemy.Coordinate = SpawnPoint;
                 enemy.Size = new Size(gameState.CellSize, gameState.CellSize);
                 enemy.TargetCoordinate = Target;
+                enemy.HitboxSize = new Size((int)(enemy.Size.Width * 0.8), (int)(enemy.Size.Height * 0.8));
+                enemy.HitBoxXOffSet = (int)((enemy.Size.Width * 0.8) / 2);
+                enemy.HitBoxYOffSet = (int)((enemy.Size.Height * 0.8 / 2));
                 gameState.AddComponent(enemy, (int)Layers.PlayingArea);
             }
 
