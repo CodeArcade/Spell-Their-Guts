@@ -30,9 +30,8 @@ namespace Brackeys.Component.Sprites.Enemy
         public override void LevelUp()
         {
             Speed += 10;
-            Health += 1;
+            Health += 3;
             VirtualHealth += 3;
         }
-
     }
 }

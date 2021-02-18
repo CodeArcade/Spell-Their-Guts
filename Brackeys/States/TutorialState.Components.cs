@@ -6,6 +6,5 @@ namespace Brackeys.States
 {
     public partial class TutorialState : State
     {
-
     }
 }

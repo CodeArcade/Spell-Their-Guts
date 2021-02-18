@@ -10,7 +10,6 @@ using Color = Microsoft.Xna.Framework.Color;
 
 namespace Brackeys.States
 {
-
     public partial class GameState : State
     {
         public Player Player { get; set; }
@@ -270,5 +269,4 @@ new Label(ContentManager.TestFont)
             base.AddComponent(label, (int)States.Layers.UI);
         }
     }
-
 }

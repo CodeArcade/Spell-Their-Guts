@@ -52,6 +52,5 @@ namespace Brackeys.States
             AddComponent(button1, (int)States.Layers.UI);
             AddComponent(button2, (int)States.Layers.UI);
         }
-
     }
 }

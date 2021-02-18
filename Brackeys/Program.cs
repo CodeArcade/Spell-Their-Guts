@@ -21,7 +21,6 @@ namespace Brackeys
 
         static void Register()
         {
-
             RegisterStates();
             RegisterManager();
 
@@ -42,6 +41,5 @@ namespace Brackeys
             //UnityContainer.RegisterType<MenuState>(MenuState.Name);
             UnityContainer.RegisterType<GameState>(GameState.Name);
         }
-
     }
 }

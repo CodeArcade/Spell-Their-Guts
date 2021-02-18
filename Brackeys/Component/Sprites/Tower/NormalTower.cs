@@ -7,11 +7,11 @@ namespace Brackeys.Component.Sprites.Tower
 {
     class NormalTower : Tower
     {
-
         const int BASEDAMAGE = 1;
         const int BASERANGE = 2;
         const int BASEATTACKSPEED = 1;
         const int GLOBALCOST = 1;
+        
         public NormalTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED, Enemy.Elements.None)
         {
             Name = "Mage";

@@ -30,13 +30,13 @@ namespace Brackeys.Manager
                 if (velocity is null)
                 {
                     velocity = new Vector2(
-                        1f * (float)(Random.NextDouble() * 2 - 1),
-                        1f * (float)(Random.NextDouble() * 2 - 1)
+                        1f * (float)((Random.NextDouble() * 2) - 1),
+                        1f * (float)((Random.NextDouble() * 2) - 1)
                     );
                 }
 
                 float angle = 0;
-                if(float.IsNaN(angularVelocity)) angularVelocity = 0.1f * (float)(Random.NextDouble() * 2 - 1);
+                if(float.IsNaN(angularVelocity)) angularVelocity = (0.1f * (float)(Random.NextDouble() * 2) - 1);
 
                 float size = (float)Random.NextDouble();
                 int ttl = baseTtl + Random.Next(baseTtl * 2);
@@ -60,6 +60,5 @@ namespace Brackeys.Manager
                 }
             }
         }
-
     }
 }

@@ -70,7 +70,7 @@ namespace Brackeys.Component.Sprites
             }
         }
 
-        public Vector2 Center => new Vector2(Position.X + Size.Width / 2, Position.Y + Size.Height / 2);
+        public Vector2 Center => new Vector2(Position.X +( Size.Width / 2), Position.Y + (Size.Height / 2));
 
         public virtual void OnCollision(Sprite sprite, GameTime gameTime)
         {
@@ -135,12 +135,10 @@ namespace Brackeys.Component.Sprites
             return Hitbox.Intersects(sprite.Hitbox);
         }
 
-
         #endregion
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
             if (AnimationManager.IsPlaying)
                 AnimationManager.Draw(spriteBatch);
             else

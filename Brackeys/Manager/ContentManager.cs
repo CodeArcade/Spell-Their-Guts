@@ -111,6 +111,5 @@ namespace Brackeys.Manager
                 JamGame.Content.Load<Texture2D>("Particles/SupportTower/Wind/Particle1"),
             };
         }
-
     }
 }

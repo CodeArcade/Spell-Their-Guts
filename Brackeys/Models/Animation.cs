@@ -22,6 +22,5 @@ namespace Brackeys.Models
 
             FrameSpeed = 0.2f;
         }
-
     }
 }

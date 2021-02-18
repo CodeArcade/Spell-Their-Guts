@@ -9,7 +9,6 @@ namespace Brackeys.States
         public static string Name = "Tutorial";
         public Queue<string> TutorialTexts { get; set; }
 
-
         private void FillTutorialTexts()
         {
             TutorialTexts = new Queue<string>();

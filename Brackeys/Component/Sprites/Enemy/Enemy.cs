@@ -18,6 +18,7 @@ namespace Brackeys.Component.Sprites.Enemy
         Wind,
         None
     }
+
     public abstract class Enemy : Entity
     {
         public Point LastCoordinate { get; set; }
@@ -116,14 +117,13 @@ namespace Brackeys.Component.Sprites.Enemy
 
             TargetCell = targetCell;
 
-            if (GetTargePoints().Any(x => x == new Point((int)Position.X + Size.Width / 2, (int)Position.Y + Size.Height / 2)))
+            if (GetTargePoints().Any(x => x == new Point((int)Position.X + (Size.Width / 2), (int)Position.Y + (Size.Height / 2))))
             {
                 LastCoordinate = Coordinate;
                 Coordinate = TargetCell.Coordinate;
                 Position = TargetCell.Position;
                 Direction = Vector2.Zero;
             }
-
         }
 
         private bool IsLastCell(Cell cell)
@@ -142,7 +142,7 @@ namespace Brackeys.Component.Sprites.Enemy
             {
                 for (int y = -tolerance; y < tolerance + 1; y++)
                 {
-                    points.Add(new Point(x + TargetCell.Coordinate.X * state.CellSize + TargetCell.Size.Width / 2, y + TargetCell.Coordinate.Y * state.CellSize + TargetCell.Size.Height / 2));
+                    points.Add(new Point(x + (TargetCell.Coordinate.X * state.CellSize) + (TargetCell.Size.Width / 2), y + (TargetCell.Coordinate.Y * state.CellSize) + (TargetCell.Size.Height / 2)));
                 }
             }
 
