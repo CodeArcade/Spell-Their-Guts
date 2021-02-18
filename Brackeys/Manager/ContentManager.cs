@@ -29,6 +29,12 @@ namespace Brackeys.Manager
         }
         #endregion
 
+        public Texture2D FireMage => JamGame.Content.Load<Texture2D>("Sprites/Towers/FireMage");
+        public Texture2D StoneMage => JamGame.Content.Load<Texture2D>("Sprites/Towers/StoneMage");
+        public Texture2D NormalMage => JamGame.Content.Load<Texture2D>("Sprites/Towers/NormalMage");
+
+        public Texture2D TutorialFairy => JamGame.Content.Load<Texture2D>("Sprites/Tutorial/Fairy");
+
         public SoundEffect FireShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/FireShoot");
         public SoundEffect WindShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/WindShoot");
         public SoundEffect EarthShootSoundEffect => JamGame.Content.Load<SoundEffect>("Sounds/EarthShoot");
@@ -46,6 +52,12 @@ namespace Brackeys.Manager
         public Texture2D KnightTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Knight");
         public Texture2D RockTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Rock");
         public Texture2D FireEnemyTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/FireThing");
+
+        public Texture2D BlueProjectile => JamGame.Content.Load<Texture2D>("Sprites/Projectiles/BlueProjectile");
+        public Texture2D RedProjectile => JamGame.Content.Load<Texture2D>("Sprites/Projectiles/RedProjectile");
+        public Texture2D StoneProjectile => JamGame.Content.Load<Texture2D>("Sprites/Projectiles/StoneProjectile");
+
+        public Texture2D MouseCursor => JamGame.Content.Load<Texture2D>("Sprites/GUI/Cursor");
 
         public List<Texture2D> MainFireTowerParticle
         {
