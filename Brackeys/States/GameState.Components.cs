@@ -140,7 +140,7 @@ namespace Brackeys.States
         new Label(ContentManager.TestFont)
         {
             Name = "TowerNameLabel",
-            Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (5 * CellSize)),
+            Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (7.5f * CellSize)),
             FontColor = Color.Black,
             Text = ""
         },
@@ -150,7 +150,7 @@ namespace Brackeys.States
         new Label(ContentManager.TestFont)
         {
             Name = "TowerElementLabel",
-            Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (4.5f * CellSize)),
+            Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (7f * CellSize)),
             FontColor = Color.Black,
             Text = ""
         },
@@ -160,7 +160,7 @@ namespace Brackeys.States
                 new Label(ContentManager.TestFont)
                 {
                     Name = "TowerDamageLabel",
-                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3.5f * CellSize)),
+                    Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (6.2f * CellSize)),
                     FontColor = Color.Black,
                     Text = ""
                 },
@@ -170,7 +170,7 @@ namespace Brackeys.States
                 new Label(ContentManager.TestFont)
                 {
                     Name = "TowerRangeLabel",
-                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3f * CellSize)),
+                    Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (5.8f * CellSize)),
                     FontColor = Color.Black,
                     Text = ""
                 },
@@ -180,7 +180,7 @@ namespace Brackeys.States
                 new Label(ContentManager.TestFont)
                 {
                     Name = "TowerSpeedLabel",
-                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3f * CellSize)),
+                    Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (5.4f * CellSize)),
                     FontColor = Color.Black,
                     Text = ""
                 },
@@ -188,7 +188,7 @@ namespace Brackeys.States
 
             Button button = new Button(ContentManager.RangeTexture, ContentManager.TestFont)
             {
-                Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (1.5f * CellSize)),
+                Position = new Vector2((Columns - UiWidthInCells) * CellSize - (CellSize / 2) , (CellSize * Rows) - (4f * CellSize)),
                 FontColor = Color.Black,
                 Text = "Sell",
                 Size = new Size(CellSize * 3, CellSize),
