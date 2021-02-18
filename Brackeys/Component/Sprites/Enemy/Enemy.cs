@@ -68,6 +68,7 @@ namespace Brackeys.Component.Sprites.Enemy
             if (Coordinate == TargetCoordinate)
             {
                 state.Player.Health -= Damage;
+                Reward = 0;
                 IsRemoved = true;
                 AudioManager.PlayEffect(ContentManager.HpLostSoundEffect);
                 return;
