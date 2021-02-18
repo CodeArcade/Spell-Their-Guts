@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Brackeys.Component.Sprites.Enemy;
+using Brackeys.Models;
 using Brackeys.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -142,19 +143,19 @@ namespace Brackeys.Component.Sprites.Tower
             {
                 case Elements.Earth:
                     if (IsMain)
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainEarthTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0));
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainEarthTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
                     else
                         ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportEarthTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
                 case Elements.Fire:
                     if (IsMain)
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainFireTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0));
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainFireTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
                     else
                         ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportFireTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
                 case Elements.Wind:
                     if (IsMain)
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainWindTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0));
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainWindTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
                     else
                         ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportWindTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
@@ -179,22 +180,26 @@ namespace Brackeys.Component.Sprites.Tower
         {
             if (TargetedEnemy == null) return;
             if (TimeSinceLastShot < AttackSpeed) return;
-            if (TargetedEnemy.VirtualHealth <= 0) return;
+          //  if (TargetedEnemy.VirtualHealth <= 0) return;
             TimeSinceLastShot = 0;
-            Projectile p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(15, 15));
+            Projectile p;
 
             switch (Element)
             {
                 case Elements.Earth:
                     AudioManager.PlayEffect(ContentManager.EarthShootSoundEffect);
+                    p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.StoneProjectile, 4) { FrameSpeed = 0.1f });
                     break;
                 case Elements.Fire:
                     AudioManager.PlayEffect(ContentManager.FireShootSoundEffect);
+                    p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.RedProjectile, 4) { FrameSpeed = 0.1f });
                     break;
                 case Elements.Wind:
                     AudioManager.PlayEffect(ContentManager.WindShootSoundEffect);
+                    p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.BlueProjectile, 4) { FrameSpeed = 0.1f });
                     break;
                 default:
+                    p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30));
                     break;
             }
 

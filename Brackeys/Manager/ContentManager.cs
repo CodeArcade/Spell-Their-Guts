@@ -53,6 +53,10 @@ namespace Brackeys.Manager
         public Texture2D WindTowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/NormalMage");
         public Texture2D NormalTowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/NormalMage");
 
+        public Texture2D BlueProjectileTexture => JamGame.Content.Load<Texture2D>("Sprites/Projectiles/BlueProjectile");
+        public Texture2D RedProjectileTexture => JamGame.Content.Load<Texture2D>("Sprites/Projectiles/RedProjectile");
+        public Texture2D StoneProjectileTexture => JamGame.Content.Load<Texture2D>("Sprites/Projectiles/StoneProjectile");
+
         public Texture2D SkullTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Skull");
         public Texture2D KnightTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Knight");
         public Texture2D RockTexture => JamGame.Content.Load<Texture2D>("Sprites/Enemy/Rock");

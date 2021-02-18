@@ -2,6 +2,7 @@
 //using Brackeys.Component.Sprites.Environment;
 using Brackeys.Component.Sprites.Enemy;
 using Brackeys.Component.Sprites.Tower;
+using Brackeys.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,17 +17,23 @@ namespace Brackeys.Component.Sprites
         private double TimeLived { get; set; }
         private Elements Element { get; set; }
 
-        public Projectile(Vector2 direction, Tower.Tower parent, Elements element, Texture2D texture = null, Size? size = null)
+        public Projectile(Vector2 direction, Tower.Tower parent, Elements element, Texture2D texture = null, Size? size = null, Animation animation = null)
         {
             Parent = parent;
             Position = parent.Center;
             Speed = 500;
             Direction = direction;
 
-            //if (texture is null)
-               //Texture = ContentManager.PlayerBulletTexture;
-            //else
-               Texture = texture;
+            if (texture is null)
+                Texture = ContentManager.TowerTexture;
+            else
+                Texture = texture;
+
+            if(animation != null)
+            {
+                AnimationManager.Parent = this;
+                AnimationManager.Play(animation);
+            }
 
             if (size is null)
                 Size = new Size(10, 10);
@@ -60,9 +67,6 @@ namespace Brackeys.Component.Sprites
             if (IsRemoved) return;
 
             if (!(sprite is Enemy.Enemy)) return;
-
-            // ParticleManager.GenerateNewParticle(Color.White, Position, ContentManager.EntityHitParticle, 5, 10);
-            //AudioManager.PlayEffect(ContentManager.EntityHitSoundEffect, 0.25f);
 
             ((Enemy.Enemy)sprite).TakeDamage(((Tower.Tower)Parent).Damage, Element);
             if (((Enemy.Enemy)sprite).Health <= 0) sprite.IsRemoved = true;
