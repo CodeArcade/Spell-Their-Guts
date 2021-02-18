@@ -61,7 +61,7 @@ namespace Brackeys
         {
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
 
-            SpriteBatch.Begin();
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             StateManager.Draw(gameTime, SpriteBatch);
             SpriteBatch.End();
 

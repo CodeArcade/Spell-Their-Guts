@@ -17,7 +17,7 @@ namespace Brackeys.Component.Sprites.Enemy
                 {"walk", new Animation(ContentManager.SkullTexture, 4) {FrameSpeed = 0.1f } }
             };
             AnimationManager.Parent = this;
-            AnimationManager.Scale = 2;
+            AnimationManager.Scale = 3;
             AnimationManager.Play(Animations["walk"]);
 
             Speed = 100;

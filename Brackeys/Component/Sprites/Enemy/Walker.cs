@@ -15,7 +15,7 @@ namespace Brackeys.Component.Sprites.Enemy
             {
                 {"walk", new Animation(ContentManager.RockTexture, 4) { FrameSpeed = 0.1f } }
             };
-            AnimationManager.Scale = 2;
+            AnimationManager.Scale = 3;
             AnimationManager.Parent = this;
             AnimationManager.Play(Animations["walk"]);
 
