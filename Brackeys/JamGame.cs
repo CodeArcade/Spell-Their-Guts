@@ -2,6 +2,7 @@
 using Brackeys.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Drawing;
 using Unity;
 
@@ -35,6 +36,8 @@ namespace Brackeys
             Graphics.PreferredBackBufferWidth = 1280;
             Graphics.PreferredBackBufferHeight = 720;
             Graphics.ApplyChanges();
+
+            Mouse.SetCursor(MouseCursor.FromTexture2D(Content.Load<Texture2D>("Sprites/GUI/Cursor"), 0, 0));
 
             Scale = (float)Graphics.PreferredBackBufferWidth / (float)ScaleOriginal.Width;
 
