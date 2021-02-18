@@ -17,7 +17,7 @@ namespace Brackeys.Component.Sprites.Tower
             Name = "Earth Mage";
             Texture = ContentManager.TowerTexture;
 
-            AnimationManager.Scale = 2.5f;
+            AnimationManager.Scale = 3f;
             AnimationManager.Parent = this;
 
             GlobalCost = GLOBALCOST;
@@ -25,12 +25,12 @@ namespace Brackeys.Component.Sprites.Tower
 
         protected override void ApplyBuff(Tower tower)
         {
-            tower.Range += 0.5f;
+            tower.Range += 1f;
         }
 
         protected override void RevokeBuff(Tower tower)
         {
-            tower.Range -= 0.5f;
+            tower.Range -= 1f;
         }
 
         public override void StartAnimation()

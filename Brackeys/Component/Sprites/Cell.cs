@@ -17,7 +17,7 @@ namespace Brackeys.Component.Sprites
         private MouseState PreviousMouse { get; set; }
         public bool IsMouseOver { get; private set; }
 
-        public Color Color => Color.Transparent;
+        public Color Color => IsPath ? Color.Yellow : Color.Green;
         public Color HoverColor { get; set; } = Color.Gray;
         public string Text { get; set; }
         public bool Clicked { get; private set; }

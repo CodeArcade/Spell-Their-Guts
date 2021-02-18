@@ -18,7 +18,7 @@ namespace Brackeys.Component.Sprites.Tower
             GlobalCost = GLOBALCOST;
             Texture = ContentManager.TowerTexture;
 
-            AnimationManager.Scale = 2.5f;
+            AnimationManager.Scale = 3f;
             AnimationManager.Parent = this;
         }
 

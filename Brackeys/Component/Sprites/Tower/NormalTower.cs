@@ -17,7 +17,7 @@ namespace Brackeys.Component.Sprites.Tower
             Name = "Mage";
             GlobalCost = GLOBALCOST;
 
-            AnimationManager.Scale = 2.5f;
+            AnimationManager.Scale = 3f;
             AnimationManager.Parent = this;
         }
 

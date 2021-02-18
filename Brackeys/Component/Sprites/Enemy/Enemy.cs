@@ -117,7 +117,7 @@ namespace Brackeys.Component.Sprites.Enemy
 
             TargetCell = targetCell;
 
-            if (GetTargePoints().Any(x => x == new Point((int)Position.X + (Size.Width / 2), (int)Position.Y + (Size.Height / 2))))
+            if (GetTargePoints().Contains(new Point((int)Position.X + (Size.Width / 2), (int)Position.Y + (Size.Height / 2))))
             {
                 LastCoordinate = Coordinate;
                 Coordinate = TargetCell.Coordinate;
@@ -131,22 +131,14 @@ namespace Brackeys.Component.Sprites.Enemy
             return cell.Coordinate.X == LastCoordinate.X && cell.Coordinate.Y == LastCoordinate.Y;
         }
 
-        private List<Point> GetTargePoints()
+        private Microsoft.Xna.Framework.Rectangle GetTargePoints()
         {
-            GameState state = (GameState)CurrentState;
-            List<Point> points = new List<Point>();
-
             int tolerance = Math.Max(1, (int)(Speed / 100));
 
-            for (int x = -tolerance; x < tolerance + 1; x++)
-            {
-                for (int y = -tolerance; y < tolerance + 1; y++)
-                {
-                    points.Add(new Point(x + (TargetCell.Coordinate.X * state.CellSize) + (TargetCell.Size.Width / 2), y + (TargetCell.Coordinate.Y * state.CellSize) + (TargetCell.Size.Height / 2)));
-                }
-            }
+            Vector2 center = new Vector2((TargetCell.Position.X + (TargetCell.Size.Width / 2)), TargetCell.Position.Y + (TargetCell.Size.Height / 2));
 
-            return points;
+            Microsoft.Xna.Framework.Rectangle rect = new Microsoft.Xna.Framework.Rectangle((int)center.X - tolerance, (int)center.Y - tolerance, tolerance * 2, tolerance * 2);
+            return rect;
         }
 
         public void TakeDamage(int damage, Elements element)

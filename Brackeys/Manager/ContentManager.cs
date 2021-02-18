@@ -14,24 +14,15 @@ namespace Brackeys.Manager
         public SpriteFont TestFont => JamGame.Content.Load<SpriteFont>("Font/TestFont");
         public SpriteFont KenneyMini(int fontSize = 12)
         {
-            switch (fontSize)
+            return fontSize switch
             {
-                case 14:
-                    return JamGame.Content.Load<SpriteFont>("Font/KenneyMini14");
-                case 16:
-                    return JamGame.Content.Load<SpriteFont>("Font/KenneyMini16");
-                case 18:
-                    return JamGame.Content.Load<SpriteFont>("Font/KenneyMini18");
-                case 12:
-                default:
-                    return JamGame.Content.Load<SpriteFont>("Font/KenneyMini12");
-            }
+                14 => JamGame.Content.Load<SpriteFont>("Font/KenneyMini14"),
+                16 => JamGame.Content.Load<SpriteFont>("Font/KenneyMini16"),
+                18 => JamGame.Content.Load<SpriteFont>("Font/KenneyMini18"),
+                _ => JamGame.Content.Load<SpriteFont>("Font/KenneyMini12"),
+            };
         }
         #endregion
-
-        public Texture2D FireMage => JamGame.Content.Load<Texture2D>("Sprites/Towers/FireMage");
-        public Texture2D StoneMage => JamGame.Content.Load<Texture2D>("Sprites/Towers/StoneMage");
-        public Texture2D NormalMage => JamGame.Content.Load<Texture2D>("Sprites/Towers/NormalMage");
 
         public Texture2D TutorialFairy => JamGame.Content.Load<Texture2D>("Sprites/Tutorial/Fairy");
 
@@ -50,7 +41,7 @@ namespace Brackeys.Manager
 
         public Texture2D FireTowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/FireMage");
         public Texture2D EarthTowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/StoneMage");
-        public Texture2D WindTowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/NormalMage");
+        public Texture2D WindTowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/WindMage");
         public Texture2D NormalTowerTexture => JamGame.Content.Load<Texture2D>("Sprites/Towers/NormalMage");
 
         public Texture2D BlueProjectileTexture => JamGame.Content.Load<Texture2D>("Sprites/Projectiles/BlueProjectile");
@@ -67,6 +58,7 @@ namespace Brackeys.Manager
         public Texture2D StoneProjectile => JamGame.Content.Load<Texture2D>("Sprites/Projectiles/StoneProjectile");
 
         public Texture2D MouseCursor => JamGame.Content.Load<Texture2D>("Sprites/GUI/Cursor");
+        public Texture2D Title => JamGame.Content.Load<Texture2D>("Sprites/GUI/Title");
 
         public List<Texture2D> MainFireTowerParticle
         {

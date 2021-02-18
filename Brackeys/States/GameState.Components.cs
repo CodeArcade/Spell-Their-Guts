@@ -15,9 +15,9 @@ namespace Brackeys.States
         public Player Player { get; set; }
         public Cell[,] Cells { get; set; }
 
-        public int Columns => 32;
-        public int Rows => 18;
-        public int UiWidthInCells => 5;
+        public int Columns => 24;
+        public int Rows => 16;
+        public int UiWidthInCells => 3;
         public int CellSize { get; private set; }
 
         protected override void LoadComponents()
@@ -43,7 +43,7 @@ namespace Brackeys.States
             Cells[x, y] = new Cell(x, y)
             {
                 Size = new Size(CellSize, CellSize),
-                Position = new Vector2(x * CellSize, y * CellSize),
+                Position = new Vector2(x * CellSize - CellSize, y * CellSize - CellSize),
                 IsPath = paths.Any(pa => pa.Track.Any(po => po.X == x && po.Y == y))
             };
 
@@ -99,7 +99,7 @@ namespace Brackeys.States
              new Label(ContentManager.TestFont)
              {
                  Name = "StageLabel",
-                 Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize / 2),
+                 Position = new Vector2((Columns - UiWidthInCells) * CellSize, CellSize / 2),
                  FontColor = Color.Black,
                  Text = "test"
              },
@@ -109,7 +109,7 @@ namespace Brackeys.States
                 new Label(ContentManager.TestFont)
                 {
                     Name = "HealthLabel",
-                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize),
+                    Position = new Vector2((Columns - UiWidthInCells) * CellSize, CellSize),
                     FontColor = Color.Black,
                     Text = "test"
                 },
@@ -119,7 +119,7 @@ namespace Brackeys.States
             new Label(ContentManager.TestFont)
             {
                 Name = "MoneyLabel",
-                Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, CellSize * 1.5f),
+                Position = new Vector2((Columns - UiWidthInCells ) * CellSize, CellSize * 1.5f),
                 FontColor = Color.Black,
                 Text = "test"
             },
@@ -128,9 +128,9 @@ namespace Brackeys.States
 
             #region Shop
 
-            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 2) * CellSize, CellSize * 3);
-            AddShopEntry(new EarthTower(), (Columns - UiWidthInCells + 2) * CellSize, CellSize * 5);
-            AddShopEntry(new WindTower(), (Columns - UiWidthInCells + 2) * CellSize, CellSize * 7);
+            AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 0.8f) * CellSize, CellSize * 3);
+            AddShopEntry(new EarthTower(), (Columns - UiWidthInCells + 0.8f) * CellSize, CellSize * 5);
+            AddShopEntry(new WindTower(), (Columns - UiWidthInCells + 0.8f) * CellSize, CellSize * 7);
 
             #endregion
 
@@ -157,34 +157,34 @@ namespace Brackeys.States
         (int)States.Layers.UI);
 
             base.AddComponent(
-new Label(ContentManager.TestFont)
-{
-    Name = "TowerDamageLabel",
-    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3.5f * CellSize)),
-    FontColor = Color.Black,
-    Text = ""
-},
-(int)States.Layers.UI);
+                new Label(ContentManager.TestFont)
+                {
+                    Name = "TowerDamageLabel",
+                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3.5f * CellSize)),
+                    FontColor = Color.Black,
+                    Text = ""
+                },
+                (int)States.Layers.UI);
 
-            base.AddComponent(
-new Label(ContentManager.TestFont)
-{
-    Name = "TowerRangeLabel",
-    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3f * CellSize)),
-    FontColor = Color.Black,
-    Text = ""
-},
-(int)States.Layers.UI);
+                            base.AddComponent(
+                new Label(ContentManager.TestFont)
+                {
+                    Name = "TowerRangeLabel",
+                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3f * CellSize)),
+                    FontColor = Color.Black,
+                    Text = ""
+                },
+                (int)States.Layers.UI);
 
-            base.AddComponent(
-new Label(ContentManager.TestFont)
-{
-    Name = "TowerSpeedLabel",
-    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (2.5f * CellSize)),
-    FontColor = Color.Black,
-    Text = ""
-},
-(int)States.Layers.UI);
+                            base.AddComponent(
+                new Label(ContentManager.TestFont)
+                {
+                    Name = "TowerSpeedLabel",
+                    Position = new Vector2((Columns - UiWidthInCells + 1) * CellSize, (CellSize * Rows) - (3f * CellSize)),
+                    FontColor = Color.Black,
+                    Text = ""
+                },
+                (int)States.Layers.UI);
 
             Button button = new Button(ContentManager.RangeTexture, ContentManager.TestFont)
             {
@@ -214,7 +214,7 @@ new Label(ContentManager.TestFont)
             #endregion
         }
 
-        private void AddShopEntry(Tower tower, int x, int y)
+        private void AddShopEntry(Tower tower, float x, float y)
         {
             Button button = new Button(tower.Texture, ContentManager.TestFont)
             {
@@ -222,7 +222,7 @@ new Label(ContentManager.TestFont)
                 Size = new Size(CellSize, CellSize)
             };
 
-            button.AnimationManager.Scale = 2.5f;
+            button.AnimationManager.Scale = 3f;
             button.AnimationManager.Parent = button;
 
             if (tower is FireTower)
@@ -230,7 +230,7 @@ new Label(ContentManager.TestFont)
             else if (tower is EarthTower)
                 button.AnimationManager.Play(new Animation(ContentManager.EarthTowerTexture, 4) { FrameSpeed = 0.1f });
             else
-                button.AnimationManager.Play(new Animation(ContentManager.NormalTowerTexture, 4) { FrameSpeed = 0.1f });
+                button.AnimationManager.Play(new Animation(ContentManager.WindTowerTexture, 4) { FrameSpeed = 0.1f });
 
             button.OnClick += (sender, e) =>
             {

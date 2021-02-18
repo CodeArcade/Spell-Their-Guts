@@ -235,6 +235,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/GUI/Cursor.png
 
+#begin Sprites/GUI/Title.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/GUI/Title.png
+
 #begin Sprites/Projectiles/BlueProjectile.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -330,6 +342,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/Towers/TEST/Tower2.png
+
+#begin Sprites/Towers/WindMage.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Towers/WindMage.png
 
 #begin Sprites/Transparent.png
 /importer:TextureImporter

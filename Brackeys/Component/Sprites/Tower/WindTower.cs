@@ -18,7 +18,7 @@ namespace Brackeys.Component.Sprites.Tower
             Texture = ContentManager.TowerTexture;
             GlobalCost = GLOBALCOST;
 
-            AnimationManager.Scale = 2.5f;
+            AnimationManager.Scale = 3f;
             AnimationManager.Parent = this;
         }
 
@@ -36,7 +36,7 @@ namespace Brackeys.Component.Sprites.Tower
 
         public override void StartAnimation()
         {
-            AnimationManager.Play(new Animation(ContentManager.NormalTowerTexture, 4) { FrameSpeed = 0.1f });
+            AnimationManager.Play(new Animation(ContentManager.WindTowerTexture, 4) { FrameSpeed = 0.1f });
         }
     }
 }

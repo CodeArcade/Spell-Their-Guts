@@ -4,6 +4,7 @@ using Brackeys.Models;
 using Brackeys.Models.Levels;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Linq;
 
 namespace Brackeys.States
@@ -42,6 +43,7 @@ namespace Brackeys.States
             base.Update(gameTime);
             Player.Update(gameTime);
             UpdateUI();
+            GC.Collect();
         }
 
         private void OnPlayerDeath()

@@ -91,7 +91,7 @@ namespace Brackeys.Models
                 for (int i = 0; i < CurrentStage; i++)
                     enemy.LevelUp();
 
-                enemy.Position = SpawnPoint.ToVector2() * gameState.CellSize;
+                enemy.Position = new Vector2((SpawnPoint.ToVector2().X * gameState.CellSize) - gameState.CellSize, (SpawnPoint.ToVector2().Y * gameState.CellSize) - gameState.CellSize);
                 enemy.Coordinate = SpawnPoint;
                 enemy.Size = new Size(gameState.CellSize, gameState.CellSize);
                 enemy.TargetCoordinate = Target;
