@@ -70,7 +70,14 @@ namespace Brackeys.States
                     if (Player.Money < Player.CurrentTowerInHand.Cost) return;
                     Player.Money -= Player.CurrentTowerInHand.Cost;
 
-                    Cells[x, y].Tower = (Tower)Player.CurrentTowerInHand.Copy();
+                    if (Player.CurrentTowerInHand is FireTower)
+                        Cells[x, y].Tower = new FireTower();
+                    else if (Player.CurrentTowerInHand is EarthTower)
+                        Cells[x, y].Tower = new EarthTower();
+                    else
+                        Cells[x, y].Tower = new WindTower();
+
+                    Cells[x, y].Tower.CurrentState = this;
                     Cells[x, y].Tower.Position = Cells[x, y].Position;
                     Cells[x, y].Tower.Size = Cells[x, y].Size;
                     Cells[x, y].Tower.OnPlace(Cells[x, y]);
@@ -216,6 +223,16 @@ new Label(ContentManager.TestFont)
                 Size = new Size(CellSize, CellSize)
             };
 
+            button.AnimationManager.Scale = 2.5f;
+            button.AnimationManager.Parent = button;
+
+            if (tower is FireTower)
+                button.AnimationManager.Play(new Animation(ContentManager.FireTowerTexture, 4) { FrameSpeed = 0.1f });
+            else if (tower is EarthTower)
+                button.AnimationManager.Play(new Animation(ContentManager.EarthTowerTexture, 4) { FrameSpeed = 0.1f });
+            else
+                button.AnimationManager.Play(new Animation(ContentManager.NormalTowerTexture, 4) { FrameSpeed = 0.1f });
+
             button.OnClick += (sender, e) =>
             {
                 if (Player.CurrentTowerInHand != null)
@@ -228,7 +245,14 @@ new Label(ContentManager.TestFont)
                     Player.SelectedTower = null;
                 }
 
-                Player.CurrentTowerInHand = (Tower)tower.Copy();
+                if (tower is FireTower)
+                    Player.CurrentTowerInHand = new FireTower();
+                else if (tower is EarthTower)
+                    Player.CurrentTowerInHand = new EarthTower();
+                else
+                    Player.CurrentTowerInHand = new WindTower();
+
+                Player.CurrentTowerInHand.StartAnimation();
                 Player.CurrentTowerInHand.Size = new Size(CellSize, CellSize);
                 Player.CurrentTowerInHand.Color = Color.White * 0.7f;
                 Player.CurrentTowerInHand.DrawRange = true;

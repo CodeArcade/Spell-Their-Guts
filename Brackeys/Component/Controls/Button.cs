@@ -71,6 +71,9 @@ namespace Brackeys.Component.Controls
 
             spriteBatch.Draw(Texture, Rectangle, color);
 
+            if (AnimationManager.IsPlaying)
+                AnimationManager.Draw(spriteBatch);
+
             if (!string.IsNullOrEmpty(Text))
             {
                 float x = (Rectangle.X + (Rectangle.Width / 2)) - (Font.MeasureString(Text).X / 2);
@@ -82,6 +85,9 @@ namespace Brackeys.Component.Controls
 
         public override void Update(GameTime gameTime)
         {
+            if (AnimationManager.IsPlaying)
+                AnimationManager.Update(gameTime);
+
             PreviousMouse = CurrentMouse;
             CurrentMouse = Mouse.GetState();
 

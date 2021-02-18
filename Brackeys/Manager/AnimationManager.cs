@@ -20,7 +20,7 @@ namespace Brackeys.Manager
         public float Scale { get; set; } = 1;
         public bool IsPlaying { get; set; }
         public bool Flip { get; set; }
-        public Sprite Parent { get; set; }
+        public Component.Component Parent { get; set; }
         public bool Reverse { get; set; }
         public bool FlipVertically { get; set; }
         public float Rotation { get; set; } = 0;

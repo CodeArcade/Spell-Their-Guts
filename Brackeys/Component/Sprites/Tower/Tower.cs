@@ -132,7 +132,8 @@ namespace Brackeys.Component.Sprites.Tower
             else
             {
                 AddedRangeSprite = false;
-                RangeSprite.IsRemoved = true;
+                if (RangeSprite != null)
+                    RangeSprite.IsRemoved = true;
             }
         }
 
@@ -142,7 +143,7 @@ namespace Brackeys.Component.Sprites.Tower
             {
                 case Elements.Earth:
                     if (IsMain)
-                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainEarthTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0,0));
+                        ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainEarthTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0));
                     else
                         ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportEarthTowerParticle, 2, 10, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
@@ -172,7 +173,8 @@ namespace Brackeys.Component.Sprites.Tower
                     RevokeBuff(mainTower);
             }
 
-            RangeSprite.IsRemoved = true;
+            if (RangeSprite != null)
+                RangeSprite.IsRemoved = true;
         }
 
         public void Shoot()
@@ -207,6 +209,8 @@ namespace Brackeys.Component.Sprites.Tower
             Cell = cell;
             Color = Color.White;
             DrawRange = false;
+
+            StartAnimation();
 
             Tower mainTower = GetTowersInRange().FirstOrDefault(x => x.IsMain);
 
@@ -269,5 +273,7 @@ namespace Brackeys.Component.Sprites.Tower
                 TargetedEnemy = enemy;
             }
         }
+
+        public abstract void StartAnimation();
     }
 }

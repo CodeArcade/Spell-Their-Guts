@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Brackeys.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,6 +17,9 @@ namespace Brackeys.Component.Sprites.Tower
             Name = "Wind Mage";
             Texture = ContentManager.TowerTexture;
             GlobalCost = GLOBALCOST;
+
+            AnimationManager.Scale = 2.5f;
+            AnimationManager.Parent = this;
         }
 
         protected override void ApplyBuff(Tower tower)
@@ -28,6 +32,11 @@ namespace Brackeys.Component.Sprites.Tower
         protected override void RevokeBuff(Tower tower)
         {
             tower.AttackSpeed += 0.1f;
+        }
+
+        public override void StartAnimation()
+        {
+            AnimationManager.Play(new Animation(ContentManager.NormalTowerTexture, 4) { FrameSpeed = 0.1f });
         }
     }
 }
