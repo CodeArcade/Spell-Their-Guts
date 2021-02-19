@@ -29,7 +29,7 @@ namespace Brackeys
 
         protected override void Initialize()
         {
-            Window.Title = "Mages Together Strong";
+            Window.Title = "Spell Their Guts";
             IsMouseVisible = true;
 
             Graphics.IsFullScreen = false;
@@ -48,7 +48,7 @@ namespace Brackeys
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            StateManager.ChangeTo<MenuState>(MenuState.Name);
+            StateManager.ChangeTo<GameState>(GameState.Name);
 
             AudioManager.GlobalVolume = 0.25f;
         }

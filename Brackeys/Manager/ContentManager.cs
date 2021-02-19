@@ -60,6 +60,8 @@ namespace Brackeys.Manager
         public Texture2D MouseCursor => JamGame.Content.Load<Texture2D>("Sprites/GUI/Cursor");
         public Texture2D Title => JamGame.Content.Load<Texture2D>("Sprites/GUI/Title");
 
+        public Texture2D GrassTile => JamGame.Content.Load<Texture2D>("Sprites/Background/Grass");
+
         public List<Texture2D> MainFireTowerParticle
         {
             get => new List<Texture2D>()
