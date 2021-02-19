@@ -80,6 +80,10 @@ namespace Brackeys.States
             GetLabel("TowerDamageLabel").Text = $"Damage: {Player.SelectedTower?.Damage}";
             GetLabel("TowerRangeLabel").Text = $"Range: {Player.SelectedTower?.Range}";
             GetLabel("TowerSpeedLabel").Text = $"Speed: {Player.SelectedTower?.AttackSpeed}";
+
+            GetLabel("FireTowerLabel").Text = $"{FireTower.GlobalCost}";
+            GetLabel("EarthTowerLabel").Text = $"{EarthTower.GlobalCost}";
+            GetLabel("WindTowerLabel").Text = $"{WindTower.GlobalCost}";
         }
 
         private Label GetLabel(string name) => (Label)Layers[(int)States.Layers.UI].First(x => x is Label label && label.Name == name);

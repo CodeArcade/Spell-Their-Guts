@@ -59,6 +59,7 @@ namespace Brackeys.Component.Sprites.Enemy
             Move();
             Progress += Speed;
             base.Update(gameTime);
+            VirtualHealth = Health; // wenn ein schuss nicht trifft, und v-Health <= 0 ist, wird der Gegner nicht mehr angegriffen
         }
 
         private void Move()

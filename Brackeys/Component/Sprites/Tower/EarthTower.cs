@@ -7,10 +7,12 @@ namespace Brackeys.Component.Sprites.Tower
 {
     public class EarthTower : Tower
     {
-        const int BASEDAMAGE = 2;
+        const int BASEDAMAGE = 30;
         const int BASERANGE = 1;
         const int BASEATTACKSPEED = 1;
-        const int GLOBALCOST = 5;
+
+        public static int GlobalCost { get; set; } = 100;
+        public override int Cost => GlobalCost;
 
         public EarthTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED, Enemy.Elements.Earth)
         {
@@ -19,18 +21,16 @@ namespace Brackeys.Component.Sprites.Tower
 
             AnimationManager.Scale = 3f;
             AnimationManager.Parent = this;
-
-            GlobalCost = GLOBALCOST;
         }
 
         protected override void ApplyBuff(Tower tower)
         {
-            tower.Range += 1f;
+            tower.Range += 0.6f;
         }
 
         protected override void RevokeBuff(Tower tower)
         {
-            tower.Range -= 1f;
+            tower.Range -= 0.6f;
         }
 
         public override void StartAnimation()

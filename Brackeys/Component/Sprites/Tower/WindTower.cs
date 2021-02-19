@@ -7,16 +7,17 @@ namespace Brackeys.Component.Sprites.Tower
 {
     public class WindTower : Tower
     {
-        const int BASEDAMAGE = 2;
+        const int BASEDAMAGE = 20;
         const int BASERANGE = 1;
-        const int BASEATTACKSPEED = 1;
-        const int GLOBALCOST = 5;
+        const float BASEATTACKSPEED = 0.8f;
+
+        public static int GlobalCost { get; set; } = 100;
+        public override int Cost => GlobalCost; 
 
         public WindTower() : base (BASEDAMAGE, BASERANGE, BASEATTACKSPEED, Enemy.Elements.Wind)
         {
             Name = "Wind Mage";
             Texture = ContentManager.TowerTexture;
-            GlobalCost = GLOBALCOST;
 
             AnimationManager.Scale = 3f;
             AnimationManager.Parent = this;

@@ -20,7 +20,10 @@ namespace Brackeys.Models.Levels
                 Stage7(),
                 Stage8(),
                 Stage9(),
-                Stage10()
+                Stage10(),
+                Stage11(),
+                Stage12(),
+                Stage13()
             };
         }
 
@@ -151,6 +154,63 @@ namespace Brackeys.Models.Levels
                 spawnOne = !spawnOne;
             }
 
+            return stage;
+        }
+
+        private Stage Stage11()
+        {
+            Stage stage = new Stage
+            {
+                SpawnInterval = 1
+            };
+
+            bool spawnOne = false;
+
+            for (int i = 0; i < 30; i++)
+            {
+                if (spawnOne)
+                    stage.AddEnemy(new Tank(Elements.Wind), 1);
+                else
+                    stage.AddEnemy(new Tank(Elements.Fire), 1);
+
+                spawnOne = !spawnOne;
+            }
+
+            return stage;
+        }
+
+        private Stage Stage12()
+        {
+            Stage stage = new Stage
+            {
+                SpawnInterval = 0.5f
+            };
+
+            bool spawnOne = false;
+
+            for (int i = 0; i < 30; i++)
+            {
+                if (spawnOne)
+                    stage.AddEnemy(new Runner(Elements.Wind), 1);
+                else
+                    stage.AddEnemy(new Runner(Elements.Earth), 1);
+
+                spawnOne = !spawnOne;
+            }
+
+            return stage;
+        }
+
+        private Stage Stage13()
+        {
+            Stage stage = new Stage
+            {
+                SpawnInterval = 1f
+            };
+
+            stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Earth), new Runner(Elements.Fire) }, 10);
+            stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Fire), new Runner(Elements.Fire) }, 10);
+            stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Wind), new Runner(Elements.Fire) }, 10);
             return stage;
         }
     }

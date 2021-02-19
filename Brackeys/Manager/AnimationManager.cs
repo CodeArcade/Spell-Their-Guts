@@ -27,7 +27,13 @@ namespace Brackeys.Manager
 
         public void Draw(SpriteBatch spriteBatch, Color? color = null)
         {
-            if (color is null) color = Color.White;
+            if (color is null)
+            {
+                color = Color.White;
+
+                if(Parent is Sprite sprite)
+                    color = sprite.Color;
+            }
 
             if (Parent != null) Position = Parent.Position;
             if (Flip)

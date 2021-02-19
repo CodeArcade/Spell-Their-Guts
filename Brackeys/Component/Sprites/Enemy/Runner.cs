@@ -25,18 +25,17 @@ namespace Brackeys.Component.Sprites.Enemy
             HitBoxXOffSet = (int)((Size.Width * 0.9) / 2);
             HitBoxYOffSet = (int)((Size.Height * 0.9 / 2));
 
-            Speed = 100;
-            Damage = 1;
-            Health = 3;
-            VirtualHealth = 3;
-            Reward = 2;
+            Speed = 150;
+            Damage = 10;
+            Health = 30;
+            VirtualHealth = 30;
+            Reward = 20;
         }
 
         public override void LevelUp()
         {
-            Speed += 10;
-            Health += 3;
-            VirtualHealth += 3;
+            Health += 5;
+            VirtualHealth += 5;
         }
     }
 }

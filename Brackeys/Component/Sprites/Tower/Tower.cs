@@ -28,8 +28,7 @@ namespace Brackeys.Component.Sprites.Tower
         public float AttackSpeed { get; set; }
         public float TimeSinceLastShot { get; set; }
 
-        public static int GlobalCost { get; set; }
-        public int Cost => GlobalCost;
+        public virtual int Cost => 0;
         public Cell Cell { get; set; }
 
         public bool DrawRange { get; set; }
@@ -86,7 +85,7 @@ namespace Brackeys.Component.Sprites.Tower
 
         private bool AddedRangeSprite { get; set; }
 
-        public Tower(int baseDamage, int baseRange, int baseAttackSpeed, Elements element)
+        public Tower(int baseDamage, int baseRange, float baseAttackSpeed, Elements element)
         {
             Damage = baseDamage;
             Range = baseRange;

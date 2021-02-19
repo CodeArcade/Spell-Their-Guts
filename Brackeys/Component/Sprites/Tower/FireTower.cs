@@ -7,15 +7,16 @@ namespace Brackeys.Component.Sprites.Tower
 {
     public class FireTower : Tower
     {
-        const int BASEDAMAGE = 3;
+        const int BASEDAMAGE = 40;
         const int BASERANGE = 1;
-        const int BASEATTACKSPEED = 1;
-        const int GLOBALCOST = 5;
+        const int BASEATTACKSPEED = 2;
+
+        public static int GlobalCost { get; set; } = 100;
+        public override int Cost => GlobalCost;
 
         public FireTower() : base(BASEDAMAGE, BASERANGE, BASEATTACKSPEED, Enemy.Elements.Fire)
         {
             Name = "Fire Mage";
-            GlobalCost = GLOBALCOST;
             Texture = ContentManager.TowerTexture;
 
             AnimationManager.Scale = 3f;
@@ -24,12 +25,12 @@ namespace Brackeys.Component.Sprites.Tower
 
         protected override void ApplyBuff(Tower tower)
         {
-            tower.Damage += 1;
+            tower.Damage += 10;
         }
 
         protected override void RevokeBuff(Tower tower)
         {
-            tower.Damage -= 1;
+            tower.Damage -= 10;
         }
 
         public override void StartAnimation()

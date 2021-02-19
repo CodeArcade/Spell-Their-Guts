@@ -83,6 +83,13 @@ namespace Brackeys.States
 
                     AudioManager.PlayEffect(ContentManager.SelectSoundEffect);
 
+                    if (Player.CurrentTowerInHand is FireTower)
+                        FireTower.GlobalCost += 10;
+                    else if (Player.CurrentTowerInHand is EarthTower)
+                        EarthTower.GlobalCost += 10;
+                    else
+                        WindTower.GlobalCost += 10;
+
                     base.AddComponent(Cells[x, y].Tower, (int)States.Layers.PlayingArea);
 
                     Player.Unselect();
@@ -262,7 +269,8 @@ namespace Brackeys.States
             Label label = new Label(ContentManager.TestFont)
             {
                 Position = new Vector2(x, y + CellSize),
-                Text = tower.Cost.ToString()
+                Text = tower.Cost.ToString(),
+                Name = $"{tower.GetType().Name}Label"
             };
 
             base.AddComponent(button, (int)States.Layers.UI);
