@@ -141,21 +141,15 @@ namespace Brackeys.Component.Sprites.Tower
             switch (Element)
             {
                 case Elements.Earth:
-                    if (IsMain) { }
-                       // ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainEarthTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
-                    else
+                    if (!IsMain)
                         ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportEarthTowerParticle, 3, 15, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
                 case Elements.Fire:
-                    if (IsMain) { }
-                    //ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainFireTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
-                    else
+                    if (!IsMain)
                         ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportFireTowerParticle, 3, 15, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
                 case Elements.Wind:
-                    if (IsMain) { }
-                    //ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.MainWindTowerParticle, 5, 10, maxSize: new System.Drawing.Size(10, 10), new Vector2(0, 0), 0);
-                    else
+                    if (!IsMain)
                         ParticleManager.GenerateNewParticle(Color.White, Center, ContentManager.SupportWindTowerParticle, 3, 15, maxSize: new System.Drawing.Size(6, 6), DirectionToMainTower, 0.01f);
                     break;
             }
@@ -183,26 +177,28 @@ namespace Brackeys.Component.Sprites.Tower
             TimeSinceLastShot = 0;
             Projectile p;
 
+            int damage = GetTowersInRange().Count == 0 ? Damage / 2 : Damage;
+
             switch (Element)
             {
                 case Elements.Earth:
                     AudioManager.PlayEffect(ContentManager.EarthShootSoundEffect);
-                    p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.StoneProjectile, 4) { FrameSpeed = 0.1f });
+                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.StoneProjectile, 4) { FrameSpeed = 0.1f });
                     break;
                 case Elements.Fire:
                     AudioManager.PlayEffect(ContentManager.FireShootSoundEffect);
-                    p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.RedProjectile, 4) { FrameSpeed = 0.1f });
+                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.RedProjectile, 4) { FrameSpeed = 0.1f });
                     break;
                 case Elements.Wind:
                     AudioManager.PlayEffect(ContentManager.WindShootSoundEffect);
-                    p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.BlueProjectile, 4) { FrameSpeed = 0.1f });
+                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.BlueProjectile, 4) { FrameSpeed = 0.1f });
                     break;
                 default:
-                    p = new Projectile(DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30));
+                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30));
                     break;
             }
 
-            TargetedEnemy.TakeVirtualDamage(Damage, Element);
+            TargetedEnemy.TakeVirtualDamage(damage, Element);
             CurrentState.AddComponent(p, (int)Layers.Dim);
         }
 

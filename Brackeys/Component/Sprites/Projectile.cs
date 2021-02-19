@@ -16,13 +16,15 @@ namespace Brackeys.Component.Sprites
         private double TTL { get; set; }
         private double TimeLived { get; set; }
         private Elements Element { get; set; }
+        private int Damage { get; set; }
 
-        public Projectile(Vector2 direction, Tower.Tower parent, Elements element, Texture2D texture = null, Size? size = null, Animation animation = null)
+        public Projectile(int damage, Vector2 direction, Tower.Tower parent, Elements element, Texture2D texture = null, Size? size = null, Animation animation = null)
         {
             Parent = parent;
             Position = parent.Center;
             Speed = 500;
             Direction = direction;
+            Damage = damage;
 
             if (texture is null)
                 Texture = ContentManager.TowerTexture;
@@ -68,7 +70,7 @@ namespace Brackeys.Component.Sprites
 
             if (!(sprite is Enemy.Enemy)) return;
 
-            ((Enemy.Enemy)sprite).TakeDamage(((Tower.Tower)Parent).Damage, Element);
+            ((Enemy.Enemy)sprite).TakeDamage(Damage, Element);
             ((Enemy.Enemy)sprite).VirtualHealth = ((Enemy.Enemy)sprite).Health;
 
             if (((Enemy.Enemy)sprite).Health <= 0) sprite.IsRemoved = true;

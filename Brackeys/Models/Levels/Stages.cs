@@ -23,7 +23,9 @@ namespace Brackeys.Models.Levels
                 Stage10(),
                 Stage11(),
                 Stage12(),
-                Stage13()
+                Stage13(),
+                Stage14(),
+                Stage15()
             };
         }
 
@@ -211,6 +213,32 @@ namespace Brackeys.Models.Levels
             stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Earth), new Runner(Elements.Fire) }, 10);
             stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Fire), new Runner(Elements.Fire) }, 10);
             stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Wind), new Runner(Elements.Fire) }, 10);
+            return stage;
+        }
+
+        private Stage Stage14()
+        {
+            Stage stage = new Stage
+            {
+                SpawnInterval = 1f
+            };
+
+            stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Earth), new Walker(Elements.Fire) }, 10);
+            stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Fire), new Walker(Elements.Fire) }, 10);
+            stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Wind), new Walker(Elements.Fire) }, 10);
+            return stage;
+        }
+
+        private Stage Stage15()
+        {
+            Stage stage = new Stage
+            {
+                SpawnInterval = 1f
+            };
+
+            stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Earth), new Walker(Elements.Wind), new Runner(Elements.Fire) }, 5);
+            stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Fire), new Walker(Elements.Earth), new Runner(Elements.Wind) }, 5);
+            stage.AddEnemy(new List<Enemy>() { new Tank(Elements.Wind), new Walker(Elements.Fire), new Runner(Elements.Earth) }, 5);
             return stage;
         }
     }

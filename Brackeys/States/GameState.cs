@@ -39,6 +39,12 @@ namespace Brackeys.States
                 return;
             }
 
+            if(Level.Stages.Count == 0)
+            {
+                OnWin();
+                return;
+            }
+
             Level.Update(gameTime, this);
             base.Update(gameTime);
             Player.Update(gameTime);
@@ -49,6 +55,11 @@ namespace Brackeys.States
         private void OnPlayerDeath()
         {
             StateManager.ChangeTo<GameOverState>(GameOverState.Name, false, Level.CurrentStage);
+        }
+
+        private void OnWin()
+        {
+            StateManager.ChangeTo<GameOverState>(GameOverState.Name, true, Level.CurrentStage);
         }
 
         private void StartGame()

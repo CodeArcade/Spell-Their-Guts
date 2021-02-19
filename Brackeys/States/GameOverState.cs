@@ -17,14 +17,13 @@ namespace Brackeys.States
             DidWin = (bool)parameter[0];
             StageReached = (int)parameter[1];
 
-            ((Label)Layers[(int)States.Layers.UI].First(x => x is Label label && label.Name == "stageLabel")).Text = $"You have reached stage {StageReached}";
+            AddComponent(new Label(ContentManager.TestFont) { Position = new Vector2(50, 50), Text = DidWin ? "You made it!" : "Game Over!" }, (int)States.Layers.UI);
+            if (!DidWin)
+                AddComponent(new Label(ContentManager.TestFont) { Position = new Vector2(50, 80), Text = $"You have reached stage {StageReached}", Name = "stageLabel" }, (int)States.Layers.UI);
         }
 
         protected override void LoadComponents()
         {
-            AddComponent(new Label(ContentManager.TestFont) { Position = new Vector2(50, 50), Text = DidWin ? "You made it!" : "Game Over!" }, (int)States.Layers.UI);
-            AddComponent(new Label(ContentManager.TestFont) { Position = new Vector2(50, 80), Text = $"You have reached stage {StageReached}", Name = "stageLabel" }, (int)States.Layers.UI);
-
             Button button1 = new Button(ContentManager.EnemyTexture, ContentManager.TestFont)
             {
                 Position = new Vector2(25, 100),

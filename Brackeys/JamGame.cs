@@ -50,7 +50,7 @@ namespace Brackeys
 
             StateManager.ChangeTo<MenuState>(MenuState.Name);
 
-            AudioManager.GlobalVolume = 0.5f;
+            AudioManager.GlobalVolume = 0.25f;
         }
 
         protected override void Update(GameTime gameTime)
