@@ -223,10 +223,10 @@ namespace Brackeys.States
 
         private void AddShopEntry(Tower tower, float x, float y)
         {
-            Button button = new Button(tower.Texture, ContentManager.TestFont)
+            Button button = new Button(ContentManager.SmallWhiteButton, ContentManager.TestFont)
             {
                 Position = new Vector2(x, y),
-                Size = new Size(CellSize, CellSize)
+                Size = new Size(CellSize, CellSize),
             };
 
             button.AnimationManager.Scale = 3f;
