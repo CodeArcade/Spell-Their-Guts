@@ -50,7 +50,7 @@ namespace Brackeys.Component.Sprites
                 return new Rectangle((int)Position.X, (int)Position.Y, Size.Width, Size.Height);
             }
         }
-        public Texture2D Texture { get; set; }
+        public Texture2D Texture => IsPath ? ContentManager.EnemyTexture : ContentManager.GrassTile;
 
         public event EventHandler OnClick;
 
@@ -60,7 +60,6 @@ namespace Brackeys.Component.Sprites
 
         public Cell(int x, int y)
         {
-            Texture = ContentManager.EnemyTexture;
             Coordinate = new Microsoft.Xna.Framework.Point(x, y);
         }
 

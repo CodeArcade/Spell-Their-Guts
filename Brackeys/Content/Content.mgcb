@@ -235,6 +235,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Enemy/Skull.png
 
+#begin Sprites/GUI/BlueButton.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/GUI/BlueButton.png
+
 #begin Sprites/GUI/Cursor.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -247,6 +259,30 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/GUI/Cursor.png
 
+#begin Sprites/GUI/GreenButton.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/GUI/GreenButton.png
+
+#begin Sprites/GUI/GreyButton.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/GUI/GreyButton.png
+
 #begin Sprites/GUI/Title.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -258,6 +294,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/GUI/Title.png
+
+#begin Sprites/GUI/WhiteButton.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/GUI/WhiteButton.png
 
 #begin Sprites/Projectiles/BlueProjectile.png
 /importer:TextureImporter
