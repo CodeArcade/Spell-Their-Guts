@@ -79,7 +79,7 @@ namespace Brackeys.Component.Controls
                 float x = (Rectangle.X + (Rectangle.Width / 2)) - (Font.MeasureString(Text).X / 2);
                 float y = (Rectangle.Y + (Rectangle.Height / 2)) - (Font.MeasureString(Text).Y / 2);
 
-                spriteBatch.DrawString(Font, Text, new Vector2(x, y), FontColor);
+                spriteBatch.DrawString(Font, Text, new Vector2(x, y - 4), FontColor);
             }
         }
 

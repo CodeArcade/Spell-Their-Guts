@@ -8,6 +8,7 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <AssemblyName>Spell Their Guts</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Game1.cs" />

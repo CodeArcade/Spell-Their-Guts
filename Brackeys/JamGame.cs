@@ -19,6 +19,7 @@ namespace Brackeys
         public static Size ScaleOriginal => new Size(1280, 720);
 
         public static float Scale { get; private set; }
+        public static bool HasSeenTutorial { get; set; } = true;
 
         public JamGame()
         {
@@ -48,7 +49,7 @@ namespace Brackeys
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            StateManager.ChangeTo<GameState>(GameState.Name);
+            StateManager.ChangeTo<MenuState>(MenuState.Name);
 
             AudioManager.GlobalVolume = 0.25f;
         }
