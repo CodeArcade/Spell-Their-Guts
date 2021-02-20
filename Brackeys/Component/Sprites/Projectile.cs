@@ -18,7 +18,7 @@ namespace Brackeys.Component.Sprites
         private Elements Element { get; set; }
         private int Damage { get; set; }
 
-        public Projectile(int damage, Vector2 direction, Tower.Tower parent, Elements element, Texture2D texture = null, Size? size = null, Animation animation = null)
+        public Projectile(int damage, Vector2 direction, Tower.Tower parent, Elements element, Texture2D texture = null, Size? size = null, Animation animation = null, float rotation = float.NaN)
         {
             Parent = parent;
             Position = parent.Center;
@@ -35,6 +35,10 @@ namespace Brackeys.Component.Sprites
             {
                 AnimationManager.Parent = this;
                 AnimationManager.Play(animation);
+                if (rotation != float.NaN)
+                {
+                    AnimationManager.Rotation = rotation;
+                }
             }
 
             if (size is null)

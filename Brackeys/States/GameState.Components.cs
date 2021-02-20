@@ -73,8 +73,10 @@ namespace Brackeys.States
                         Cells[x, y].Tower = new FireTower();
                     else if (Player.CurrentTowerInHand is EarthTower)
                         Cells[x, y].Tower = new EarthTower();
-                    else
+                    else if (Player.CurrentTowerInHand is WindTower)
                         Cells[x, y].Tower = new WindTower();
+                    else
+                        Cells[x, y].Tower = new NormalTower();
 
                     Cells[x, y].Tower.CurrentState = this;
                     Cells[x, y].Tower.Position = Cells[x, y].Position;
@@ -101,7 +103,13 @@ namespace Brackeys.States
 
         private void AddUi()
         {
-            #region Ui
+            AddPlayerInfoText();
+            AddShop();
+            AddTowerInfo();
+        }
+
+        protected void AddPlayerInfoText()
+        {
             base.AddComponent(
              new Label(ContentManager.TestFont)
              {
@@ -126,42 +134,41 @@ namespace Brackeys.States
             new Label(ContentManager.TestFont)
             {
                 Name = "MoneyLabel",
-                Position = new Vector2((Columns - UiWidthInCells ) * CellSize, CellSize * 1.5f),
+                Position = new Vector2((Columns - UiWidthInCells) * CellSize, CellSize * 1.5f),
                 FontColor = Color.Black,
                 Text = "test"
             },
             (int)States.Layers.UI);
-            #endregion
+        }
 
-            #region Shop
-
+        protected virtual void AddShop()
+        {
             AddShopEntry(new FireTower(), (Columns - UiWidthInCells + 0.8f) * CellSize, CellSize * 3);
             AddShopEntry(new EarthTower(), (Columns - UiWidthInCells + 0.8f) * CellSize, CellSize * 5);
             AddShopEntry(new WindTower(), (Columns - UiWidthInCells + 0.8f) * CellSize, CellSize * 7);
+        }
 
-            #endregion
-
-            #region TowerInfo
+        protected void AddTowerInfo()
+        {
+            base.AddComponent(
+                new Label(ContentManager.TestFont)
+                {
+                    Name = "TowerNameLabel",
+                    Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (7.5f * CellSize)),
+                    FontColor = Color.Black,
+                    Text = ""
+                },
+                (int)States.Layers.UI);
 
             base.AddComponent(
-        new Label(ContentManager.TestFont)
-        {
-            Name = "TowerNameLabel",
-            Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (7.5f * CellSize)),
-            FontColor = Color.Black,
-            Text = ""
-        },
-        (int)States.Layers.UI);
-
-            base.AddComponent(
-        new Label(ContentManager.TestFont)
-        {
-            Name = "TowerElementLabel",
-            Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (7f * CellSize)),
-            FontColor = Color.Black,
-            Text = ""
-        },
-        (int)States.Layers.UI);
+                new Label(ContentManager.TestFont)
+                {
+                    Name = "TowerElementLabel",
+                    Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (7f * CellSize)),
+                    FontColor = Color.Black,
+                    Text = ""
+                },
+                (int)States.Layers.UI);
 
             base.AddComponent(
                 new Label(ContentManager.TestFont)
@@ -173,7 +180,7 @@ namespace Brackeys.States
                 },
                 (int)States.Layers.UI);
 
-                            base.AddComponent(
+            base.AddComponent(
                 new Label(ContentManager.TestFont)
                 {
                     Name = "TowerRangeLabel",
@@ -183,7 +190,7 @@ namespace Brackeys.States
                 },
                 (int)States.Layers.UI);
 
-                            base.AddComponent(
+            base.AddComponent(
                 new Label(ContentManager.TestFont)
                 {
                     Name = "TowerSpeedLabel",
@@ -195,7 +202,7 @@ namespace Brackeys.States
 
             Button button = new Button(ContentManager.RangeTexture, ContentManager.TestFont)
             {
-                Position = new Vector2((Columns - UiWidthInCells) * CellSize - (CellSize / 2) , (CellSize * Rows) - (4f * CellSize)),
+                Position = new Vector2((Columns - UiWidthInCells) * CellSize - (CellSize / 2), (CellSize * Rows) - (4f * CellSize)),
                 FontColor = Color.Black,
                 Text = "Sell",
                 Size = new Size(CellSize * 3, CellSize),
@@ -217,11 +224,9 @@ namespace Brackeys.States
             };
 
             base.AddComponent(button, (int)States.Layers.UI);
-
-            #endregion
         }
 
-        private void AddShopEntry(Tower tower, float x, float y)
+        protected void AddShopEntry(Tower tower, float x, float y)
         {
             Button button = new Button(ContentManager.SmallWhiteButton, ContentManager.TestFont)
             {
@@ -236,8 +241,10 @@ namespace Brackeys.States
                 button.AnimationManager.Play(new Animation(ContentManager.FireTowerTexture, 4) { FrameSpeed = 0.1f });
             else if (tower is EarthTower)
                 button.AnimationManager.Play(new Animation(ContentManager.EarthTowerTexture, 4) { FrameSpeed = 0.1f });
-            else
+            else if (tower is WindTower)
                 button.AnimationManager.Play(new Animation(ContentManager.WindTowerTexture, 4) { FrameSpeed = 0.1f });
+            else
+                button.AnimationManager.Play(new Animation(ContentManager.NormalTowerTexture, 4) { FrameSpeed = 0.1f });
 
             button.OnClick += (sender, e) =>
             {
@@ -255,8 +262,10 @@ namespace Brackeys.States
                     Player.CurrentTowerInHand = new FireTower();
                 else if (tower is EarthTower)
                     Player.CurrentTowerInHand = new EarthTower();
-                else
+                else if (tower is WindTower)
                     Player.CurrentTowerInHand = new WindTower();
+                else
+                    Player.CurrentTowerInHand = new NormalTower();
 
                 Player.CurrentTowerInHand.StartAnimation();
                 Player.CurrentTowerInHand.Size = new Size(CellSize, CellSize);

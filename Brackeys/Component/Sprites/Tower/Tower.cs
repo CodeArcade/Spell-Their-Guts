@@ -178,25 +178,28 @@ namespace Brackeys.Component.Sprites.Tower
             Projectile p;
 
             int damage = GetTowersInRange().Count == 0 ? Damage / 2 : Damage;
+            float rotation = MathHelper.ToRadians((float)Math.Atan2(TargetedEnemy.Position.Y - Position.Y, TargetedEnemy.Position.X - Position.X));
 
             switch (Element)
             {
                 case Elements.Earth:
                     AudioManager.PlayEffect(ContentManager.EarthShootSoundEffect);
-                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.StoneProjectile, 4) { FrameSpeed = 0.1f });
+                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.StoneProjectile, 4) { FrameSpeed = 0.1f }, rotation);
                     break;
                 case Elements.Fire:
                     AudioManager.PlayEffect(ContentManager.FireShootSoundEffect);
-                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.RedProjectile, 4) { FrameSpeed = 0.1f });
+                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.RedProjectile, 4) { FrameSpeed = 0.1f }, rotation);
                     break;
                 case Elements.Wind:
                     AudioManager.PlayEffect(ContentManager.WindShootSoundEffect);
-                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.BlueProjectile, 4) { FrameSpeed = 0.1f });
+                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.BlueProjectile, 4) { FrameSpeed = 0.1f }, rotation);
                     break;
                 default:
-                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30));
+                    p = new Projectile(damage, DirectionToTargetedEnemy, this, Element, ContentManager.EnemyTexture, new System.Drawing.Size(30, 30), new Animation(ContentManager.BlueProjectile, 4) { FrameSpeed = 0.1f }, rotation);
                     break;
             }
+
+            p.AnimationManager.Scale = 2f;
 
             TargetedEnemy.TakeVirtualDamage(damage, Element);
             CurrentState.AddComponent(p, (int)Layers.Dim);

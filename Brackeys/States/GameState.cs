@@ -12,8 +12,8 @@ namespace Brackeys.States
     public partial class GameState : State
     {
         public static string Name = "Game";
-        private Level Level { get; set; }
-        private bool LevelStarted { get; set; } = false;
+        protected Level Level { get; set; }
+        protected bool LevelStarted { get; set; } = false;
 
         public GameState()
         {
@@ -73,7 +73,7 @@ namespace Brackeys.States
             }
         }
 
-        private void UpdateUI()
+        protected virtual void UpdateUI()
         {
             GetLabel("StageLabel").Text = $"Level: {Level.CurrentStage}";
             GetLabel("HealthLabel").Text = $"Health: {Player.Health}";
@@ -97,7 +97,7 @@ namespace Brackeys.States
             GetLabel("WindTowerLabel").Text = $"{WindTower.GlobalCost}";
         }
 
-        private Label GetLabel(string name) => (Label)Layers[(int)States.Layers.UI].First(x => x is Label label && label.Name == name);
-        private Button GetButton(string name) => (Button)Layers[(int)States.Layers.UI].First(x => x is Button button && button.Name == name);
+        protected Label GetLabel(string name) => (Label)Layers[(int)States.Layers.UI].First(x => x is Label label && label.Name == name);
+        protected Button GetButton(string name) => (Button)Layers[(int)States.Layers.UI].First(x => x is Button button && button.Name == name);
     }
 }

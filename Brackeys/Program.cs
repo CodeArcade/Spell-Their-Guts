@@ -2,7 +2,6 @@
 using Brackeys.States;
 using System;
 using Unity;
-using Unity.Injection;
 
 namespace Brackeys
 {
