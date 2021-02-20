@@ -33,7 +33,7 @@ namespace Brackeys.Models.Levels
         {
             Stage stage = new Stage
             {
-                SpawnInterval = 2
+                SpawnInterval = 1f
             };
 
             stage.AddEnemy(new Walker(Elements.Earth), 10);

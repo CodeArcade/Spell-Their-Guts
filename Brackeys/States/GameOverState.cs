@@ -17,39 +17,46 @@ namespace Brackeys.States
             DidWin = (bool)parameter[0];
             StageReached = (int)parameter[1];
 
-            AddComponent(new Label(ContentManager.TestFont) { Position = new Vector2(50, 50), Text = DidWin ? "You made it!" : "Game Over!" }, (int)States.Layers.UI);
+            AddComponent(new Label(ContentManager.KenneyMini(18)) { Position = new Vector2((JamGame.ScaleOriginal.Width / 2 - 72), JamGame.ScaleOriginal.Height / 2 - 40), Text = DidWin ? "You made it!" : "Game Over!" }, (int)States.Layers.UI);
             if (!DidWin)
-                AddComponent(new Label(ContentManager.TestFont) { Position = new Vector2(50, 80), Text = $"You have reached stage {StageReached}", Name = "stageLabel" }, (int)States.Layers.UI);
+                AddComponent(new Label(ContentManager.KenneyMini(14)) { Position = new Vector2((JamGame.ScaleOriginal.Width / 2 - 130), JamGame.ScaleOriginal.Height / 2 - 20), Text = $"You have reached stage {StageReached}", Name = "stageLabel" }, (int)States.Layers.UI);
         }
 
         protected override void LoadComponents()
         {
-            Button button1 = new Button(ContentManager.EnemyTexture, ContentManager.TestFont)
+
+            Button startGameButton = new Button(ContentManager.WhiteButton, ContentManager.KenneyMini(20))
             {
-                Position = new Vector2(25, 100),
-                Size = new Size(50, 25),
-                Text = "Restart"
+                Text = "RESTART GAME",
+                Position = new Vector2((JamGame.ScaleOriginal.Width / 2 - 72), JamGame.ScaleOriginal.Height / 2 + 48),
+                Size = new Size(144, 48)
             };
 
-            Button button2 = new Button(ContentManager.EnemyTexture, ContentManager.TestFont)
-            {
-                Position = new Vector2(100, 100),
-                Size = new Size(50, 25),
-                Text = "Menu"
-            };
-
-            button1.OnClick += (sender, e) =>
+            startGameButton.OnClick += (sender, e) =>
             {
                 StateManager.ChangeTo<GameState>(GameState.Name);
             };
 
-            button2.OnClick += (sender, e) =>
+
+            Button menuButton = new Button(ContentManager.WhiteButton, ContentManager.KenneyMini(20))
+            {
+                Text = "BACK TO MENU",
+                Position = new Vector2((JamGame.ScaleOriginal.Width / 2) - 72, (JamGame.ScaleOriginal.Height / 2) + (JamGame.HasSeenTutorial ? 120 : 48)),
+                Size = new System.Drawing.Size(144, 48)
+            };
+
+            menuButton.OnClick += (sender, e) =>
             {
                 StateManager.ChangeTo<MenuState>(MenuState.Name);
             };
 
-            AddComponent(button1, (int)States.Layers.UI);
-            AddComponent(button2, (int)States.Layers.UI);
+
+            AddComponent(menuButton, States.Layers.UI);
+            AddComponent(startGameButton, States.Layers.UI);
+
+            Title title = new Title();
+            title.Position = new Vector2((JamGame.ScaleOriginal.Width / 2) - (title.Texture.Width / 2), 100 - (title.Texture.Height / 2));
+            AddComponent(title, States.Layers.UI);
         }
     }
 }
