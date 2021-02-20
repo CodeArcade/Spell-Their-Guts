@@ -178,7 +178,7 @@ namespace Brackeys.Component.Sprites.Tower
             Projectile p;
 
             int damage = GetTowersInRange().Count == 0 ? Damage / 2 : Damage;
-            float rotation = MathHelper.ToRadians((float)Math.Atan2(TargetedEnemy.Position.Y - Position.Y, TargetedEnemy.Position.X - Position.X));
+            float rotation = AngleToTargetedEnemy;
 
             switch (Element)
             {

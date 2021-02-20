@@ -9,7 +9,7 @@ namespace Brackeys.Component.Sprites.Tower
     {
         const int BASEDAMAGE = 40;
         const int BASERANGE = 1;
-        const int BASEATTACKSPEED = 2;
+        const float BASEATTACKSPEED = 1.5f;
 
         public static int GlobalCost { get; set; } = 100;
         public override int Cost => GlobalCost;
