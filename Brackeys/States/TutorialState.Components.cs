@@ -1,6 +1,7 @@
 ﻿using Brackeys.Component;
 using Brackeys.Component.Controls;
 using Brackeys.Component.Sprites.Tower;
+using Brackeys.Component.Sprites.Tutorial;
 using Microsoft.Xna.Framework;
 using System.Linq;
 
@@ -8,11 +9,18 @@ namespace Brackeys.States
 {
     public partial class TutorialState : GameState
     {
+        Vector2 TextBoxPosition { get; set; }
+
         protected override void LoadComponents()
         {
+            TextBoxPosition = new Vector2(425, 250);
             base.LoadComponents();
             FillTutorialTexts();
-            ShowNextText(Vector2.Zero);
+            ShowNextText(TextBoxPosition);
+            AddComponent(new Fairy()
+            {
+                Position = new Vector2(300, 300)
+            }, States.Layers.PlayingArea);
         }
 
         protected override void AddShop()
@@ -49,6 +57,8 @@ namespace Brackeys.States
             {
                 x.IsRemoved = true;
             }
+
+            if (TutorialTexts.Count == 0) return;
 
             TextBox box = new TextBox(TutorialTexts.Dequeue(), ContentManager.KenneyMini(20))
             {

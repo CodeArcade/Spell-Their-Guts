@@ -200,13 +200,13 @@ namespace Brackeys.States
                 },
                 (int)States.Layers.UI);
 
-            Button button = new Button(ContentManager.RangeTexture, ContentManager.TestFont)
+            Button button = new Button(ContentManager.WhiteButton, ContentManager.KenneyMini(20))
             {
                 Position = new Vector2((Columns - UiWidthInCells) * CellSize - (CellSize / 2), (CellSize * Rows) - (4f * CellSize)),
                 FontColor = Color.Black,
-                Text = "Sell",
+                Text = "SELL",
                 Size = new Size(CellSize * 3, CellSize),
-                Name = "SellTowerButton"
+                Name = "SellTowerButton",
             };
             button.OnClick += (sender, e) =>
             {

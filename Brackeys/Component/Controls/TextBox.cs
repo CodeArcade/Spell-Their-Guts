@@ -2,8 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Brackeys.Component.Sprites;
+using Brackeys.Models;
+using System.Diagnostics;
 
 namespace Brackeys.Component.Controls
 {
@@ -31,8 +32,8 @@ namespace Brackeys.Component.Controls
             Texture = ContentManager.Textbox;
             Text = text;
             Vector2 stringSize = font.MeasureString(text);
-            int xCount = Math.Max(3, (int)stringSize.X / TextBoxPartSize);
-            int yCount = Math.Max(3, (int)stringSize.Y / TextBoxPartSize);
+            int xCount = Math.Max(3, (int)stringSize.X / TextBoxPartSize + 1);
+            int yCount = Math.Max(3, (int)stringSize.Y / TextBoxPartSize + 1);
 
             TextBoxParts = new List<List<TextBoxParts>>();
 
@@ -90,6 +91,10 @@ namespace Brackeys.Component.Controls
                     }
                 }
             }
+
+            AnimationManager.Play(new Animation(ContentManager.TextboxAdvance, 4));
+            AnimationManager.Scale = 2;
+            AnimationManager.Position = new Vector2((Position.X + (TextBoxPartSize * xCount)) * 3, (Position.Y + (TextBoxPartSize * yCount) + 10) * 3);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -106,6 +111,8 @@ namespace Brackeys.Component.Controls
             }
 
             spriteBatch.DrawString(ContentManager.KenneyMini(20), Text, new Vector2(Position.X + 15, Position.Y + 15), Color.Black);
+            AnimationManager.Position = new Vector2(Position.X + (TextBoxParts[0].Count * TextBoxPartSize) + 10, Position.Y + (TextBoxParts.Count * TextBoxPartSize) + 10);
+            AnimationManager.Draw(spriteBatch);
         }
 
         public override void Update(GameTime gameTime)

@@ -65,6 +65,7 @@ namespace Brackeys.Manager
         public Texture2D WhiteButton => JamGame.Content.Load<Texture2D>("Sprites/GUI/WhiteButton");
         public Texture2D SmallWhiteButton => JamGame.Content.Load<Texture2D>("Sprites/GUI/SmallWhiteButton");
         public Texture2D Textbox => JamGame.Content.Load<Texture2D>("Sprites/GUI/Textbox");
+        public Texture2D TextboxAdvance => JamGame.Content.Load<Texture2D>("Sprites/GUI/TextAdvance");
 
         public Texture2D GrassTile => JamGame.Content.Load<Texture2D>("Sprites/Background/Grass");
 
