@@ -7,22 +7,20 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>GameIcon.ico</ApplicationIcon>
     <AssemblyName>Spell Their Guts</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Game1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Icon.ico" />
-    <None Remove="Icon.bmp" />
+    <None Remove="GameIcon.ico" />
     <None Remove="Models\NewFile1.txt" />
     <None Remove="States\GameState.Components.ts" />
     <None Remove="States\NewFile1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icon.ico" />
-    <EmbeddedResource Include="Icon.bmp" />
+    <EmbeddedResource Include="GameIcon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
@@ -37,5 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Manager\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Icon.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

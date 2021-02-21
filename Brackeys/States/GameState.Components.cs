@@ -228,6 +228,12 @@ namespace Brackeys.States
                     Cells[Player.SelectedTower.Cell.Coordinate.X, Player.SelectedTower.Cell.Coordinate.Y].Tower.OnRemove();
                     Layers[(int)States.Layers.PlayingArea].Remove(Cells[Player.SelectedTower.Cell.Coordinate.X, Player.SelectedTower.Cell.Coordinate.Y].Tower);
                     Cells[Player.SelectedTower.Cell.Coordinate.X, Player.SelectedTower.Cell.Coordinate.Y].Tower = null;
+                    if (Player.CurrentTowerInHand is FireTower)
+                        FireTower.GlobalCost -= 10;
+                    else if (Player.CurrentTowerInHand is EarthTower)
+                        EarthTower.GlobalCost -= 10;
+                    else
+                        WindTower.GlobalCost -= 10;
                     Player.SelectedTower = null;
 
                     Player.Unselect();
@@ -241,12 +247,13 @@ namespace Brackeys.States
         {
             Button button = new Button(ContentManager.SmallWhiteButton, ContentManager.KenneyMini())
             {
-                Position = new Vector2(x, y),
+                Position = new Vector2(x - 10, y),
                 Size = new Size(CellSize, CellSize),
             };
 
             button.AnimationManager.Scale = 3f;
             button.AnimationManager.Parent = button;
+            button.Name = $"{tower.GetType().Name}BuyButton";
 
             if (tower is FireTower)
                 button.AnimationManager.Play(new Animation(ContentManager.FireTowerTexture, 4) { FrameSpeed = 0.1f });

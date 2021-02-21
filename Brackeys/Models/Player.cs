@@ -34,6 +34,7 @@ namespace Brackeys.Models
             {
                 Point p = Mouse.GetState().Position;
                 CurrentTowerInHand.Position = new Vector2(p.X - (CurrentTowerInHand.Size.Width / 2), p.Y - (CurrentTowerInHand.Size.Height / 2));
+                CurrentTowerInHand.AnimationManager.Position = CurrentTowerInHand.Position;
             }
         }
 

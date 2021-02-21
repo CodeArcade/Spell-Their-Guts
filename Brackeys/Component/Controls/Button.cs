@@ -47,7 +47,7 @@ namespace Brackeys.Component.Controls
         {
             get
             {
-                if (AnimationManager.IsPlaying) return AnimationManager.AnimationRectangle;
+                //if (AnimationManager.IsPlaying) return AnimationManager.AnimationRectangle;
 
                 return new Rectangle((int)Position.X, (int)Position.Y, Size.Width, Size.Height);
             }
@@ -72,7 +72,10 @@ namespace Brackeys.Component.Controls
             spriteBatch.Draw(Texture, Rectangle, color);
 
             if (AnimationManager.IsPlaying)
+            {
+                AnimationManager.Position = new Vector2(Position.X + 15, Position.Y + 10);
                 AnimationManager.Draw(spriteBatch);
+            }
 
             if (!string.IsNullOrEmpty(Text))
             {

@@ -159,7 +159,7 @@ namespace Brackeys.Component.Sprites.Enemy
 
             if (Element == Elements.Earth && element == Elements.Fire)
             {
-                return damage / 2f;
+                return damage / 1.5f;
             }
 
             if (Element == Elements.Earth && element == Elements.Wind)
@@ -174,7 +174,7 @@ namespace Brackeys.Component.Sprites.Enemy
 
             if (Element == Elements.Fire && element == Elements.Wind)
             {
-                return damage / 2f;
+                return damage / 1.5f;
             }
 
             if (Element == Elements.Wind && element == Elements.Fire)
@@ -184,7 +184,7 @@ namespace Brackeys.Component.Sprites.Enemy
 
             if (Element == Elements.Wind && element == Elements.Earth)
             {
-                return damage / 2f;
+                return damage / 1.5f;
             }
 
             return damage;

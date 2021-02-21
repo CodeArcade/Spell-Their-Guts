@@ -22,6 +22,7 @@ namespace Brackeys.States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(ContentManager.ShopBackground, new Rectangle(JamGame.ScaleOriginal.Width - 220, 0, 220, 720),Color.Gray);
             base.Draw(gameTime, spriteBatch);
             if (Player.CurrentTowerInHand != null)
             {
@@ -49,7 +50,6 @@ namespace Brackeys.States
             base.Update(gameTime);
             Player.Update(gameTime);
             UpdateUI();
-            GC.Collect();
         }
 
         private void OnPlayerDeath()
@@ -104,6 +104,9 @@ namespace Brackeys.States
             GetLabel("FireTowerLabel").Text = $"{FireTower.GlobalCost}";
             GetLabel("EarthTowerLabel").Text = $"{EarthTower.GlobalCost}";
             GetLabel("WindTowerLabel").Text = $"{WindTower.GlobalCost}";
+
+            //Button fireTowerBuyButton = GetButton("FireTowerBuyButton");
+            //fireTowerBuyButton.AnimationManager.Position = new Vector2(fireTowerBuyButton.Position.X + 10, fireTowerBuyButton.Position.X + 5);
         }
 
         protected Label GetLabel(string name) => (Label)Layers[(int)States.Layers.UI].First(x => x is Label label && label.Name == name);

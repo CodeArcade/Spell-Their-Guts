@@ -18,7 +18,7 @@ namespace Brackeys.States
             Button startGameButton = new Button(ContentManager.WhiteButton, ContentManager.KenneyMini(20))
             {
                 Text = "START GAME",
-                Position = new Vector2((JamGame.ScaleOriginal.Width / 2) - 72, (JamGame.ScaleOriginal.Height / 2) - 24),
+                Position = new Vector2((JamGame.ScaleOriginal.Width / 2) - 72, (JamGame.ScaleOriginal.Height / 2) + 48),
                 Size = new System.Drawing.Size(144, 48)
             };
 
@@ -42,7 +42,7 @@ namespace Brackeys.States
             Button quitButton = new Button(ContentManager.WhiteButton, ContentManager.KenneyMini(20))
             {
                 Text = "QUIT",
-                Position = new Vector2((JamGame.ScaleOriginal.Width / 2) - 72, (JamGame.ScaleOriginal.Height / 2) + (JamGame.HasSeenTutorial ? 120 : 48)),
+                Position = new Vector2((JamGame.ScaleOriginal.Width / 2) - 72, (JamGame.ScaleOriginal.Height / 2) + (JamGame.HasSeenTutorial ? 120 : + 120)),
                 Size = new System.Drawing.Size(144, 48)
             };
 

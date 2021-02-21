@@ -19,7 +19,7 @@ namespace Brackeys
         public static Size ScaleOriginal => new Size(1280, 720);
 
         public static float Scale { get; private set; }
-        public static bool HasSeenTutorial { get; set; } = true;
+        public static bool HasSeenTutorial { get; set; } = false;
 
         public JamGame()
         {
