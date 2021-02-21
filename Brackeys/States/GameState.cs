@@ -92,6 +92,15 @@ namespace Brackeys.States
             GetLabel("TowerRangeLabel").Text = $"Range: {Player.SelectedTower?.Range}";
             GetLabel("TowerSpeedLabel").Text = $"Speed: {Player.SelectedTower?.AttackSpeed}";
 
+            if (Player.SelectedTower is FireTower)
+                GetLabel("TowerUpgradeLabel").Text = $"Damage Up";
+            else if (Player.SelectedTower is EarthTower)
+                GetLabel("TowerUpgradeLabel").Text = $"Range Up";
+            else if (Player.SelectedTower is WindTower)
+                GetLabel("TowerUpgradeLabel").Text = $"Speed Up";
+            else
+                GetLabel("TowerUpgradeLabel").Text = "";
+
             GetLabel("FireTowerLabel").Text = $"{FireTower.GlobalCost}";
             GetLabel("EarthTowerLabel").Text = $"{EarthTower.GlobalCost}";
             GetLabel("WindTowerLabel").Text = $"{WindTower.GlobalCost}";

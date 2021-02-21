@@ -111,7 +111,7 @@ namespace Brackeys.States
         protected void AddPlayerInfoText()
         {
             base.AddComponent(
-             new Label(ContentManager.TestFont)
+             new Label(ContentManager.KenneyMini())
              {
                  Name = "StageLabel",
                  Position = new Vector2((Columns - UiWidthInCells) * CellSize, CellSize / 2),
@@ -121,7 +121,7 @@ namespace Brackeys.States
              (int)States.Layers.UI);
 
             base.AddComponent(
-                new Label(ContentManager.TestFont)
+                new Label(ContentManager.KenneyMini())
                 {
                     Name = "HealthLabel",
                     Position = new Vector2((Columns - UiWidthInCells) * CellSize, CellSize),
@@ -131,7 +131,7 @@ namespace Brackeys.States
                 (int)States.Layers.UI);
 
             base.AddComponent(
-            new Label(ContentManager.TestFont)
+            new Label(ContentManager.KenneyMini())
             {
                 Name = "MoneyLabel",
                 Position = new Vector2((Columns - UiWidthInCells) * CellSize, CellSize * 1.5f),
@@ -151,7 +151,7 @@ namespace Brackeys.States
         protected void AddTowerInfo()
         {
             base.AddComponent(
-                new Label(ContentManager.TestFont)
+                new Label(ContentManager.KenneyMini())
                 {
                     Name = "TowerNameLabel",
                     Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (7.5f * CellSize)),
@@ -161,7 +161,7 @@ namespace Brackeys.States
                 (int)States.Layers.UI);
 
             base.AddComponent(
-                new Label(ContentManager.TestFont)
+                new Label(ContentManager.KenneyMini())
                 {
                     Name = "TowerElementLabel",
                     Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (7f * CellSize)),
@@ -171,7 +171,7 @@ namespace Brackeys.States
                 (int)States.Layers.UI);
 
             base.AddComponent(
-                new Label(ContentManager.TestFont)
+                new Label(ContentManager.KenneyMini())
                 {
                     Name = "TowerDamageLabel",
                     Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (6.2f * CellSize)),
@@ -181,7 +181,7 @@ namespace Brackeys.States
                 (int)States.Layers.UI);
 
             base.AddComponent(
-                new Label(ContentManager.TestFont)
+                new Label(ContentManager.KenneyMini())
                 {
                     Name = "TowerRangeLabel",
                     Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (5.8f * CellSize)),
@@ -191,10 +191,20 @@ namespace Brackeys.States
                 (int)States.Layers.UI);
 
             base.AddComponent(
-                new Label(ContentManager.TestFont)
+                new Label(ContentManager.KenneyMini())
                 {
                     Name = "TowerSpeedLabel",
                     Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (5.4f * CellSize)),
+                    FontColor = Color.Black,
+                    Text = ""
+                },
+                (int)States.Layers.UI);
+
+            base.AddComponent(
+                new Label(ContentManager.KenneyMini())
+                {
+                    Name = "TowerUpgradeLabel",
+                    Position = new Vector2((Columns - UiWidthInCells) * CellSize, (CellSize * Rows) - (4.6f * CellSize)),
                     FontColor = Color.Black,
                     Text = ""
                 },
@@ -208,6 +218,7 @@ namespace Brackeys.States
                 Size = new Size(CellSize * 3, CellSize),
                 Name = "SellTowerButton",
             };
+
             button.OnClick += (sender, e) =>
             {
                 if (Player.SelectedTower != null && !Player.SelectedTower.IsRemoved)
@@ -228,7 +239,7 @@ namespace Brackeys.States
 
         protected void AddShopEntry(Tower tower, float x, float y)
         {
-            Button button = new Button(ContentManager.SmallWhiteButton, ContentManager.TestFont)
+            Button button = new Button(ContentManager.SmallWhiteButton, ContentManager.KenneyMini())
             {
                 Position = new Vector2(x, y),
                 Size = new Size(CellSize, CellSize),
@@ -275,7 +286,7 @@ namespace Brackeys.States
                 Player.SelectedTower = Player.CurrentTowerInHand;
             };
 
-            Label label = new Label(ContentManager.TestFont)
+            Label label = new Label(ContentManager.KenneyMini())
             {
                 Position = new Vector2(x, y + CellSize),
                 Text = tower.Cost.ToString(),
